@@ -1,0 +1,22 @@
+// font size
+$baseSize: 16;
+
+// color
+$cGray: #505050;
+$cCeruleanBlue: #7BADEF;
+$cCream: #FBF7C7;
+$cIceWhite: #FDFDFE;
+$cLightBlue: #D2E6FF;
+$cPaleYellow: #FAF7D5;
+$cRed: #FF5757;
+$cSkyBlue: #9EDCFE;
+$cSteelBlue: #3F679B;
+$cWhite: #ffffff;
+$cYellow: #FFE144;
+
+// breakpoints
+$breakpoints: (
+  "mq": "screen and (max-width: 768px)",
+  "sp": "screen and (max-width: 630px)",
+  "adj": "screen and (max-width: 470px)",
+);

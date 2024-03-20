@@ -1,0 +1,5 @@
+@use "variables" as *;
+// pxをremに変換
+@function rem($px) {
+	@return calc($px / $baseSize * 1rem);
+}

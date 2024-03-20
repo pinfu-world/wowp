@@ -1,0 +1,486 @@
+@use "../helpers/function" as *;
+@use "../helpers/animation" as *;
+@use "../helpers/helpers" as *;
+@use "../helpers/mixin" as *;
+@use "../helpers/variables" as *;
+
+// ハンバーガー
+.el_hamburger {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  color: $cCeruleanBlue;
+  line-height: 1;
+  background-color: $cWhite;
+  border-radius: 50%;
+  box-shadow: 4px 16px 40px 0px #1e674029;
+  cursor: pointer;
+  position: relative;
+
+  & span {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  & > span {
+    display: block;
+    width: 14px;
+    height: 0.1em;
+    background: currentColor;
+    border-radius: 0.1em;
+
+    & + span {
+      margin-top: 6px;
+    }
+  }
+}
+
+.el_waveCanvas {
+  transform: rotate(3deg);
+}
+
+/* activeクラスが適用されたときの各span要素のスタイル */
+.el_hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
+}
+
+.el_hamburger.active span:nth-child(2) {
+  transform: rotate(-45deg) translate(-2px, 2px); /* 2つ目のspanを逆斜めに回転 */
+  margin-top: -6px; /* 2つ目のspanの位置を調整 */
+}
+
+// スクロールドラッグアイコン
+.el_scrollDrag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &_character {
+    color: $cSteelBlue;
+    font-size: rem(11);
+    font-weight: 700;
+    line-height: 3.27;
+    letter-spacing: 1px;
+  }
+}
+
+// top アプリリンク
+.el_appLink {
+  display: flex;
+  align-items: center;
+  column-gap: 41px;
+
+  @include mq() {
+    column-gap: 15px;
+  }
+
+  @include mq("sp") {
+    column-gap: 8px;
+  }
+
+  &_noActive {
+    pointer-events: none;
+
+    @include mq() {
+      width: 119px;
+      height: 38px;
+    }
+  }
+
+  &_GNavi {
+    @include mq() {
+      flex-direction: column;
+    }
+  }
+
+  &_pop {
+    position: absolute;
+    top: -60px;
+    left: -10px;
+    width: 183px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    @include mq() {
+      top: -48px;
+      left: -14px;
+      width: 152px;
+    }
+  }
+}
+
+.el_appLink_noActive_GNavi {
+  @include mq() {
+    width: 235px;
+    height: 76px;
+    margin-top: 10px;
+
+    & img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.el_appLink_pop_GNavi {
+  & img {
+    object-fit: cover;
+  }
+
+  @include mq() {
+    width: 280px;
+    height: 150px;
+    top: -88px;
+    left: -18px;
+  }
+}
+
+.el_appLink_pop.active {
+  display: block;
+}
+
+.el_appleLink_wrapper {
+  position: relative;
+  width: 163px; /* ベース画像の幅に合わせる */
+  height: 55px; /* ベース画像の高さに合わせる */
+  display: inline-block; /* または他のレイアウトに合わせて調整 */
+
+  @include mq() {
+    width: 120px;
+    height: 40.5px;
+  }
+
+  &_GNavi {
+    @include mq() {
+      width: 238px;
+      height: 80px;
+    }
+  }
+
+  & a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  & img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+// 動く波
+.el_mouveWave {
+  width: 100%;
+  // height: 450px;
+
+  & canvas {
+    width: 100%;
+  }
+}
+
+// btn arrow Right
+.el_btn {
+  position: relative;
+  padding-right: 2em;
+  padding-left: 1.38em;
+  color: $cWhite;
+  font-size: rem(13);
+  font-weight: 700;
+  cursor: pointer;
+
+  &::after {
+    content: url(../../assets/img/arrow.svg);
+    position: absolute;
+    top: 60%;
+    right: 0.83em;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    transform: translateY(-50%);
+  }
+}
+
+// 見出し
+.el_lv2Heading {
+  font-size: rem(50);
+  font-weight: 600;
+  line-height: 1.75;
+  position: relative;
+
+  @include mq() {
+    font-size: rem(28);
+  }
+
+  &_white {
+    color: $cWhite;
+    position: relative;
+
+    &::before {
+      content: url(../img/title_icon_white.svg);
+      position: absolute;
+      top: -40px;
+      left: 0;
+      width: 17px;
+      height: 22px;
+
+      @include mq() {
+        content: url(../img/title_icon_white_s.svg);
+        top: -22px;
+      }
+
+      @include mq("sp") {
+        content: url(../img/title_icon_small.svg);
+        top: -12px;
+      }
+    }
+  }
+
+  &_modal {
+    @include mq("sp") {
+      font-size: rem(13);
+    }
+  }
+
+  &_video {
+    @include mq("sp") {
+      // content: url(../img/title_icon_small.svg);
+      font-size: rem(13);
+    }
+  }
+
+  &_LB {
+    color: $cLightBlue;
+    position: relative;
+
+    &::before {
+      content: url(../img/title_icon_LB.svg);
+      position: absolute;
+      top: -40px;
+      left: 0;
+      width: 17px;
+      height: 22px;
+
+      @include mq() {
+        content: url(../img/title_icon_LB_s.svg);
+        top: -22px;
+      }
+    }
+  }
+
+  &_CB {
+    color: $cLightBlue;
+    position: relative;
+
+    &::before {
+      content: url(../img/title_icon_CB.svg);
+      position: absolute;
+      top: -40px;
+      left: 0;
+      width: 17px;
+      height: 22px;
+
+      @include mq("sp") {
+        content: url(../img/title_icon_CB_s.svg);
+        top: -20px;
+      }
+    }
+  }
+}
+
+.el_lv3Heading {
+  letter-spacing: 4.5px;
+  font-weight: 700;
+  max-height: 300px;
+
+  &_lS1_5 {
+    letter-spacing: 1.5px;
+  }
+
+  & text {
+    font-size: rem(30);
+  }
+}
+
+.el_lv3Heading_4 {
+  & text {
+    @include mq() {
+      font-size: rem(24);
+    }
+
+    @include mq("adj") {
+      font-size: rem(20);
+      letter-spacing: 2.5px;
+    }
+  }
+}
+
+.el_waveStatic {
+  width: 100%;
+
+  & svg {
+    width: 100%;
+  }
+}
+
+.el_waveStatic {
+  transform: rotate(5deg);
+}
+
+// fluid shape
+.el_fluidShapeMiddle {
+  width: 248px;
+  height: 246px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 161px;
+    height: 160px;
+  }
+}
+
+.el_fluidShapeMiddle2 {
+  width: 290px;
+  height: 263px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 145.5px;
+    height: 132px;
+  }
+}
+
+.el_fluidShapeMiddle3 {
+  width: 197px;
+  height: 167px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+.el_fluidShapeLarge {
+  width: 308px;
+  height: 306px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 200px;
+    height: 198px;
+  }
+}
+
+.el_fluidShapeSmall {
+  width: 153px;
+  height: 152px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+.el_fluidShapeSmall2 {
+  width: 39px;
+  height: 40px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+.el_fluidShapeSmall3 {
+  width: 56px;
+  height: 58px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+.el_fluidShapeSmall4 {
+  width: 30px;
+  height: 31px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+.el_fluidShapeSmall5 {
+  width: 109px;
+  height: 108px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+.el_footerLogo {
+  // display: flex;
+  // justify-content: center;
+  text-align: center;
+}
+
+.el_fvIllust {
+  position: absolute;
+  top: 40%;
+  left: 28%;
+}
+
+.el_fvIllust2 {
+  position: absolute;
+  top: 32%;
+  left: 37%;
+}
+
+.el_fvIllust3 {
+  position: absolute;
+  top: 29%;
+  left: 37%;
+}
+
+.el_snsLink {
+  line-height: 1;
+}
+
+
+.el_spScroll {
+  position: absolute;
+  bottom: 12%;
+  left: 44%;
+  height: 50px;
+
+  & span {
+    position: absolute;
+    left: -15px;
+    top: -15px;
+    color: #5999e8;
+    font-size: rem(13);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 30px;
+      background: #5999e8;
+      /*線の動き1.4秒かけて動く。永遠にループ*/
+      animation: scrollMove 1.4s ease-in-out infinite;
+      opacity: 0;
+    }
+  }
+
+
+}
+
+@keyframes scrollMove {
+  0% {
+    height: 0;
+    top: 0;
+    opacity: 0;
+  }
+  30% {
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    top: 50px;
+    opacity: 0;
+  }
+}

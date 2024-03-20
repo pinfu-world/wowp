@@ -1,0 +1,170 @@
+<svg class="warp" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="620px" height="390px" viewBox="0 0 620px 390px">
+    
+    <!-- Proudly created with CSSWARP: www.csswarp.com -->
+    
+    <style>
+        <![CDATA[
+            
+            /* Adapt path to font file and format depending on your build settings. */
+            
+            @font-face {
+                font-family: Inter;
+                src: url(path/to/font/file/Inter) format('woff2');
+                font-weight: 700;
+                font-style: normal;
+                font-display: swap;
+            }
+            
+            .warp__placeholder{
+                position: absolute;
+                color: transparent;
+                font-size: .1px;
+            }
+            
+            .warp {
+                display: block;
+                position: relative;
+                width: 620px;
+                height: 390px;
+                font: 700 31px/1 Inter;
+            }
+            
+            [class*='warp__'] {
+                transform-box:fill-box;
+            }
+            
+            .warp__0 {
+                transform-origin: 10px 24px;
+                transform: translate(145.0837px,46.5399px) rotate(-0.094547rad);
+            }
+            
+            .warp__1 {
+                transform-origin: 15px 24px;
+                transform: translate(168.2207px,47.16160000000001px) rotate(0.138766rad);
+            }
+            
+            .warp__2 {
+                transform-origin: 15px 24px;
+                transform: translate(199.9139px,56.14px) rotate(0.413781rad);
+            }
+            
+            .warp__3 {
+                transform-origin: 15px 24px;
+                transform: translate(228.0554px,73.4776px) rotate(0.689903rad);
+            }
+            
+            .warp__4 {
+                transform-origin: 15px 24px;
+                transform: translate(250.6046px,97.8616px) rotate(0.955686rad);
+            }
+            
+            .warp__5 {
+                transform-origin: 15px 24px;
+                transform: translate(266.3912px,127.2544px) rotate(1.194251rad);
+            }
+            
+            .warp__6 {
+                transform-origin: 15px 24px;
+                transform: translate(275.3267px,159.0136px) rotate(1.392328rad);
+            }
+            
+            .warp__7 {
+                transform-origin: 15px 24px;
+                transform: translate(278.4726px,192.4216px) rotate(1.555464rad);
+            }
+            
+            .warp__8 {
+                transform-origin: 15px 24px;
+                transform: translate(280.9455px,226.6504px) rotate(1.406218rad);
+            }
+            
+            .warp__9 {
+                transform-origin: 15px 24px;
+                transform: translate(289.6609px,258.4456px) rotate(1.194561rad);
+            }
+            
+            .warp__10 {
+                transform-origin: 15px 24px;
+                transform: translate(305.3953px,287.5936px) rotate(0.95375rad);
+            }
+            
+            .warp__11 {
+                transform-origin: 15px 24px;
+                transform: translate(327.7891px,312.0136px) rotate(0.703849rad);
+            }
+            
+            .warp__12 {
+                transform-origin: 15px 24px;
+                transform: translate(355.4958px,330.2536px) rotate(0.463097rad);
+            }
+            
+            .warp__13 {
+                transform-origin: 15px 24px;
+                transform: translate(386.4589px,341.5624px) rotate(0.23977rad);
+            }
+            
+            .warp__14 {
+                transform-origin: 15px 24px;
+                transform: translate(419.1505px,345.94px) rotate(0.02759rad);
+            }
+            
+            .warp__15 {
+                transform-origin: 15px 24px;
+                transform: translate(452.0432px,343.3864px) rotate(-0.18322rad);
+            }
+        ]]>
+    </style>
+    
+    <title>Z世代の新時代お出かけ観光アプリ</title>
+    
+    <g aria-role="presentation">
+        <text class="warp__0">
+            Z
+        </text>
+        <text class="warp__1">
+            世
+        </text>
+        <text class="warp__2">
+            代
+        </text>
+        <text class="warp__3">
+            の
+        </text>
+        <text class="warp__4">
+            新
+        </text>
+        <text class="warp__5">
+            時
+        </text>
+        <text class="warp__6">
+            代
+        </text>
+        <text class="warp__7">
+            お
+        </text>
+        <text class="warp__8">
+            出
+        </text>
+        <text class="warp__9">
+            か
+        </text>
+        <text class="warp__10">
+            け
+        </text>
+        <text class="warp__11">
+            観
+        </text>
+        <text class="warp__12">
+            光
+        </text>
+        <text class="warp__13">
+            ア
+        </text>
+        <text class="warp__14">
+            プ
+        </text>
+        <text class="warp__15">
+            リ
+        </text>
+    </g>
+</svg>

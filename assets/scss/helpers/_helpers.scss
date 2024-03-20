@@ -1,0 +1,70 @@
+@use "../helpers/function" as *;
+@use "../helpers/animation" as *;
+@use "../helpers/mixin" as *;
+@use "../helpers/variables" as *;
+
+.hp_pl5 {
+  padding-left: 5%;
+}
+
+.hp_bcLB {
+  background-color: $cLightBlue;
+}
+
+.hp_bcSB {
+  background-color: $cSkyBlue;
+}
+
+.hp_bcIW {
+  background-color: $cIceWhite;
+}
+
+.hp_OP50 {
+  opacity: 0.5;
+}
+
+.hp_bcPY {
+  background-color: $cPaleYellow;
+}
+
+.hp_bcSTB {
+  background-color: $cSteelBlue;
+}
+
+.hp_bcCream {
+  background-color: $cCream;
+}
+
+.hp_cWhite {
+  color: $cWhite !important;
+}
+
+.hp_bcCB {
+  background-color: $cCeruleanBlue;
+}
+
+.hp_characterGray {
+  color: $cGray !important;
+}
+
+.hp_pc {
+  @include mq() {
+    display: none !important;
+  }
+}
+
+.hp_sp {
+  display: none;
+  
+  @include mq() {
+    display: block;
+  }
+}
+
+.hp_fsz { 
+
+  & textpath {
+    font-size: 16px;
+  }
+  
+}
