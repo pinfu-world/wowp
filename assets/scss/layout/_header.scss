@@ -1,4 +1,4 @@
- @use "../helpers/function" as *;
+@use "../helpers/function" as *;
 @use "../helpers/helpers" as *;
 @use "../helpers/mixin" as *;
 @use "../helpers/variables" as *;
@@ -7,20 +7,6 @@
 .ly_header {
   position: relative;
   height: 100vh;
-
-  &_inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 45px;
-    padding-left: 40px;
-    position: fixed;
-    top: 40px;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
-    // box-sizing: border-box;
-  }
 
   &_video {
     position: absolute;
@@ -59,7 +45,7 @@
 
   & .ly_header_wave {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     left: 0;
 
     &_fv {
@@ -68,11 +54,31 @@
       }
     }
   }
-
-  &_skipIcon {
-    position: absolute;
-    right: 2.5%;
-    bottom: 6%;
-    z-index: 2;
-  }
 }
+
+// トップページのヘッダー
+
+//   &_inner {
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     padding-right: 45px;
+//     padding-left: 40px;
+//     position: fixed;
+//     top: 40px;
+//     left: 0;
+//     z-index: 1000;
+//     width: 100%;
+//     // box-sizing: border-box;
+//   }
+
+//   &_scrollDrag {
+//     position: absolute;
+//     bottom: 19%;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     z-index: 2;
+//   }
+
+//   }
+// }

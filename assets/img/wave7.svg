@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_下絵" data-name="下絵" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1281 426.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <image width="1280" height="426" transform="translate(.5)" xlink:href="wabe7.png"/>
+  <path class="cls-1" d="M.5,96s18.81-5.49,33.64,0c32.17,11.9,68.91,30.51,103.86,30.51,27,0,176,11,250-9,74-20,286,52,286,52,0,0,80.33,32,284.17,0s322.33,67.83,322.33,67.83v188.67H.5V96Z"/>
+</svg>

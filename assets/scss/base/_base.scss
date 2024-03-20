@@ -3,20 +3,23 @@
 @use "../helpers/mixin" as *;
 @use "../helpers/variables" as *;
 
+.bl_globalNavi {
+  display: none;
+}
+
 body {
   font-size: rem(16);
   font-family: 'Inter', "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic Pro", "Meiryo", sans-serif;
   color: $cGray;
-  position: relative;
+  // position: relative;
   overflow-x: hidden;
 }
 
-
-.container {
-  position: relative;
-  overflow-x: hidden;
-  width: 100vw;
-}
+// .container {
+//   position: relative;
+//   overflow-x: hidden;
+//   width: 100vw;
+// }
 
 img {
   max-width: 100%;

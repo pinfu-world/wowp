@@ -108,7 +108,7 @@ else {
       if (!canvas) return; // canvasがなければ初期化を中断
 
       canvas.width = document.documentElement.clientWidth;
-      canvas.height = 300;
+      canvas.height = 160;
       canvas.contextCache = canvas.getContext("2d");
 
       startAnimation();
@@ -153,21 +153,45 @@ else {
       context.fill();
     }
 
-    function drawSine(t, zoom, delay) {
-      let xAxis = Math.floor(canvas.height / 2);
-      let yAxis = 0;
-      let context = canvas.contextCache;
+  //   function drawSine(t, zoom, delay) {
+  //     let xAxis = Math.floor(canvas.height / 2);
+  //     let yAxis = 0;
+  //     let context = canvas.contextCache;
   
-      // 傾斜の度合いを一定に保つための調整値
-      let slopeAdjustment = 20; // この値で波の傾斜を調整
+  //     // 傾斜の度合いを一定に保つための調整値
+  //     let slopeAdjustment = 50; // この値で波の傾斜を調整
   
-      for (let i = yAxis; i <= canvas.width + 10; i += 10) {
-          let x = t + (-yAxis + i) / unit / zoom;
-          let y = Math.sin(x - delay) / 3;
-          context.lineTo(i, unit * y + xAxis + slopeAdjustment);
-      }
-  }
+  //     for (let i = yAxis; i <= canvas.width + 10; i += 10) {
+  //         let x = t + (-yAxis + i) / unit / zoom;
+  //         let y = Math.sin(x - delay) / 3;
+  //         let heightAdjustmentFactor = 1 - (i / canvas.width);
+
+  //       // Y座標を調整して左側を高く見せる
+  //       let yOffset = (canvas.height * (1 - heightAdjustmentFactor)) / 4; // 左側が高くなるように調整
+
+  //       context.lineTo(i, unit * y * heightAdjustmentFactor + xAxis + slopeAdjustment - yOffset);
+  //     }
+  // }
   
+  function drawSine(t, zoom, delay) {
+    let xAxis = Math.floor(canvas.height / 2);
+    let context = canvas.contextCache;
+
+    for (let i = 0; i <= canvas.width + 10; i += 10) {
+        let x = t + (-0 + i) / unit / zoom;
+        let y = Math.sin(x - delay) / 3;
+
+        // 右側を高く、左側をより低くするための調整を強化
+        let positionFactor = i / canvas.width;
+        // 左側をさらに低くするために、影響を強化する
+        let heightAdjustmentFactor = Math.pow(positionFactor, 1); // 右側が高くなる効果を強化
+        let yOffsetAdjustment = Math.pow(1 - positionFactor, 1) * canvas.height / 2; // 左側をより低くする
+
+        context.lineTo(i, unit * y * heightAdjustmentFactor + xAxis - yOffsetAdjustment);
+    }
+}
+
+
 
     window.addEventListener("resize", init);
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1281 490.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="_下絵" data-name="下絵">
+    <image width="1280" height="490" transform="translate(.5)" xlink:href="wave8.png"/>
+  </g>
+  <g id="_レイヤー_2" data-name="レイヤー 2">
+    <path class="cls-1" d="M.5,237.33s24.17,1.17,40.33,7.67,47.17,4.83,78.67-3.83,88.5-52.67,150.5-53.67,83-5,171,20,199.5-31.5,199.5-31.5c0,0,75.5-45.5,158.5-17.5s135,25,135,25c0,0,74-4,155-50s191.5,10.5,191.5,10.5v346H.5v-252.67Z"/>
+  </g>
+</svg>

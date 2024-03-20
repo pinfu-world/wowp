@@ -4,6 +4,13 @@
 @use "../helpers/mixin" as *;
 @use "../helpers/variables" as *;
 
+// ヘッダーロゴ
+.el_headerLogo {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+}
+
 // ハンバーガー
 .el_hamburger {
   width: 48px;
@@ -19,7 +26,9 @@
   border-radius: 50%;
   box-shadow: 4px 16px 40px 0px #1e674029;
   cursor: pointer;
-  position: relative;
+  position: fixed;
+  top: 40px;
+  right: 45px;
 
   & span {
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -38,21 +47,6 @@
   }
 }
 
-.el_waveCanvas {
-  transform: rotate(3deg);
-}
-
-/* activeクラスが適用されたときの各span要素のスタイル */
-.el_hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
-}
-
-.el_hamburger.active span:nth-child(2) {
-  transform: rotate(-45deg) translate(-2px, 2px); /* 2つ目のspanを逆斜めに回転 */
-  margin-top: -6px; /* 2つ目のspanの位置を調整 */
-}
-
-// スクロールドラッグアイコン
 .el_scrollDrag {
   display: flex;
   flex-direction: column;
@@ -67,7 +61,6 @@
   }
 }
 
-// top アプリリンク
 .el_appLink {
   display: flex;
   align-items: center;
@@ -176,38 +169,17 @@
   }
 }
 
-// 動く波
-.el_mouveWave {
+.el_wave3_WhiteOp50 {
+  fill: rgba(255, 255, 255, 0.5);
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-miterlimit: 10;
+}
+
+.el_waveStatic img {
   width: 100%;
-  // height: 450px;
-
-  & canvas {
-    width: 100%;
-  }
+  object-fit: cover;
 }
 
-// btn arrow Right
-.el_btn {
-  position: relative;
-  padding-right: 2em;
-  padding-left: 1.38em;
-  color: $cWhite;
-  font-size: rem(13);
-  font-weight: 700;
-  cursor: pointer;
-
-  &::after {
-    content: url(../../assets/img/arrow.svg);
-    position: absolute;
-    top: 60%;
-    right: 0.83em;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    transform: translateY(-50%);
-  }
-}
-
-// 見出し
 .el_lv2Heading {
   font-size: rem(50);
   font-weight: 600;
@@ -235,26 +207,13 @@
         top: -22px;
       }
 
-      @include mq("sp") {
-        content: url(../img/title_icon_small.svg);
-        top: -12px;
-      }
+      //   @include mq("sp") {
+      //     content: url(../img/title_icon_small.svg);
+      //     top: -12px;
+      //   }
     }
+    
   }
-
-  &_modal {
-    @include mq("sp") {
-      font-size: rem(13);
-    }
-  }
-
-  &_video {
-    @include mq("sp") {
-      // content: url(../img/title_icon_small.svg);
-      font-size: rem(13);
-    }
-  }
-
   &_LB {
     color: $cLightBlue;
     position: relative;
@@ -273,214 +232,261 @@
       }
     }
   }
-
-  &_CB {
-    color: $cLightBlue;
-    position: relative;
-
-    &::before {
-      content: url(../img/title_icon_CB.svg);
-      position: absolute;
-      top: -40px;
-      left: 0;
-      width: 17px;
-      height: 22px;
-
-      @include mq("sp") {
-        content: url(../img/title_icon_CB_s.svg);
-        top: -20px;
-      }
-    }
-  }
 }
 
-.el_lv3Heading {
-  letter-spacing: 4.5px;
-  font-weight: 700;
-  max-height: 300px;
+// /* activeクラスが適用されたときの各span要素のスタイル */
+// .el_hamburger.active span:nth-child(1) {
+//   transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
+// }
 
-  &_lS1_5 {
-    letter-spacing: 1.5px;
-  }
+// .el_hamburger.active span:nth-child(2) {
+//   transform: rotate(-45deg) translate(-2px, 2px); /* 2つ目のspanを逆斜めに回転 */
+//   margin-top: -6px; /* 2つ目のspanの位置を調整 */
+// }
 
-  & text {
-    font-size: rem(30);
-  }
-}
+// // top アプリリンク
 
-.el_lv3Heading_4 {
-  & text {
-    @include mq() {
-      font-size: rem(24);
-    }
+// // 動く波
+// .el_mouveWave {
+//   width: 100%;
+//   // height: 450px;
 
-    @include mq("adj") {
-      font-size: rem(20);
-      letter-spacing: 2.5px;
-    }
-  }
-}
+//   & canvas {
+//     width: 100%;
+//   }
+// }
 
-.el_waveStatic {
-  width: 100%;
+// // btn arrow Right
+// .el_btn {
+//   position: relative;
+//   padding-right: 2em;
+//   padding-left: 1.38em;
+//   color: $cWhite;
+//   font-size: rem(13);
+//   font-weight: 700;
+//   cursor: pointer;
 
-  & svg {
-    width: 100%;
-  }
-}
+//   &::after {
+//     content: url(../../assets/img/arrow.svg);
+//     position: absolute;
+//     top: 60%;
+//     right: 0.83em;
+//     font-family: "Font Awesome 5 Free";
+//     font-weight: 900;
+//     transform: translateY(-50%);
+//   }
+// }
 
-.el_waveStatic {
-  transform: rotate(5deg);
-}
+// // 見出し
 
-// fluid shape
-.el_fluidShapeMiddle {
-  width: 248px;
-  height: 246px;
-  animation: fluidanimation 30s ease 0s infinite;
+//   &_modal {
+//     @include mq("sp") {
+//       font-size: rem(13);
+//     }
+//   }
 
-  @include mq() {
-    width: 161px;
-    height: 160px;
-  }
-}
+//   &_video {
+//     @include mq("sp") {
+//       // content: url(../img/title_icon_small.svg);
+//       font-size: rem(13);
+//     }
+//   }
 
-.el_fluidShapeMiddle2 {
-  width: 290px;
-  height: 263px;
-  animation: fluidanimation 30s ease 0s infinite;
+//   }
 
-  @include mq() {
-    width: 145.5px;
-    height: 132px;
-  }
-}
+//   &_CB {
+//     color: $cLightBlue;
+//     position: relative;
 
-.el_fluidShapeMiddle3 {
-  width: 197px;
-  height: 167px;
-  animation: fluidanimation 30s ease 0s infinite;
-}
+//     &::before {
+//       content: url(../img/title_icon_CB.svg);
+//       position: absolute;
+//       top: -40px;
+//       left: 0;
+//       width: 17px;
+//       height: 22px;
 
-.el_fluidShapeLarge {
-  width: 308px;
-  height: 306px;
-  animation: fluidanimation 30s ease 0s infinite;
+//       @include mq("sp") {
+//         content: url(../img/title_icon_CB_s.svg);
+//         top: -20px;
+//       }
+//     }
+//   }
+// }
 
-  @include mq() {
-    width: 200px;
-    height: 198px;
-  }
-}
+// .el_lv3Heading {
+//   letter-spacing: 4.5px;
+//   font-weight: 700;
+//   max-height: 300px;
 
-.el_fluidShapeSmall {
-  width: 153px;
-  height: 152px;
-  animation: fluidanimation 30s ease 0s infinite;
+//   &_lS1_5 {
+//     letter-spacing: 1.5px;
+//   }
 
-  @include mq() {
-    width: 76px;
-    height: 76px;
-  }
-}
+//   & text {
+//     font-size: rem(30);
+//   }
+// }
 
-.el_fluidShapeSmall2 {
-  width: 39px;
-  height: 40px;
-  animation: fluidanimation 30s ease 0s infinite;
-}
+// .el_lv3Heading_4 {
+//   & text {
+//     @include mq() {
+//       font-size: rem(24);
+//     }
 
-.el_fluidShapeSmall3 {
-  width: 56px;
-  height: 58px;
-  animation: fluidanimation 30s ease 0s infinite;
-}
+//     @include mq("adj") {
+//       font-size: rem(20);
+//       letter-spacing: 2.5px;
+//     }
+//   }
+// }
 
-.el_fluidShapeSmall4 {
-  width: 30px;
-  height: 31px;
-  animation: fluidanimation 30s ease 0s infinite;
-}
+// // fluid shape
+// .el_fluidShapeMiddle {
+//   width: 248px;
+//   height: 246px;
+//   animation: fluidanimation 30s ease 0s infinite;
 
-.el_fluidShapeSmall5 {
-  width: 109px;
-  height: 108px;
-  animation: fluidanimation 30s ease 0s infinite;
-}
+//   @include mq() {
+//     width: 161px;
+//     height: 160px;
+//   }
+// }
 
-.el_footerLogo {
-  // display: flex;
-  // justify-content: center;
-  text-align: center;
-}
+// .el_fluidShapeMiddle2 {
+//   width: 290px;
+//   height: 263px;
+//   animation: fluidanimation 30s ease 0s infinite;
 
-.el_fvIllust {
-  position: absolute;
-  top: 40%;
-  left: 28%;
-}
+//   @include mq() {
+//     width: 145.5px;
+//     height: 132px;
+//   }
+// }
 
-.el_fvIllust2 {
-  position: absolute;
-  top: 32%;
-  left: 37%;
-}
+// .el_fluidShapeMiddle3 {
+//   width: 197px;
+//   height: 167px;
+//   animation: fluidanimation 30s ease 0s infinite;
+// }
 
-.el_fvIllust3 {
-  position: absolute;
-  top: 29%;
-  left: 37%;
-}
+// .el_fluidShapeLarge {
+//   width: 308px;
+//   height: 306px;
+//   animation: fluidanimation 30s ease 0s infinite;
 
-.el_snsLink {
-  line-height: 1;
-}
+//   @include mq() {
+//     width: 200px;
+//     height: 198px;
+//   }
+// }
 
+// .el_fluidShapeSmall {
+//   width: 153px;
+//   height: 152px;
+//   animation: fluidanimation 30s ease 0s infinite;
 
-.el_spScroll {
-  position: absolute;
-  bottom: 12%;
-  left: 44%;
-  height: 50px;
+//   @include mq() {
+//     width: 76px;
+//     height: 76px;
+//   }
+// }
 
-  & span {
-    position: absolute;
-    left: -15px;
-    top: -15px;
-    color: #5999e8;
-    font-size: rem(13);
-    font-weight: 700;
-    letter-spacing: 0.05em;
+// .el_fluidShapeSmall2 {
+//   width: 39px;
+//   height: 40px;
+//   animation: fluidanimation 30s ease 0s infinite;
+// }
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 2px;
-      height: 30px;
-      background: #5999e8;
-      /*線の動き1.4秒かけて動く。永遠にループ*/
-      animation: scrollMove 1.4s ease-in-out infinite;
-      opacity: 0;
-    }
-  }
+// .el_fluidShapeSmall3 {
+//   width: 56px;
+//   height: 58px;
+//   animation: fluidanimation 30s ease 0s infinite;
+// }
 
+// .el_fluidShapeSmall4 {
+//   width: 30px;
+//   height: 31px;
+//   animation: fluidanimation 30s ease 0s infinite;
+// }
 
-}
+// .el_fluidShapeSmall5 {
+//   width: 109px;
+//   height: 108px;
+//   animation: fluidanimation 30s ease 0s infinite;
+// }
 
-@keyframes scrollMove {
-  0% {
-    height: 0;
-    top: 0;
-    opacity: 0;
-  }
-  30% {
-    height: 30px;
-    opacity: 1;
-  }
-  100% {
-    height: 0;
-    top: 50px;
-    opacity: 0;
-  }
-}
+// .el_footerLogo {
+//   // display: flex;
+//   // justify-content: center;
+//   text-align: center;
+// }
+
+// .el_fvIllust {
+//   position: absolute;
+//   top: 40%;
+//   left: 28%;
+// }
+
+// .el_fvIllust2 {
+//   position: absolute;
+//   top: 32%;
+//   left: 37%;
+// }
+
+// .el_fvIllust3 {
+//   position: absolute;
+//   top: 29%;
+//   left: 37%;
+// }
+
+// .el_snsLink {
+//   line-height: 1;
+// }
+
+// .el_spScroll {
+//   position: absolute;
+//   bottom: 12%;
+//   left: 44%;
+//   height: 50px;
+
+//   & span {
+//     position: absolute;
+//     left: -15px;
+//     top: -15px;
+//     color: #5999e8;
+//     font-size: rem(13);
+//     font-weight: 700;
+//     letter-spacing: 0.05em;
+
+//     &::before {
+//       content: "";
+//       position: absolute;
+//       top: 0;
+//       width: 2px;
+//       height: 30px;
+//       background: #5999e8;
+//       /*線の動き1.4秒かけて動く。永遠にループ*/
+//       animation: scrollMove 1.4s ease-in-out infinite;
+//       opacity: 0;
+//     }
+//   }
+
+// }
+
+// @keyframes scrollMove {
+//   0% {
+//     height: 0;
+//     top: 0;
+//     opacity: 0;
+//   }
+//   30% {
+//     height: 30px;
+//     opacity: 1;
+//   }
+//   100% {
+//     height: 0;
+//     top: 50px;
+//     opacity: 0;
+//   }
+// }
