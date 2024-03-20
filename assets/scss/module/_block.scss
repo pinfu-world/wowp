@@ -11,7 +11,7 @@
     margin-bottom: 29px;
 
     @include mq() {
-        margin-bottom: initial;
+      margin-bottom: initial;
     }
   }
 }
@@ -31,31 +31,30 @@
 }
 
 .bl_sideBySide {
+  position: relative;
+  margin-bottom: 70px;
+
+  @include mq() {
+    margin-bottom: 420px;
+  }
+
+  &_ttl {
     position: relative;
-    margin-bottom: 70px;
+    z-index: 5;
 
-    @include mq () {
-        margin-bottom: 420px;
+    @include mq() {
+      margin-bottom: 11px;
     }
+  }
 
-    &_ttl {
-        position: relative;
-        z-index: 5;
-
-        @include mq() {
-            margin-bottom: 11px;
-        }
+  &_ttl_sp_2 {
+    @include mq() {
+      margin-top: -40px;
+      margin-left: 83px;
     }
-
-&_ttl_sp_2 {
-    @include mq () {
-        margin-top: -40px;
-        margin-left: 83px;
-    }
-}
+  }
 
   &_txtBox {
-
     @include mq() {
       font-size: 14px;
     }
@@ -73,7 +72,7 @@
     margin-top: 32px;
   }
 
-    &_imgBox {
+  &_imgBox {
     position: absolute;
     z-index: 3;
     top: 60px;
@@ -87,8 +86,8 @@
     }
 
     @include mq("adj") {
-        top: 410px;
-        margin-right: -50px;
+      top: 410px;
+      margin-right: -50px;
     }
     & img {
       height: auto;
@@ -96,20 +95,44 @@
   }
 }
 
-
 .bl_app {
-    background-color: $cPaleYellow;
+  background-color: $cPaleYellow;
+  margin-top: -100px;
 
-    &_wrapper {
-        max-width: 1138px;
-        padding: 0 15px;
-        margin: 0 auto;
+  &_wrapper {
+    max-width: 1138px;
+    padding: 0 15px;
+    margin: -70px auto 0;
+
+    @include mq() {
+      margin-top: 0;
+      width: 100%;
     }
+  }
 
-    &_ttl {
-            position: relative;
-            z-index: 3;
-          }
+  &_ttl {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.bl_app2 {
+  &_wrapper {
+    max-width: 1112px;
+    padding: 0 15px;
+    margin: -150px auto;
+  }
+}
+
+.bl_app_ttl {
+  &_sp {
+    margin-left: -76px;
+
+    &_2 {
+      margin-top: -50px;
+      margin-right: -48px;
+    }
+  }
 }
 
 .bl_shapeWrapper {
@@ -118,49 +141,98 @@
   &_item {
     position: absolute;
     right: 153px;
-    bottom: 85px;
+    bottom: -85px;
+
+    @include mq() {
+      right: 34px;
+      bottom: -145px;
+    }
 
     &_2 {
       right: -70px;
-      bottom: 0;
+      bottom: -216px;
       z-index: 2;
     }
   }
 }
 
+.bl_featureBlock_ttl {
+  position: relative;
+  z-index: 5;
+  margin-bottom: 75px;
+
+  &_app1 {
+    margin-left: clamp(-11.563rem, -28.739rem + 35.78vw, 0rem);
+
+    @include mq() {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: clamp(-7.5rem, -14.656rem + 30.53vw, 0rem);
+      margin-bottom: 47px;
+      margin-left: initial;
+    }
+  }
+
+  &_app2 {
+    margin-top: -50px;
+    margin-left: 170px;
+
+    @include mq() {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -70px;
+      margin-left: initial;
+
+      @include mq("sp") {
+        margin-top: -111px;
+      }
+
+      @include mq("adj") {
+        margin-top: -140px;
+      }
+    }
+  }
+
+  &_app3 {
+    margin-left: clamp(-17rem, -34.826rem + 37.14vw, -5rem);
+    margin-top: -50px
+  }
+}
+
 .bl_featureBlock {
-//   position: relative;
+  position: relative;
   display: flex;
   justify-content: center;
-//   // column-gap: 230px;
+  //   // column-gap: 230px;
   column-gap: 5%;
-//   height: 595px;
 
-//   @include mq() {
-//     flex-direction: column;
-//     align-items: center;
-//     padding-top: 234px;
-//   }
+  @include mq() {
+    flex-direction: column;
+    align-items: center;
+    margin-top: clamp(-6.25rem, -12.214rem + 25.45vw, 0rem);
+  }
 
-//   &_reverse {
-//     flex-direction: row-reverse;
-//     justify-content: center;
+  &_reverse {
+    flex-direction: row-reverse;
+    justify-content: center;
 
-//     @include mq() {
-//       flex-direction: column;
-//     }
-//   }
+    @include mq() {
+      flex-direction: column;
+    }
+  }
 
-//   &_4 {
-//     @include mq() {
-//       padding-bottom: 171px;
-//     }
-//   }
+  //   &_4 {
+  //     @include mq() {
+  //       padding-bottom: 171px;
+  //     }
+  //   }
 
   &_num {
     position: absolute;
     bottom: 121px;
-    left: 131px;
+    left: 0;
     z-index: 3;
     font-family: "Work Sans", sans-serif;
     font-size: 199px;
@@ -168,8 +240,19 @@
     color: $cCeruleanBlue;
 
     @include mq() {
-      top: 10%;
       font-size: 120px;
+      top: 260px;
+      left: 6%;
+    }
+
+    @include mq("sp") {
+      //   top: 18%;
+      //   left: 18%;
+    }
+
+    @include mq("adj") {
+      // top: 10%;
+      left: 0;
     }
 
     &_2 {
@@ -177,7 +260,6 @@
       color: $cSkyBlue;
 
       @include mq() {
-        top: -15%;
         left: 8%;
       }
 
@@ -188,10 +270,11 @@
     }
 
     &_3 {
-      left: 40%;
       // bottom: 10%;
-      bottom: clamp(0rem, -9.824rem + 16.9vw, 3.75rem);
+    //   bottom: clamp(0rem, -9.824rem + 16.9vw, 3.75rem);
       color: $cLightBlue;
+      top: 60%;
+      left: 45%;
 
       @include mq() {
         top: -3%;
@@ -208,387 +291,528 @@
   }
 
   &_imgWrapper {
-    width: 24%;
+    width: 30%;
     position: relative;
     z-index: 2;
+    margin-left: 73px;
 
     & img {
-        object-fit: contain;
+      object-fit: contain;
     }
 
-//     @include mq() {
-//       width: clamp(10.875rem, 5.448rem + 23.16vw, 16.563rem);
-//     }
+    @include mq() {
+      width: clamp(10.875rem, 5.448rem + 23.16vw, 16.563rem);
+      // width: 100%;
+      margin-left: initial;
+      text-align: center;
+    }
 
-//     &_MR {
-//       margin-right: 9%;
+    &_reverse {
+      margin-left: initial;
+    }
 
-//       @include mq() {
-//         margin-right: initial;
-//       }
-//     }
-//   }
+    //     &_MR {
+    //       margin-right: 9%;
 
-//   &_imgWrapperIllust {
-//     position: absolute;
-//     left: -35px;
-//     top: clamp(11.875rem, -7.622rem + 40.62vw, 25rem);
-//     // bottom: 20px;
-//     // bottom: clamp(14.375rem, 33.872rem + -40.62vw, 1.25rem);
+    //       @include mq() {
+    //         margin-right: initial;
+    //       }
+    //     }
+    //   }
 
-//     @include mq() {
-//       width: 31px;
-//       height: 78px;
-//       left: -10px;
-//       top: clamp(17.813rem, 9.678rem + 35.18vw, 26.563rem);
-//     }
+    //   &_imgWrapperIllust {
+    //     position: absolute;
+    //     left: -35px;
+    //     top: clamp(11.875rem, -7.622rem + 40.62vw, 25rem);
+    //     // bottom: 20px;
+    //     // bottom: clamp(14.375rem, 33.872rem + -40.62vw, 1.25rem);
+
+    //     @include mq() {
+    //       width: 31px;
+    //       height: 78px;
+    //       left: -10px;
+    //       top: clamp(17.813rem, 9.678rem + 35.18vw, 26.563rem);
+    //     }
+  }
+
+  &_spShape {
+    position: absolute;
+    top: 80px;
+    left: -70px;
+    z-index: -1;
+
+    @include mq() {
+      top: 139px;
+      left: -40px;
+    }
+
+    &_2 {
+        position: absolute;
+      top: initial;
+      bottom: 110px;
+      left: 121px;
+      z-index: -1;
+
+      @include mq("sp") {
+        bottom: 174px;
+        left: 50px;
+      }
+    }
   }
 
   &_body {
-    width: 69%;
+    width: 65%;
+    padding-top: 60px;
+
+    @include mq() {
+      width: 100%;
+      padding-top: initial;
+    }
   }
 
-//   &_shape {
-//     position: absolute;
-//     top: 20%;
-//     left: -35%;
-//     z-index: -1;
+  //   &_shape {
+  //     position: absolute;
+  //     top: 20%;
+  //     left: -35%;
+  //     z-index: -1;
 
-//     @include mq() {
-//       left: -20%;
-//     }
-//   }
+  //     @include mq() {
+  //       left: -20%;
+  //     }
+  //   }
 
-//   &_shape_2 {
-//     position: absolute;
-//     bottom: 105px;
-//     right: -120px;
-//     z-index: -1;
+  //   &_shape_2 {
+  //     position: absolute;
+  //     bottom: 105px;
+  //     right: -120px;
+  //     z-index: -1;
 
-//     @include mq() {
-//       right: -70px;
-//     }
-//   }
+  //     @include mq() {
+  //       right: -70px;
+  //     }
+  //   }
 
-//   &_shape_3 {
-//     position: absolute;
-//     top: 10%;
-//     right: -50%;
-//     z-index: -2;
+  &_shape_3 {
+    position: absolute;
+    top: 10%;
+    right: -20%;
+    z-index: -2;
 
-//     @include mq() {
-//       right: -30%;
-//     }
-//   }
+    @include mq() {
+      top: 28%;
+      right: -40%;
+    }
+  }
 
-//   &_shape_4 {
-//     position: absolute;
-//     bottom: 10%;
-//     left: -50%;
-//     z-index: -1;
-//   }
+  &_shape_4 {
+    position: absolute;
+    bottom: 14%;
+    left: -24%;
+    z-index: -1;
 
-//   &_shape_5 {
-//     position: absolute;
-//     top: 12%;
-//     right: -40%;
-//     z-index: -1;
-//   }
+    @include mq() {
+      bottom: 24%;
+      left: -43%;
+    }
+  }
 
-//   &_ttl {
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     z-index: 3;
-//     width: 710px;
+  &_shape_5 {
+    position: absolute;
+    top: 12%;
+    right: -18%;
+    z-index: -1;
 
-//     @include mq() {
-//       left: 41%;
-//       transform: translateX(-39%);
-//       top: 420px;
-//     }
+    @include mq() {
+      top: 28%;
+      right: -42%;
+    }
+  }
 
-//     @include mq("adj") {
-//       top: 413px;
-//       left: 48%;
-//     }
+  //   &_ttl {
+  //     position: absolute;
+  //     top: 0;
+  //     right: 0;
+  //     z-index: 3;
+  //     width: 710px;
 
-//     &_2 {
-//       left: 120px;
-//       transform: rotate(15deg);
+  //     @include mq() {
+  //       left: 41%;
+  //       transform: translateX(-39%);
+  //       top: 420px;
+  //     }
 
-//       @include mq() {
-//         transform: rotate(5deg);
-//         top: 471px;
-//         left: 15%;
-//       }
+  //     @include mq("adj") {
+  //       top: 413px;
+  //       left: 48%;
+  //     }
 
-//       @include mq("adj") {
-//         left: 10%;
-//       }
-//     }
+  //     &_2 {
+  //       left: 120px;
+  //       transform: rotate(15deg);
 
-//     &_3 {
-//       width: clamp(38.75rem, 30.394rem + 17.41vw, 44.375rem);
-//       // top: 430px;
+  //       @include mq() {
+  //         transform: rotate(5deg);
+  //         top: 471px;
+  //         left: 15%;
+  //       }
 
-//       @include mq("sp") {
-//         left: 50%;
-//       }
-//     }
+  //       @include mq("adj") {
+  //         left: 10%;
+  //       }
+  //     }
 
-//     &_4 {
-//       // right: 200px;
-//       right: clamp(0rem, -18.569rem + 38.68vw, 12.5rem);
+  //     &_3 {
+  //       width: clamp(38.75rem, 30.394rem + 17.41vw, 44.375rem);
+  //       // top: 430px;
 
-//       @include mq() {
-//         top: 460px;
-//         left: 63%;
-//       }
+  //       @include mq("sp") {
+  //         left: 50%;
+  //       }
+  //     }
 
-//       @include mq("sp") {
-//         top: 420px;
-//         left: 70%;
-//       }
+  //     &_4 {
+  //       // right: 200px;
+  //       right: clamp(0rem, -18.569rem + 38.68vw, 12.5rem);
 
-//       @include mq("adj") {
-//         top: 385px;
-//         left: 84%;
-//       }
-//     }
+  //       @include mq() {
+  //         top: 460px;
+  //         left: 63%;
+  //       }
 
-//     & text {
-//       font-size: rem(20);
-//     }
+  //       @include mq("sp") {
+  //         top: 420px;
+  //         left: 70%;
+  //       }
 
-//     & text {
-//       fill: $cCeruleanBlue;
-//     }
-//   }
+  //       @include mq("adj") {
+  //         top: 385px;
+  //         left: 84%;
+  //       }
+  //     }
 
-//   &_ttl_2 {
-//     & svg {
-//       width: 610px;
-//     }
+  //     & text {
+  //       font-size: rem(20);
+  //     }
 
-//     & textpath {
-//       fill: $cCeruleanBlue;
-//       font-size: rem(30);
+  //     & text {
+  //       fill: $cCeruleanBlue;
+  //     }
+  //   }
 
-//       @include mq("sp") {
-//         font-size: rem(22);
-//       }
-//     }
-//   }
+  //   &_ttl_2 {
+  //     & svg {
+  //       width: 610px;
+  //     }
 
-//   &_ttl_3 {
-//     & svg {
-//       z-index: 10;
-//       // width: 1000px;
-//       width: clamp(48rem, 26.46rem + 44.87vw, 62.5rem);
-//     }
+  //     & textpath {
+  //       fill: $cCeruleanBlue;
+  //       font-size: rem(30);
 
-//     & textpath {
-//       fill: $cCream;
-//       font-size: rem(21);
+  //       @include mq("sp") {
+  //         font-size: rem(22);
+  //       }
+  //     }
+  //   }
 
-//       @include mq() {
-//         font-size: rem(12);
-//       }
+  //   &_ttl_3 {
+  //     & svg {
+  //       z-index: 10;
+  //       // width: 1000px;
+  //       width: clamp(48rem, 26.46rem + 44.87vw, 62.5rem);
+  //     }
 
-//       @include mq("sp") {
-//         font-size: rem(10);
-//       }
-//     }
-//   }
+  //     & textpath {
+  //       fill: $cCream;
+  //       font-size: rem(21);
 
-//   &_body {
-//     padding-top: 200px;
-//     position: relative;
+  //       @include mq() {
+  //         font-size: rem(12);
+  //       }
 
-//     @include mq() {
-//       padding-top: 323px;
-//     }
+  //       @include mq("sp") {
+  //         font-size: rem(10);
+  //       }
+  //     }
+  //   }
 
-//     &_2 {
-//       margin-left: -50px;
-//       padding-left: 15px;
+  //   &_body {
+  //     padding-top: 200px;
+  //     position: relative;
 
-//       @include mq() {
-//         margin-left: initial;
-//       }
-//     }
+  //     @include mq() {
+  //       padding-top: 323px;
+  //     }
 
-//     &_3 {
-//       padding-left: 15px;
-//     }
+  //     &_2 {
+  //       margin-left: -50px;
+  //       padding-left: 15px;
 
-//     &_4 {
-//       padding-top: 250px;
+  //       @include mq() {
+  //         margin-left: initial;
+  //       }
+  //     }
 
-//       @include mq() {
-//         padding-top: 200px;
-//       }
-//     }
-//   }
+  //     &_3 {
+  //       padding-left: 15px;
+  //     }
 
-//   &_imgWrapper {
-//     & img {
-//       height: auto;
-//     }
-//   }
+  //     &_4 {
+  //       padding-top: 250px;
 
-//   &_txt {
-//     font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic Pro", "Meiryo",
-//       sans-serif;
-//     font-weight: 700;
-//     line-height: 2.2;
-//     color: $cGray;
+  //       @include mq() {
+  //         padding-top: 200px;
+  //       }
+  //     }
+  //   }
 
-//     @include mq("adj") {
-//       font-size: rem(14);
-//     }
+  //   &_imgWrapper {
+  //     & img {
+  //       height: auto;
+  //     }
+  //   }
 
-//     &_4 {
-//       @include mq {
-//         padding-left: 15px;
-//       }
-//     }
+  &_txt {
+    font-family: "Yu Gothic", "YuGothic", "Hiragino Kaku Gothic Pro", "Meiryo",
+      sans-serif;
+    font-weight: 700;
+    line-height: 2.2;
+    color: $cGray;
+    margin-left: clamp(1.75rem, -10.134rem + 24.76vw, 9.75rem);
+    position: relative;
+    z-index: 10;
 
-//     & li {
-//       text-indent: -1em;
-//       padding-left: 1em;
-//       letter-spacing: 0.8px;
-//     }
-//   }
+    @include mq() {
+      margin-left: initial;
+      width: 80%;
+      margin: 0 auto;
+    }
 
-//   &_illust {
-//     position: absolute;
-//     bottom: 0;
-//     left: -188px;
-//     z-index: 3;
+    @include mq("sp") {
+      width: 100%;
+    }
 
-//     @include mq() {
-//       width: 66px;
-//       top: -154px;
-//       bottom: initial;
-//       left: initial;
-//       right: 0;
-//     }
+    &_reverse {
+      margin-left: 70px;
 
-//     & img {
-//       height: auto;
-//     }
+      @include mq() {
+        margin-left: initial;
+        width: 80%;
+        margin: -12% auto 0;
+      }
 
-//     &_3 {
-//       left: -205px;
+      @include mq("sp") {
+          width: 95%;
+      }
 
-//       @include mq() {
-//         right: 15%;
-//         left: initial;
-//         width: 38px;
-//         height: 75px;
-//       }
-//     }
+      @include mq("adj") {
+          margin-top: -22%;
+      }
+    }
+  }
 
-//     &_4 {
-//       right: -190px;
-//       bottom: 50px;
-//       left: initial;
+  @include mq("adj") {
+    font-size: rem(14);
+  }
 
-//       @include mq() {
-//         right: initial;
-//         top: -123px;
-//         left: 12%;
-//         width: 31px;
-//         height: 84px;
-//       }
-//     }
-//   }
+  &_4 {
+    @include mq {
+      padding-left: 15px;
+    }
+  }
+
+  & li {
+    text-indent: -1em;
+    padding-left: 1em;
+    letter-spacing: 0.8px;
+
+    @include mq("sp") {
+      letter-spacing: 0.2px;
+    }
+  }
+
+  &_illust {
+    position: absolute;
+    bottom: 0;
+    left: 370px;
+    z-index: 3;
+
+    @include mq() {
+      width: 66px;
+      top: 353px;
+      bottom: initial;
+      left: initial;
+      right: -3px;
+    }
+
+    & img {
+      height: auto;
+    }
+
+    &_2 {
+      bottom: 8%;
+      left: -13%;
+
+      @include mq() {
+        bottom: 23%;
+        left: -38px;
+      }
+    }
+
+    &_3 {
+      left: -205px;
+
+      @include mq() {
+        right: 15%;
+        left: initial;
+        width: 38px;
+        height: 75px;
+      }
+    }
+
+    &_4 {
+      right: -190px;
+      bottom: 50px;
+      left: initial;
+
+      @include mq() {
+        right: initial;
+        top: -123px;
+        left: 12%;
+        width: 31px;
+        height: 84px;
+      }
+    }
+  }
 }
 
+.bl_app {
+  position: relative;
+  margin-top: -25px;
 
+  //   // backgro
+  //   @include mq() {
+  //     padding-left: 13%;
+  //   }
 
+  //   @include mq("sp") {
+  //     padding-left: 5%;
+  //   }
 
+  & .bl_app_wave {
+    margin-top: -30px;
 
+    @include mq() {
+      margin-top: 90px;
+    }
+  }
 
+  & .bl_app_wave2 {
+    margin-top: -38%;
+    // margin-bottom: 300px;
 
+    @include mq() {
+      // margin-top: -116px;
+    }
+  }
 
+  //
 
+  //   & .bl_app_bottomWave {
+  //     min-width: 2000px;
+  //     position: absolute;
+  //     z-index: 0;
+  //     transform: scale(1) rotate(4deg) translate(-230px, -400px);
 
+  //     @include mq() {
+  //       top: 80%;
+  //       transform: scale(1) rotate(4deg) translate(-863px, -400px);
+  //     }
+  //   }
+  // }
 
+  // .bl_app_ttl_sp {
+  //   @include mq("sp") {
+  //     padding-left: 86px;
+  //   }
+  // }
 
-// .bl_app {
-//   position: relative;
-// 
-//   // backgro
-//   @include mq() {
-//     padding-left: 13%;
-//   }
+  // .bl_app_ttl_sp_2 {
+  //   @include mq("sp") {
+  //     padding-left: 23px;
+  //   }
 
-//   @include mq("sp") {
-//     padding-left: 5%;
-//   }
+  //   @include mq("adj") {
+  //     position: absolute;
+  //     top: 85px;
+  //   }
+}
 
-//   & .bl_app_wave {
-//     position: absolute;
-//     // width: 105%;
-//     min-width: 2000px;
-//     transform: scale(1.4) rotate(4deg) translate(-230px, -400px);
-//   }
+.bl_app2 {
+  position: relative;
+  //   background-color: $cWhite;
 
-//   
+  &_ttl_1 {
+    @include mq() {
+      margin-left: -188px;
+    }
+  }
 
-//   & .bl_app_bottomWave {
-//     min-width: 2000px;
-//     position: absolute;
-//     z-index: 0;
-//     transform: scale(1) rotate(4deg) translate(-230px, -400px);
+  &_ttl_2 {
+    @include mq() {
+      margin-top: -110px;
+      margin-left: 42px;
+    }
+  }
 
-//     @include mq() {
-//       top: 80%;
-//       transform: scale(1) rotate(4deg) translate(-863px, -400px);
-//     }
-//   }
-// }
+  & .bl_app2_wave {
+    margin-top: 55px;
 
-// .bl_app_ttl_sp {
-//   @include mq("sp") {
-//     padding-left: 86px;
-//   }
-// }
+    @include mq() {
+        margin-top: 22%;
+    }
 
-// .bl_app_ttl_sp_2 {
-//   @include mq("sp") {
-//     padding-left: 23px;
-//   }
+    @include mq("sp") {
+        margin-top: 34%;
+    }
 
-//   @include mq("adj") {
-//     position: absolute;
-//     top: 85px;
-//   }
-// }
+    @include mq("adj") {
+        margin-top: 75%;
+    }
+  }
 
+  &_shape1 {
+    position: absolute;
+    bottom: 11%;
+    left: -3%;
+    z-index: 1;
 
+    @include mq() {
+        bottom: 4%;
+    }
 
+    @include mq("sp") {
+        bottom: 1%;
+    }
+  }
 
+  &_shape2 {
+    position: absolute;
+    bottom: 23%;
+    left: 10%;
+    z-index: 1;
 
-// .bl_app2 {
-//   position: relative;
-//   background-color: $cWhite;
+    @include mq() {
+        bottom: 8%;
+    }
+  }
 
-//   & .bl_app2_wave {
-//     position: absolute;
-//     top: -540px;
-//     min-width: 2000px;
-//     transform: scale(1) rotate(7deg) translate(-230px, 0);
-
-//     @include mq() {
-//       transform: scale(1) rotate(7deg) translate(-478px, 0);
-//     }
-//   }
-// }
-
+  &_shape3 {
+    position: absolute;
+    right: 3%;
+    bottom: 33%;
+    z-index: 1;
+  }
+}
 // // .bl_app2_title_z-15 {
 // //   transform: translateZ(-15px);
 // // }
@@ -603,45 +827,53 @@
 //   }
 // }
 
-// .bl_app3 {
-//   position: relative;
-//   background-color: $cCeruleanBlue;
+.bl_app3 {
+  position: relative;
+  background-color: $cCeruleanBlue;
+  margin-top: -50px;
 
-//   & .bl_app3_wave {
-//     position: absolute;
-//     top: -730px;
-//     min-width: 2000px;
-//     transform: scale(1.3) rotate(-5deg) translate(-230px, 0);
-//   }
+  &_wrapper {
+    max-width: 1168px;
+    margin: 0 auto;
+  }
 
-//   &_shape1 {
-//     position: absolute;
-//     top: -230px;
-//     left: -3%;
-//     z-index: 1;
-//   }
+  & .bl_app3_wave {
+    margin-top: -198px;
+  }
 
-//   &_shape2 {
-//     position: absolute;
-//     top: -235px;
-//     left: 10%;
-//     z-index: 1;
-//   }
+  &_shape1 {
+    position: relative;
+    margin-left: -50px;
+  }
 
-//   &_shape3 {
-//     position: absolute;
-//     top: -260px;
-//     right: 3%;
-//     z-index: 1;
-//   }
+  &_shape2 {
+    position: absolute;
+    right: 240px;
+    bottom: 34%;
+    z-index: 2;
+}
 
-//   &_shape4 {
-//     position: absolute;
-//     bottom: 25%;
-//     left: 5%;
-//     z-index: 1;
-//   }
-// }
+  &_shape3 {
+    position: absolute;
+    right: 80px;
+    bottom: 33%;
+    z-index: 1;
+  }
+
+  &_shape4 {
+    position: absolute;
+    bottom: 43%;
+    left: 7%;
+    z-index: 1;
+  }
+
+  &_shape5 {
+    position: absolute;
+    right: -70px;
+    bottom: 36%;
+  }
+}
+
 
 // .bl_app3_title_sp {
 //   transform: rotateZ(15deg);

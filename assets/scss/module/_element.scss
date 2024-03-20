@@ -9,6 +9,7 @@
   position: fixed;
   top: 40px;
   left: 40px;
+  z-index: 1000;
 }
 
 // ハンバーガー
@@ -29,6 +30,7 @@
   position: fixed;
   top: 40px;
   right: 45px;
+  z-index: 1000;
 
   & span {
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -177,7 +179,7 @@
 
 .el_waveStatic img {
   width: 100%;
-  object-fit: cover;
+//   object-fit: cover;
 }
 
 .el_lv2Heading {
@@ -233,6 +235,97 @@
     }
   }
 }
+
+.el_fluidShapeMiddle {
+  width: 248px;
+  height: 246px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 161px;
+    height: 160px;
+  }
+}
+
+.el_fluidShapeMiddle2 {
+  width: 290px;
+  height: 263px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 145.5px;
+    height: 132px;
+  }
+}
+
+.el_fluidShapeMiddle3 {
+  width: 197px;
+  height: 167px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+      width: 94px;
+      height: 79px;
+  }
+}
+
+.el_fluidShapeLarge {
+  width: 308px;
+  height: 306px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 200px;
+    height: 198px;
+  }
+}
+
+.el_fluidShapeSmall {
+  width: 153px;
+  height: 152px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+.el_fluidShapeSmall2 {
+  width: 39px;
+  height: 40px;
+  animation: fluidanimation 30s ease 0s infinite;
+
+  @include mq() {
+    top: initial;
+    bottom: 147px;
+    left: -39%;
+    z-index: 1;  
+  }
+}
+
+.el_fluidShapeSmall3 {
+  width: 56px;
+  height: 58px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+.el_fluidShapeSmall4 {
+  width: 30px;
+  height: 31px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+.el_fluidShapeSmall5 {
+  width: 109px;
+  height: 108px;
+  animation: fluidanimation 30s ease 0s infinite;
+}
+
+
+
+
+
 
 // /* activeクラスが適用されたときの各span要素のスタイル */
 // .el_hamburger.active span:nth-child(1) {
@@ -342,79 +435,7 @@
 // }
 
 // // fluid shape
-// .el_fluidShapeMiddle {
-//   width: 248px;
-//   height: 246px;
-//   animation: fluidanimation 30s ease 0s infinite;
 
-//   @include mq() {
-//     width: 161px;
-//     height: 160px;
-//   }
-// }
-
-// .el_fluidShapeMiddle2 {
-//   width: 290px;
-//   height: 263px;
-//   animation: fluidanimation 30s ease 0s infinite;
-
-//   @include mq() {
-//     width: 145.5px;
-//     height: 132px;
-//   }
-// }
-
-// .el_fluidShapeMiddle3 {
-//   width: 197px;
-//   height: 167px;
-//   animation: fluidanimation 30s ease 0s infinite;
-// }
-
-// .el_fluidShapeLarge {
-//   width: 308px;
-//   height: 306px;
-//   animation: fluidanimation 30s ease 0s infinite;
-
-//   @include mq() {
-//     width: 200px;
-//     height: 198px;
-//   }
-// }
-
-// .el_fluidShapeSmall {
-//   width: 153px;
-//   height: 152px;
-//   animation: fluidanimation 30s ease 0s infinite;
-
-//   @include mq() {
-//     width: 76px;
-//     height: 76px;
-//   }
-// }
-
-// .el_fluidShapeSmall2 {
-//   width: 39px;
-//   height: 40px;
-//   animation: fluidanimation 30s ease 0s infinite;
-// }
-
-// .el_fluidShapeSmall3 {
-//   width: 56px;
-//   height: 58px;
-//   animation: fluidanimation 30s ease 0s infinite;
-// }
-
-// .el_fluidShapeSmall4 {
-//   width: 30px;
-//   height: 31px;
-//   animation: fluidanimation 30s ease 0s infinite;
-// }
-
-// .el_fluidShapeSmall5 {
-//   width: 109px;
-//   height: 108px;
-//   animation: fluidanimation 30s ease 0s infinite;
-// }
 
 // .el_footerLogo {
 //   // display: flex;
