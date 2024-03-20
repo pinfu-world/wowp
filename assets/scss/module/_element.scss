@@ -180,6 +180,10 @@
 .el_waveStatic img {
   width: 100%;
 //   object-fit: cover;
+
+@include mq() {
+    object-fit: cover;
+}
 }
 
 .el_lv2Heading {

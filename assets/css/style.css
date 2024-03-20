@@ -673,6 +673,43 @@ a:hover {
   margin-left: clamp(-17rem, -34.826rem + 37.14vw, -5rem);
   margin-top: -50px;
 }
+@media screen and (max-width: 768px) {
+  .bl_featureBlock_ttl_app3 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-left: initial;
+  }
+}
+.bl_featureBlock_ttl_app4 {
+  margin-left: 24%;
+  margin-top: -40px;
+}
+
+.bl_app3_ttl_sp {
+  margin-left: -170px;
+}
+@media screen and (max-width: 630px) {
+  .bl_app3_ttl_sp {
+    margin-left: -94px;
+  }
+}
+.bl_app3_ttl_sp_2 {
+  margin-top: -33px;
+  margin-right: -110px;
+}
+@media screen and (max-width: 630px) {
+  .bl_app3_ttl_sp_2 {
+    margin-right: -80px;
+  }
+}
 
 .bl_featureBlock {
   position: relative;
@@ -766,7 +803,6 @@ a:hover {
 }
 .bl_featureBlock_num_4 {
   top: -80px;
-  left: 5%;
   color: #D2E6FF;
 }
 .bl_featureBlock_imgWrapper {
@@ -787,6 +823,9 @@ a:hover {
   }
 }
 .bl_featureBlock_imgWrapper_reverse {
+  margin-left: initial;
+}
+.bl_featureBlock_imgWrapper_4 {
   margin-left: initial;
 }
 .bl_featureBlock_spShape {
@@ -906,11 +945,6 @@ a:hover {
     font-size: 0.875rem;
   }
 }
-@media screen and (max-width: 768px) {
-  .bl_featureBlock_4 {
-    padding-left: 15px;
-  }
-}
 .bl_featureBlock li {
   text-indent: -1em;
   padding-left: 1em;
@@ -950,7 +984,7 @@ a:hover {
   }
 }
 .bl_featureBlock_illust_3 {
-  left: -205px;
+  z-index: 2;
 }
 @media screen and (max-width: 768px) {
   .bl_featureBlock_illust_3 {
@@ -961,14 +995,14 @@ a:hover {
   }
 }
 .bl_featureBlock_illust_4 {
-  right: -190px;
+  right: 32%;
   bottom: 50px;
   left: initial;
 }
 @media screen and (max-width: 768px) {
   .bl_featureBlock_illust_4 {
     right: initial;
-    top: -123px;
+    bottom: initial;
     left: 12%;
     width: 31px;
     height: 84px;
@@ -1020,6 +1054,7 @@ a:hover {
 @media screen and (max-width: 470px) {
   .bl_app2 .bl_app2_wave {
     margin-top: 75%;
+    margin-bottom: 60px;
   }
 }
 .bl_app2_shape1 {
@@ -1063,7 +1098,13 @@ a:hover {
 }
 .bl_app3_wrapper {
   max-width: 1168px;
+  padding: 0 15px;
   margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .bl_app3_wrapper {
+    margin-bottom: 250px;
+  }
 }
 .bl_app3 .bl_app3_wave {
   margin-top: -198px;
@@ -1076,13 +1117,26 @@ a:hover {
   position: absolute;
   right: 240px;
   bottom: 34%;
-  z-index: 2;
+  z-index: 2 !important;
+}
+@media screen and (max-width: 768px) {
+  .bl_app3_shape2 {
+    left: initial !important;
+    right: 116px;
+    bottom: 26% !important;
+  }
 }
 .bl_app3_shape3 {
   position: absolute;
   right: 80px;
   bottom: 33%;
   z-index: 1;
+}
+@media screen and (max-width: 768px) {
+  .bl_app3_shape3 {
+    right: 48px;
+    bottom: 26%;
+  }
 }
 .bl_app3_shape4 {
   position: absolute;
@@ -1094,6 +1148,30 @@ a:hover {
   position: absolute;
   right: -70px;
   bottom: 36%;
+}
+@media screen and (max-width: 768px) {
+  .bl_app3_shape5 {
+    right: -60px;
+    bottom: 26%;
+  }
+}
+
+.bl_app4 {
+  position: relative;
+  background-color: #FAF7D5;
+}
+.bl_app4_wrapper {
+  max-width: 980px;
+  padding: 0 15px;
+  margin: -220px auto 0;
+}
+.bl_app4_shape1 {
+  position: absolute;
+  right: -15px;
+  bottom: 62%;
+}
+.bl_app4_wave2 {
+  margin-top: -21%;
 }
 
 .el_headerLogo {
@@ -1302,6 +1380,12 @@ a:hover {
 
 .el_waveStatic img {
   width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .el_waveStatic img {
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
 }
 
 .el_lv2Heading {
