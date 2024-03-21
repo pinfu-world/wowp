@@ -34,7 +34,7 @@
     position: fixed;
     right: 3.5%;
     bottom: 15%;
-    z-index: 20;
+    z-index: 600;
 
     @include mq() {
       right: initial;
@@ -56,29 +56,3 @@
   }
 }
 
-// トップページのヘッダー
-
-//   &_inner {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     padding-right: 45px;
-//     padding-left: 40px;
-//     position: fixed;
-//     top: 40px;
-//     left: 0;
-//     z-index: 1000;
-//     width: 100%;
-//     // box-sizing: border-box;
-//   }
-
-//   &_scrollDrag {
-//     position: absolute;
-//     bottom: 19%;
-//     left: 50%;
-//     transform: translateX(-50%);
-//     z-index: 2;
-//   }
-
-//   }
-// }

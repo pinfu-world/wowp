@@ -331,15 +331,15 @@
 
 
 
-// /* activeクラスが適用されたときの各span要素のスタイル */
-// .el_hamburger.active span:nth-child(1) {
-//   transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
-// }
+/* activeクラスが適用されたときの各span要素のスタイル */
+.el_hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
+}
 
-// .el_hamburger.active span:nth-child(2) {
-//   transform: rotate(-45deg) translate(-2px, 2px); /* 2つ目のspanを逆斜めに回転 */
-//   margin-top: -6px; /* 2つ目のspanの位置を調整 */
-// }
+.el_hamburger.active span:nth-child(2) {
+  transform: rotate(-45deg) translate(-2px, 2px); /* 2つ目のspanを逆斜めに回転 */
+  margin-top: -6px; /* 2つ目のspanの位置を調整 */
+}
 
 // // top アプリリンク
 
@@ -441,11 +441,9 @@
 // // fluid shape
 
 
-// .el_footerLogo {
-//   // display: flex;
-//   // justify-content: center;
-//   text-align: center;
-// }
+.el_footerLogo {
+  text-align: center;
+}
 
 // .el_fvIllust {
 //   position: absolute;

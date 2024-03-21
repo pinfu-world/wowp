@@ -4,7 +4,9 @@
 @use "../helpers/variables" as *;
 
 .bl_globalNavi {
-  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 body {

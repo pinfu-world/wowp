@@ -68,3 +68,9 @@
   }
   
 }
+
+.hp_disInline {
+  @include mq() {
+    display: inline !important;
+  }
+}
