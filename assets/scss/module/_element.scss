@@ -59,6 +59,16 @@
   }
 }
 
+/* activeクラスが適用されたときの各span要素のスタイル */
+.el_hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
+}
+
+.el_hamburger.active span:nth-child(2) {
+  transform: rotate(-45deg) translate(-2px, 2px); /* 2つ目のspanを逆斜めに回転 */
+  margin-top: -6px; /* 2つ目のspanの位置を調整 */
+}
+
 .el_scrollDrag {
   display: flex;
   flex-direction: column;
@@ -189,11 +199,11 @@
 
 .el_waveStatic img {
   width: 100%;
-//   object-fit: cover;
+  //   object-fit: cover;
 
-@include mq() {
+  @include mq() {
     object-fit: cover;
-}
+  }
 }
 
 .el_lv2Heading {
@@ -228,7 +238,6 @@
       //     top: -12px;
       //   }
     }
-    
   }
   &_LB {
     color: $cLightBlue;
@@ -278,8 +287,8 @@
   animation: fluidanimation 30s ease 0s infinite;
 
   @include mq() {
-      width: 94px;
-      height: 79px;
+    width: 94px;
+    height: 79px;
   }
 }
 
@@ -314,7 +323,7 @@
     top: initial;
     bottom: 147px;
     left: -39%;
-    z-index: 1;  
+    z-index: 1;
   }
 }
 
@@ -334,18 +343,6 @@
   width: 109px;
   height: 108px;
   animation: fluidanimation 30s ease 0s infinite;
-}
-
-
-
-/* activeクラスが適用されたときの各span要素のスタイル */
-.el_hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
-}
-
-.el_hamburger.active span:nth-child(2) {
-  transform: rotate(-45deg) translate(-2px, 2px); /* 2つ目のspanを逆斜めに回転 */
-  margin-top: -6px; /* 2つ目のspanの位置を調整 */
 }
 
 // // top アプリリンク
@@ -447,7 +444,6 @@
 
 // // fluid shape
 
-
 .el_footerLogo {
   text-align: center;
 }
@@ -457,10 +453,45 @@
   top: 38%;
   right: -16%;
 
+  @include mq() {
+    width: 132px;
+    height: 113px;
+    right: -28px;
+  }
+
   &_2 {
     top: 34%;
     right: initial;
     left: 44%;
+
+    @include mq() {
+      width: 58px;
+      height: 95px;
+      top: 63%;
+      left: 62%;
+    }
+  }
+
+  &_3 {
+    left: 45%;
+    top: 29%;
+    z-index: 2;
+
+    @include mq() {
+      width: 124px;
+      height: 64px;
+      right: 27%;
+      top: 63%;
+      left: initial;
+    }
+
+    @include mq("sp") {
+      right: 20%;
+    }
+
+    @include mq("adj") {
+      right: 3%;
+    }
   }
 }
 
@@ -480,49 +511,49 @@
 //   line-height: 1;
 // }
 
-// .el_spScroll {
-//   position: absolute;
-//   bottom: 12%;
-//   left: 44%;
-//   height: 50px;
+.el_spScroll {
+  position: absolute;
+  bottom: 12%;
+  left: 47%;
+  height: 50px;
 
-//   & span {
-//     position: absolute;
-//     left: -15px;
-//     top: -15px;
-//     color: #5999e8;
-//     font-size: rem(13);
-//     font-weight: 700;
-//     letter-spacing: 0.05em;
+  & span {
+    position: absolute;
+    left: -15px;
+    top: -15px;
+    color: #5999e8;
+    font-size: rem(13);
+    font-weight: 700;
+    letter-spacing: 0.05em;
 
-//     &::before {
-//       content: "";
-//       position: absolute;
-//       top: 0;
-//       width: 2px;
-//       height: 30px;
-//       background: #5999e8;
-//       /*線の動き1.4秒かけて動く。永遠にループ*/
-//       animation: scrollMove 1.4s ease-in-out infinite;
-//       opacity: 0;
-//     }
-//   }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 30px;
+      background: #5999e8;
+      /*線の動き1.4秒かけて動く。永遠にループ*/
+      animation: scrollMove 1.4s ease-in-out infinite;
+      opacity: 0;
+    }
+  }
+}
 
-// }
-
-// @keyframes scrollMove {
-//   0% {
-//     height: 0;
-//     top: 0;
-//     opacity: 0;
-//   }
-//   30% {
-//     height: 30px;
-//     opacity: 1;
-//   }
-//   100% {
-//     height: 0;
-//     top: 50px;
-//     opacity: 0;
-//   }
-// }
+@keyframes scrollMove {
+  0% {
+    height: 0;
+    top: -60px;
+    opacity: 0;
+  }
+  30% {
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    top: -15px;
+    opacity: 0;
+  }
+}

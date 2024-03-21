@@ -74,3 +74,11 @@
     display: inline !important;
   }
 }
+
+.hp_spFsz22 {
+
+  @include mq() {
+      font-size: rem(22);
+  }
+
+}
