@@ -153,31 +153,31 @@ else {
       context.fill();
     }
 
-  //   function drawSine(t, zoom, delay) {
-  //     let xAxis = Math.floor(canvas.height / 2);
-  //     let yAxis = 0;
-  //     let context = canvas.contextCache;
-  
-  //     // 傾斜の度合いを一定に保つための調整値
-  //     let slopeAdjustment = 50; // この値で波の傾斜を調整
-  
-  //     for (let i = yAxis; i <= canvas.width + 10; i += 10) {
-  //         let x = t + (-yAxis + i) / unit / zoom;
-  //         let y = Math.sin(x - delay) / 3;
-  //         let heightAdjustmentFactor = 1 - (i / canvas.width);
+    //   function drawSine(t, zoom, delay) {
+    //     let xAxis = Math.floor(canvas.height / 2);
+    //     let yAxis = 0;
+    //     let context = canvas.contextCache;
 
-  //       // Y座標を調整して左側を高く見せる
-  //       let yOffset = (canvas.height * (1 - heightAdjustmentFactor)) / 4; // 左側が高くなるように調整
+    //     // 傾斜の度合いを一定に保つための調整値
+    //     let slopeAdjustment = 50; // この値で波の傾斜を調整
 
-  //       context.lineTo(i, unit * y * heightAdjustmentFactor + xAxis + slopeAdjustment - yOffset);
-  //     }
-  // }
-  
-  function drawSine(t, zoom, delay) {
-    let xAxis = Math.floor(canvas.height / 2);
-    let context = canvas.contextCache;
+    //     for (let i = yAxis; i <= canvas.width + 10; i += 10) {
+    //         let x = t + (-yAxis + i) / unit / zoom;
+    //         let y = Math.sin(x - delay) / 3;
+    //         let heightAdjustmentFactor = 1 - (i / canvas.width);
 
-    for (let i = 0; i <= canvas.width + 10; i += 10) {
+    //       // Y座標を調整して左側を高く見せる
+    //       let yOffset = (canvas.height * (1 - heightAdjustmentFactor)) / 4; // 左側が高くなるように調整
+
+    //       context.lineTo(i, unit * y * heightAdjustmentFactor + xAxis + slopeAdjustment - yOffset);
+    //     }
+    // }
+
+    function drawSine(t, zoom, delay) {
+      let xAxis = Math.floor(canvas.height / 2);
+      let context = canvas.contextCache;
+
+      for (let i = 0; i <= canvas.width + 10; i += 10) {
         let x = t + (-0 + i) / unit / zoom;
         let y = Math.sin(x - delay) / 3;
 
@@ -185,13 +185,15 @@ else {
         let positionFactor = i / canvas.width;
         // 左側をさらに低くするために、影響を強化する
         let heightAdjustmentFactor = Math.pow(positionFactor, 1); // 右側が高くなる効果を強化
-        let yOffsetAdjustment = Math.pow(1 - positionFactor, 1) * canvas.height / 2; // 左側をより低くする
+        let yOffsetAdjustment =
+          (Math.pow(1 - positionFactor, 1) * canvas.height) / 2; // 左側をより低くする
 
-        context.lineTo(i, unit * y * heightAdjustmentFactor + xAxis - yOffsetAdjustment);
+        context.lineTo(
+          i,
+          unit * y * heightAdjustmentFactor + xAxis - yOffsetAdjustment
+        );
+      }
     }
-}
-
-
 
     window.addEventListener("resize", init);
 
@@ -203,51 +205,51 @@ else {
       canvas,
       info = { seconds: 0, t: 0 }, // 初期値を設定
       colors;
-  
+
     function init() {
       colors = ["#FFFFFF80", "#FAF7D5"]; // 色を変更します（例: "#ADD8E6"はlight blue、"#6495ED"はcornflower blue）
-  
+
       canvas = document.getElementById("waveCanvas2"); // IDを"waveCanvas2"に変更
       if (!canvas) return; // canvasがなければ初期化を中断
-  
+
       canvas.width = document.documentElement.clientWidth;
       canvas.height = 300; // 高さを設定
       canvas.contextCache = canvas.getContext("2d"); // コンテキストをキャッシュ
-  
+
       startAnimation();
     }
-  
+
     function startAnimation() {
       if (info.animationFrameId) {
         cancelAnimationFrame(info.animationFrameId); // 前のアニメーションフレームをキャンセル
       }
       update();
     }
-  
+
     function update() {
       draw();
-  
+
       // 波の速度を調整
       info.seconds += 0.007; // ここで波の速度を調整（値を小さくすると速度が遅くなる）
       info.t = -info.seconds * Math.PI;
       info.animationFrameId = requestAnimationFrame(update);
     }
-  
+
     function draw() {
       let context = canvas.contextCache;
       context.clearRect(0, 0, canvas.width, canvas.height);
-  
+
       context.globalAlpha = 0.5;
       drawWave(colors[0], 3, 0); // 第1の波を描画
-  
+
       context.globalAlpha = 1;
       drawWave(colors[1], 2, 150); // 第2の波を描画
     }
-  
+
     function drawWave(color, zoom, delay) {
       let context = canvas.contextCache;
       context.fillStyle = color;
-  
+
       context.beginPath();
       drawSine(info.t / 0.5, zoom, delay);
       context.lineTo(canvas.width + 10, canvas.height);
@@ -255,77 +257,77 @@ else {
       context.closePath();
       context.fill();
     }
-  
+
     function drawSine(t, zoom, delay) {
       let xAxis = Math.floor(canvas.height / 2);
       let yAxis = 0;
       let context = canvas.contextCache;
-  
+
       // 傾斜の度合いを一定に保つための調整値
       let slopeAdjustment = 20; // この値で波の傾斜を調整
-  
+
       for (let i = yAxis; i <= canvas.width + 10; i += 10) {
         let x = t + (-yAxis + i) / unit / zoom;
         let y = Math.sin(x - delay) / 3;
         context.lineTo(i, unit * y + xAxis + slopeAdjustment);
       }
     }
-  
+
     window.addEventListener("resize", init);
-  
+
     init();
   })();
-  
+
   (function () {
     let unit = 100,
       canvas,
       info = { seconds: 0, t: 0 }, // 初期値を設定
       colors;
-  
+
     function init() {
-      colors = ["#FFFFFF80", "#D2E6FF"]; 
-  
+      colors = ["#FFFFFF80", "#D2E6FF"];
+
       canvas = document.getElementById("waveCanvas3"); // IDを"waveCanvas3"に変更
       if (!canvas) return; // canvasがなければ初期化を中断
-  
+
       canvas.width = document.documentElement.clientWidth;
       canvas.height = 300;
       canvas.contextCache = canvas.getContext("2d");
-  
+
       startAnimation();
     }
-  
+
     function startAnimation() {
       if (info.animationFrameId) {
         cancelAnimationFrame(info.animationFrameId); // 前のアニメーションフレームをキャンセル
       }
       update();
     }
-  
+
     function update() {
       draw();
-  
+
       // 波の速度を調整
       info.seconds += 0.007; // ここで波の速度を調整（値を小さくすると速度が遅くなる）
       info.t = -info.seconds * Math.PI;
       info.animationFrameId = requestAnimationFrame(update);
     }
-  
+
     function draw() {
       let context = canvas.contextCache;
       context.clearRect(0, 0, canvas.width, canvas.height);
-  
+
       context.globalAlpha = 0.5;
       drawWave(colors[0], 3, 0);
-  
+
       context.globalAlpha = 1;
       drawWave(colors[1], 2, 150);
     }
-  
+
     function drawWave(color, zoom, delay) {
       let context = canvas.contextCache;
       context.fillStyle = color;
-  
+
       context.beginPath();
       drawSine(info.t / 0.5, zoom, delay);
       context.lineTo(canvas.width + 10, canvas.height);
@@ -333,27 +335,25 @@ else {
       context.closePath();
       context.fill();
     }
-  
+
     function drawSine(t, zoom, delay) {
       let xAxis = Math.floor(canvas.height / 2);
       let yAxis = 0;
       let context = canvas.contextCache;
-  
+
       let slopeAdjustment = 20; // この値で波の傾斜を調整
-    
+
       for (let i = yAxis; i <= canvas.width + 10; i += 10) {
         let x = t + (-yAxis + i) / unit / zoom;
         let y = Math.sin(x - delay) / 3;
         context.lineTo(i, unit * y + xAxis + slopeAdjustment);
       }
     }
-  
+
     window.addEventListener("resize", init);
-  
+
     init();
   })();
-  
-
 }
 
 // // videの場合
@@ -398,7 +398,7 @@ else {
 // };
 
 // youtubeの場合
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // bodyタグにfrontPageのIDが存在するかチェック
   if (document.body.id === "frontPage") {
     // DOM要素を取得
@@ -445,22 +445,34 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-
-
-
-
 // グローバルナビ
-document.querySelector(".el_hamburger").addEventListener("click", function () {
-  const globalNavi = document.querySelector(".bl_globalNavi");
-  this.setAttribute(
-    "aria-expanded",
-    this.getAttribute("aria-expanded") === "false" ? "true" : "false"
-  );
-  globalNavi.classList.toggle("active"); // activeクラスをトグル
-});
+document.addEventListener("DOMContentLoaded", function () {
+  // 全てのハンバーガーメニューボタンを取得
+  const hamburgerButtons = document.querySelectorAll(".el_hamburger");
 
-document.querySelector(".el_hamburger").addEventListener("click", function () {
-  this.classList.toggle("active");
+  // 各ハンバーガーメニューボタンにイベントリスナーを設定
+  hamburgerButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      // aria-expanded属性の切り替え
+      const expanded = this.getAttribute("aria-expanded") === "true";
+      this.setAttribute("aria-expanded", !expanded);
+
+      // クリックされたハンバーガーメニューに関連付けられたグローバルナビを取得
+      const selector = this.getAttribute("aria-controls");
+      const globalNavi = document.getElementById(selector);
+
+      console.log("Selector:", selector); // ここでセレクターをログ出力
+      console.log("Global Navi Element:", globalNavi); // ここで取得された要素をログ出力
+
+      // グローバルナビが存在する場合、.activeクラスをトグル
+      if (globalNavi) {
+        globalNavi.classList.toggle("active");
+      }
+
+      // ハンバーガーメニュー自身にも.activeクラスをトグル
+      this.classList.toggle("active");
+    });
+  });
 });
 
 // 波の非表示
@@ -563,13 +575,13 @@ if (document.querySelector(".bl_bubble")) {
 
 // app固定用
 function adjustElementPosition() {
-  const element = document.querySelector('.your-fixed-element');
+  const element = document.querySelector(".your-fixed-element");
   if (element) {
-      element.style.bottom = '0';
-      element.style.left = '0';
+    element.style.bottom = "0";
+    element.style.left = "0";
   }
 }
 
 // ページ読み込み時と画面サイズ変更時に位置を調整
-window.addEventListener('load', adjustElementPosition);
-window.addEventListener('resize', adjustElementPosition);
+window.addEventListener("load", adjustElementPosition);
+window.addEventListener("resize", adjustElementPosition);
