@@ -10,6 +10,11 @@
   top: 40px;
   left: 40px;
   z-index: 1000;
+
+  @include mq() {
+    top: 29px;
+    left: 27px;
+  }
 }
 
 // ハンバーガー
@@ -31,6 +36,11 @@
   top: 40px;
   right: 45px;
   z-index: 1000;
+
+  @include mq() {
+    top: 29px;
+    right: 17px;
+  }
 
   & span {
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -328,9 +338,6 @@
 
 
 
-
-
-
 /* activeクラスが適用されたときの各span要素のスタイル */
 .el_hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(-1px, -1px); /* 1つ目のspanを斜めに回転 */
@@ -354,25 +361,25 @@
 // }
 
 // // btn arrow Right
-// .el_btn {
-//   position: relative;
-//   padding-right: 2em;
-//   padding-left: 1.38em;
-//   color: $cWhite;
-//   font-size: rem(13);
-//   font-weight: 700;
-//   cursor: pointer;
+.el_btn {
+  position: relative;
+  padding-right: 2em;
+  padding-left: 1.38em;
+  color: $cWhite;
+  font-size: rem(13);
+  font-weight: 700;
+  cursor: pointer;
 
-//   &::after {
-//     content: url(../../assets/img/arrow.svg);
-//     position: absolute;
-//     top: 60%;
-//     right: 0.83em;
-//     font-family: "Font Awesome 5 Free";
-//     font-weight: 900;
-//     transform: translateY(-50%);
-//   }
-// }
+  &::after {
+    content: url(../../assets/img/arrow.svg);
+    position: absolute;
+    top: 60%;
+    right: 0.83em;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    transform: translateY(-50%);
+  }
+}
 
 // // 見出し
 
@@ -445,11 +452,17 @@
   text-align: center;
 }
 
-// .el_fvIllust {
-//   position: absolute;
-//   top: 40%;
-//   left: 28%;
-// }
+.el_fvIllust {
+  position: absolute;
+  top: 38%;
+  right: -16%;
+
+  &_2 {
+    top: 34%;
+    right: initial;
+    left: 44%;
+  }
+}
 
 // .el_fvIllust2 {
 //   position: absolute;

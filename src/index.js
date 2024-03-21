@@ -398,47 +398,56 @@ else {
 // };
 
 // youtubeの場合
-// DOM要素を取得
-let modal = document.querySelector(".bl_videoModal");
-let btn = document.querySelector(".bl_videoBlock_link");
-let span = document.querySelector(".bl_videoModal_closeBtn");
-let iframe = document.querySelector(".bl_videoModal_video");
-let body = document.body; // スクロール禁止を適用するためのbody要素
+document.addEventListener("DOMContentLoaded", function() {
+  // bodyタグにfrontPageのIDが存在するかチェック
+  if (document.body.id === "frontPage") {
+    // DOM要素を取得
+    let modal = document.querySelector(".bl_videoModal");
+    let btn = document.querySelector(".bl_videoBlock_link");
+    let span = document.querySelector(".bl_videoModal_closeBtn");
+    let iframe = document.querySelector(".bl_videoModal_video");
+    let body = document.body; // スクロール禁止を適用するためのbody要素
 
-// YouTubeの動画IDと基本URL
-let videoID = "UTnE0qQ41eE"; // ここに動画IDを設定
-let baseURL = `https://www.youtube.com/embed/${videoID}?`;
+    // YouTubeの動画IDと基本URL
+    let videoID = "UTnE0qQ41eE"; // ここに動画IDを設定
+    let baseURL = `https://www.youtube.com/embed/${videoID}?`;
 
-// モーダルを開くボタンをクリックするとモーダルを表示
-btn.addEventListener("click", function (event) {
-  event.preventDefault();
-  modal.style.display = "block";
-  body.classList.add("js_bodyNoScroll"); // スクロール禁止クラスを追加
-  setTimeout(() => {
-    modal.classList.add("is_show");
-    // 自動再生するURLを設定（ミュートなし）
-    iframe.src = `${baseURL}autoplay=1`; // ミュートを解除
-  }, 10);
+    // モーダルを開くボタンをクリックするとモーダルを表示
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      modal.style.display = "block";
+      body.classList.add("js_bodyNoScroll"); // スクロール禁止クラスを追加
+      setTimeout(() => {
+        modal.classList.add("is_show");
+        // 自動再生するURLを設定（ミュートなし）
+        iframe.src = `${baseURL}autoplay=1`; // ミュートを解除
+      }, 10);
+    });
+
+    // モーダルを閉じる関数
+    const closeModal = () => {
+      modal.classList.remove("is_show");
+      setTimeout(() => {
+        modal.style.display = "none";
+        body.classList.remove("js_bodyNoScroll"); // スクロール禁止クラスを削除
+        // 再生を停止し、iframeのsrcをリセット
+        iframe.src = "";
+      }, 500);
+    };
+
+    // クリックイベントを追加
+    span.onclick = closeModal;
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    };
+  }
 });
 
-// モーダルを閉じる関数
-const closeModal = () => {
-  modal.classList.remove("is_show");
-  setTimeout(() => {
-    modal.style.display = "none";
-    body.classList.remove("js_bodyNoScroll"); // スクロール禁止クラスを削除
-    // 再生を停止し、iframeのsrcをリセット
-    iframe.src = "";
-  }, 500);
-};
 
-// クリックイベントを追加
-span.onclick = closeModal;
-window.onclick = function (event) {
-  if (event.target == modal) {
-    closeModal();
-  }
-};
+
+
 
 // グローバルナビ
 document.querySelector(".el_hamburger").addEventListener("click", function () {

@@ -1370,19 +1370,26 @@
 
 .bl_globalNavi {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
   // height: 100%;
-  background-color: #f5f6fa;
+  // background-color: #f5f6fa;
+
+    background: linear-gradient(to bottom, #f5f6fa 50%, #7BADEF 50%);
+
+  
   z-index: -1;
   min-height: 100vh;
   transform: translateY(120%); 
   transition: all 0.5s ease; /* アニメーション効果 */
+  height: 100vh;
+  overflow-y: auto;
 
   &.active {
     transform: translateY(0); /* 画面内にスライド */
     z-index: 900;
+    overflow-x: hidden;
   }
 
   &_shape1 {
@@ -1451,6 +1458,11 @@
     @include mq() {
       flex-direction: column;
       align-items: center;
+      top: 17%;
+    }
+
+    @include mq("sp") {
+      top: 28%;
     }
 
     & ul {
@@ -1533,88 +1545,93 @@
 // // }
 
 // // js使う前
-// .bl_bubble {
-//   width: 500px;
-//   height: 500px;
-//   border-radius: 50%;
-//   overflow: hidden;
-//   position: absolute;
-//   top: 20vh;
-//   left: 50vw;
-//   animation: float 6s ease-in-out infinite, breathe 3s ease-in-out infinite;
-//   // box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5);
-//   background-color: rgba(255, 255, 255, 0.5);
+.bl_bubble {
+  width: 512px;
+  height: 541px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 20vh;
+  left: 54vw;
+  animation: float 6s ease-in-out infinite, breathe 3s ease-in-out infinite;
+  // box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
 
-//   @include mq() {
-//     width: 330px;
-//     height: 338px;
-//     top: 10vh;
-//     left: 28%;
-//   }
+  @include mq() {
+    width: 330px;
+    height: 338px;
+    top: 10vh;
+    left: 28%;
+  }
 
-//   @include mq("sp") {
-//     left: 19%;
-//   }
+  @include mq("sp") {
+    left: 19%;
+  }
 
-//   @include mq("adj") {
-//     left: 9%;
-//   }
-// }
+  @include mq("adj") {
+    left: 9%;
+  }
 
-// .bl_bubble_img {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow: hidden;
-//   border-radius: 50%;
-// }
+  &_fv3 {
+    top: 15vh;
+    left: 58vw;
+  }
+}
 
-// .bl_bubble img {
-//   position: relative;
-//   width: 100%;
-//   height: auto;
-//   display: block;
-//   z-index: 2;
-// }
+.bl_bubble_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
 
-// .bl_bubble::before {
-//   content: "";
-//   position: absolute;
-//   top: 5px;
-//   left: 5px;
-//   right: 5px;
-//   bottom: 5px;
-//   border-radius: 50%;
-//   box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.5);
-//   animation: innerFloat 6s ease-in-out infinite;
-//   z-index: 3;
-// }
+.bl_bubble img {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  z-index: 2;
+}
 
-// .bl_bubble::after {
-//   content: "";
-//   position: absolute;
-//   top: 10px; /* 内側の泡との距離を調整 */
-//   left: 10px;
-//   right: 10px;
-//   bottom: 10px;
-//   border-radius: 50%;
-//   background-color: rgba(255, 255, 255, 0.5); /* 内側の泡と外側の泡の間の色 */
-//   animation: innerFloat 6s ease-in-out infinite; /* 必要に応じて同じか異なるアニメーションを適用 */
-// }
+.bl_bubble::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.5);
+  animation: innerFloat 6s ease-in-out infinite;
+  z-index: 3;
+}
 
-// .bl_bubble_inner {
-//   position: absolute;
-//   top: 5px;
-//   left: 5px;
-//   right: 5px;
-//   bottom: 5px;
-//   border-radius: 50%;
-//   background-color: rgba(255, 255, 255, 0.5); /* 中間層の色 */
-//   z-index: 1;
-//   animation: breatheInner 3s ease-in-out infinite;
-// }
+.bl_bubble::after {
+  content: "";
+  position: absolute;
+  top: 10px; /* 内側の泡との距離を調整 */
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5); /* 内側の泡と外側の泡の間の色 */
+  animation: innerFloat 6s ease-in-out infinite; /* 必要に応じて同じか異なるアニメーションを適用 */
+}
+
+.bl_bubble_inner {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5); /* 中間層の色 */
+  z-index: 1;
+  animation: breatheInner 3s ease-in-out infinite;
+}
 
 // // @keyframes float {
 // //   0%, 100% {
@@ -1665,172 +1682,179 @@
 // // }
 // //
 
-// .bl_fvShape {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
+.bl_fvShape {
+  position: absolute;
+  top: 0;
+  left: 0;
 
-//   &_1 {
-//     top: 10%;
-//     left: -15px;
-//   }
+  &_1 {
+    top: 10%;
+    left: -15px;
+  }
 
-//   &_2 {
-//     top: -60px;
-//     left: 30%;
-//   }
+  &_2 {
+    top: -60px;
+    left: 30%;
+  }
 
-//   &_3 {
-//     top: 20%;
-//     left: 50%;
-//   }
+  &_3 {
+    top: 20%;
+    left: 50%;
+  }
 
-//   &_4 {
-//     top: -15px;
-//     left: 85%;
-//   }
+  &_4 {
+    top: -15px;
+    left: 85%;
+  }
 
-//   &_5 {
-//     top: 60%;
-//     left: initial;
-//     right: -20px;
-//   }
+  &_5 {
+    top: 60%;
+    left: initial;
+    right: -20px;
+  }
 
-//   &_6 {
-//     top: 60%;
-//     left: 2%;
-//   }
+  &_6 {
+    top: 60%;
+    left: 2%;
+  }
 
-//   &_7 {
-//     top: 20%;
-//     left: 1%;
-//   }
+  &_7 {
+    top: 20%;
+    left: 1%;
+  }
 
-//   &_8 {
-//     top: -119px;
-//     left: 23%;
-//   }
+  &_8 {
+    top: -119px;
+    left: 23%;
+  }
 
-//   &_9 {
-//     top: 20%;
-//     left: 39%;
-//   }
+  &_9 {
+    top: 20%;
+    left: 39%;
+  }
 
-//   &_10 {
-//     top: -25px;
-//     left: 60%;
-//   }
+  &_10 {
+    top: -25px;
+    left: 60%;
+  }
 
-//   &_11 {
-//     top: 18%;
-//     right: 2%;
-//     left: initial;
-//   }
+  &_11 {
+    top: 18%;
+    right: 2%;
+    left: initial;
+  }
 
-//   &_12 {
-//     top: 38%;
-//     right: 3%;
-//     left: initial;
-//   }
+  &_12 {
+    top: 38%;
+    right: 3%;
+    left: initial;
+  }
 
-//   &_13 {
-//     top: 54%;
-//     left: 45%;
-//   }
+  &_13 {
+    top: 57%;
+    left: 51%;
+  }
 
-//   &_14 {
-//     top: 30%;
-//     left: -190px;
-//   }
+  &_14 {
+    top: 30%;
+    left: -190px;
+  }
 
-//   &_15 {
-//     top: 4%;
-//     left: 15%;
-//   }
+  &_15 {
+    top: 4%;
+    left: 15%;
+  }
 
-//   &_16 {
-//     top: -15px;
-//     left: 55%;
-//   }
+  &_16 {
+    top: -15px;
+    left: 74%;
+  }
 
-//   &_17 {
-//     top: 20%;
-//     left: 40%;
-//   }
+  &_17 {
+    top: 8%;
+    left: 55%;
+  }
 
-//   &_18 {
-//     top: 20%;
-//     right: 2%;
-//     left: initial;
-//   }
+  &_18 {
+    top: 20%;
+    right: 2%;
+    left: initial;
+  }
 
-//   &_19 {
-//     top: 40%;
-//     right: -1%;
-//     left: initial;
-//   }
-// }
+  &_19 {
+    top: 40%;
+    right: -1%;
+    left: initial;
+  }
+}
 
-// .bl_fvHeader {
-//   background-color: #f5f6fa;
-// }
+.bl_fvHeader {
+  background-color: #f5f6fa;
+}
 
-// .bl_fvTxtArea {
-//   position: relative;
-//   z-index: 2;
-//   font-weight: 700;
-//   top: 50%;
-//   left: 10%;
-//   transform: translateY(-80%);
+.bl_fvTxtArea {
+  position: absolute;
+  z-index: 2;
+  font-weight: 700;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-80%);
 
-//   @include mq {
-//     top: 70%;
-//     left: 34%;
-//   }
+  @include mq {
+    top: 70%;
+    left: 34%;
+  }
 
-//   @include mq("sp") {
-//     left: 27%;
-//   }
+  @include mq("sp") {
+    left: 27%;
+  }
 
-//   @include mq("adj") {
-//     left: 18%;
-//   }
+  @include mq("adj") {
+    left: 18%;
+  }
 
-//   &_3 {
-//     top: 33%;
-//     transform: translateY(0);
+  &_3 {
+    top: 26%;
+    transform: translateY(0);
 
-//     @include mq {
-//       top: 60%;
+    @include mq {
+      top: 60%;
 
-//     }
-//   }
+    }
+  }
 
-//   &_tagline {
-//     font-size: rem(34);
-//     height: 2.5;
-//     letter-spacing: 2.3;
+  &_tagline {
+    font-size: rem(34);
+    height: 2.5;
+    letter-spacing: 2.3;
 
-//     @include mq() {
-//       font-size: rem(22);
-//     }
+    @include mq() {
+      font-size: rem(22);
+    }
 
-//     &_small {
-//       font-size: 30px;
-//     }
-//   }
+    &_small {
+      font-size: 30px;
+    }
 
-//   &_message {
-//     font-size: rem(48);
-//     line-height: 1.73;
-//     letter-spacing: 2.3;
+    &_fv3Small {
+      text-align: center;
+      line-height: 1.4;
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+  }
 
-//     & strong {
-//       color: $cSteelBlue;
-//     }
+  &_message {
+    font-size: rem(48);
+    line-height: 1.73;
+    letter-spacing: 2.3;
 
-//     @include mq() {
-//       font-size: rem(31);
-//     }
-//   }
-// }
+    & strong {
+      color: $cSteelBlue;
+    }
+
+    @include mq() {
+      font-size: rem(31);
+    }
+  }
+}
