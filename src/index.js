@@ -557,21 +557,59 @@ document.body.addEventListener("mousemove", (e) => {
 
 // anime js
 
+// if (document.querySelector(".bl_bubble")) {
+//   anime({
+//     targets: ".bl_bubble",
+//     keyframes: [
+//       { scaleX: 1.05, scaleY: 0.95, translateY: -10, duration: 2000 },
+//       { scaleX: 0.95, scaleY: 1.05, translateY: 10, duration: 2000 },
+//       { scaleX: 1.1, scaleY: 0.9, translateY: -20, duration: 2000 },
+//       { scaleX: 0.9, scaleY: 1.1, translateY: 20, duration: 2000 },
+//       { scaleX: 1, scaleY: 1, translateY: 0, duration: 2000 },
+//     ],
+//     loop: true,
+//     easing: "easeInOutSine",
+//     duration: 10000,
+//   });
+// }
+
+// if (document.querySelector(".bl_bubble")) {
+//   anime({
+//     targets: ".bl_bubble",
+//     keyframes: [
+//       { scaleX: 1.05, scaleY: 0.95, translateX: -10, translateY: -10, duration: 2000 },
+//       { scaleX: 0.95, scaleY: 1.05, translateX: 10, translateY: 10, duration: 2000 },
+//       { scaleX: 1.1, scaleY: 0.9, translateX: -20, translateY: -20, duration: 2000 },
+//       { scaleX: 0.9, scaleY: 1.1, translateX: 20, translateY: 20, duration: 2000 },
+//       { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, duration: 2000 },
+//     ],
+//     loop: true,
+//     easing: "easeInOutSine",
+//     duration: 10000,
+//   });
+// }
+
 if (document.querySelector(".bl_bubble")) {
   anime({
     targets: ".bl_bubble",
     keyframes: [
-      { scaleX: 1.05, scaleY: 0.95, translateY: -10, duration: 2000 },
-      { scaleX: 0.95, scaleY: 1.05, translateY: 10, duration: 2000 },
-      { scaleX: 1.1, scaleY: 0.9, translateY: -20, duration: 2000 },
-      { scaleX: 0.9, scaleY: 1.1, translateY: 20, duration: 2000 },
-      { scaleX: 1, scaleY: 1, translateY: 0, duration: 2000 },
+      { scaleX: 1.05, scaleY: 0.95, translateX: -10, translateY: -10, duration: 2000 },
+      { scaleX: 0.95, scaleY: 1.05, translateX: 10, translateY: 10, duration: 2000 },
+      { scaleX: 1.1, scaleY: 0.9, translateX: -20, translateY: -20, duration: 2000 },
+      { scaleX: 0.9, scaleY: 1.1, translateX: 20, translateY: 20, duration: 2000 },
+      { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, duration: 2000 },
+      // 追加する不規則な動き
+      { scaleX: 1.03, scaleY: 0.97, translateX: 15, translateY: -15, duration: 2000 },
+      { scaleX: 0.97, scaleY: 1.03, translateX: -15, translateY: 15, duration: 2000 },
+      { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, duration: 2000 },
     ],
     loop: true,
     easing: "easeInOutSine",
     duration: 10000,
   });
 }
+
+
 
 // app固定用
 function adjustElementPosition() {
