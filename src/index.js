@@ -1,101 +1,102 @@
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import vertexShader from "./shaders/vertexShader.glsl";
-import fragmentShader from "./shaders/fragmentShader.glsl";
+// import * as THREE from "three";
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+// import vertexShader from "./shaders/vertexShader.glsl";
+// import fragmentShader from "./shaders/fragmentShader.glsl";
 
 
-if (document.querySelector("#webgl1") !== null) {
-  // #canvas1用の初期化コード
+// if (document.querySelector("#webgl1") !== null) {
+//   // #canvas1用の初期化コード
 
-  /**
-   * Sizes
-   */
-  const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
+//   /**
+//    * Sizes
+//    */
+//   const sizes = {
+//     width: window.innerWidth,
+//     height: window.innerHeight,
+//   };
 
-  // Canvas
-  const canvas = document.querySelector("#webgl");
+//   // Canvas
+//   const canvas = document.querySelector("#webgl");
 
-  // Scene
-  const scene = new THREE.Scene();
+//   // Scene
+//   const scene = new THREE.Scene();
 
-  /**
-   * Textures
-   */
-  const textureLoader = new THREE.TextureLoader();
+//   /**
+//    * Textures
+//    */
+//   const textureLoader = new THREE.TextureLoader();
 
-  // Geometry
-  const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+//   // Geometry
+//   const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
 
-  // Material
-  const material = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-  });
+//   // Material
+//   const material = new THREE.ShaderMaterial({
+//     vertexShader,
+//     fragmentShader,
+//   });
 
-  // Mesh
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
+//   // Mesh
+//   const mesh = new THREE.Mesh(geometry, material);
+//   scene.add(mesh);
 
-  // Camera
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    sizes.width / sizes.height,
-    0.1,
-    100
-  );
-  camera.position.set(0.25, -0.25, 1);
-  scene.add(camera);
+//   // Camera
+//   const camera = new THREE.PerspectiveCamera(
+//     75,
+//     sizes.width / sizes.height,
+//     0.1,
+//     100
+//   );
+//   camera.position.set(0.25, -0.25, 1);
+//   scene.add(camera);
 
-  // Controls
-  const controls = new OrbitControls(camera, canvas);
-  controls.enableDamping = true;
+//   // Controls
+//   const controls = new OrbitControls(camera, canvas);
+//   controls.enableDamping = true;
 
-  /**
-   * Renderer
-   */
-  const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-  });
-  renderer.setSize(sizes.width, sizes.height);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+//   /**
+//    * Renderer
+//    */
+//   const renderer = new THREE.WebGLRenderer({
+//     canvas: canvas,
+//   });
+//   renderer.setSize(sizes.width, sizes.height);
+//   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  window.addEventListener("resize", () => {
-    sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
+//   window.addEventListener("resize", () => {
+//     sizes.width = window.innerWidth;
+//     sizes.height = window.innerHeight;
 
-    camera.aspect = sizes.width / sizes.height;
-    camera.updateProjectionMatrix();
+//     camera.aspect = sizes.width / sizes.height;
+//     camera.updateProjectionMatrix();
 
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  });
+//     renderer.setSize(sizes.width, sizes.height);
+//     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+//   });
 
-  /**
-   * Animate
-   */
-  const clock = new THREE.Clock();
+//   /**
+//    * Animate
+//    */
+//   const clock = new THREE.Clock();
 
-  const animate = () => {
-    //時間取得
-    const elapsedTime = clock.getElapsedTime();
+//   const animate = () => {
+//     //時間取得
+//     const elapsedTime = clock.getElapsedTime();
 
-    controls.update();
+//     controls.update();
 
-    renderer.render(scene, camera);
+//     renderer.render(scene, camera);
 
-    window.requestAnimationFrame(animate);
-  };
+//     window.requestAnimationFrame(animate);
+//   };
 
-  animate();
-}
+//   animate();
+// }
 
 // else  (document.querySelector('#canvas2') !== null) {
 //   // #canvas2用の初期化コード
 // }
-else {
+
+
   (function () {
     let unit = 100,
       canvas,
@@ -349,7 +350,7 @@ else {
 
     init();
   })();
-}
+
 
 // // videの場合
 // // モーダルを取得
@@ -441,34 +442,103 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // グローバルナビ
-document.addEventListener("DOMContentLoaded", function () {
-  // 全てのハンバーガーメニューボタンを取得
-  const hamburgerButtons = document.querySelectorAll(".el_hamburger");
+// document.addEventListener("DOMContentLoaded", function () {
+//   // 全てのハンバーガーメニューボタンを取得
+//   const hamburgerButtons = document.querySelectorAll(".el_hamburger");
 
-  // 各ハンバーガーメニューボタンにイベントリスナーを設定
-  hamburgerButtons.forEach(function (button) {
+//   // 各ハンバーガーメニューボタンにイベントリスナーを設定
+//   hamburgerButtons.forEach(function (button) {
+//     button.addEventListener("click", function () {
+//       // aria-expanded属性の切り替え
+//       const expanded = this.getAttribute("aria-expanded") === "true";
+//       this.setAttribute("aria-expanded", !expanded);
+
+//       // クリックされたハンバーガーメニューに関連付けられたグローバルナビを取得
+//       const selector = this.getAttribute("aria-controls");
+//       const globalNavi = document.getElementById(selector);
+
+//       console.log("Selector:", selector); // ここでセレクターをログ出力
+//       console.log("Global Navi Element:", globalNavi); // ここで取得された要素をログ出力
+
+//       // グローバルナビが存在する場合、.activeクラスをトグル
+//       if (globalNavi) {
+//         globalNavi.classList.toggle("active");
+//       }
+
+//       // ハンバーガーメニュー自身にも.activeクラスをトグル
+//       this.classList.toggle("active");
+//     });
+//   });
+// });
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   // ナビゲーションリンクにイベントリスナーを追加
+//   document.querySelectorAll(".bl_globalNavi_link a").forEach(function (link) {
+//     link.addEventListener("click", function () {
+//       // ドロワーメニューの取得
+//       const drawer = document.getElementById("drawer");
+//       if (drawer.classList.contains("active")) {
+//         drawer.classList.remove("active");
+//       }
+
+//       // ハンバーガーメニューボタンのaria-expanded属性と.activeクラスを更新
+//       const hamburgerButton = document.querySelector(".el_hamburger");
+//       if (hamburgerButton.getAttribute("aria-expanded") === "true") {
+//         hamburgerButton.setAttribute("aria-expanded", "false");
+//         hamburgerButton.classList.remove("active");
+//       }
+//     });
+//   });
+
+//   // ハンバーガーメニューボタンにイベントリスナーを設定
+//   const hamburgerButton = document.querySelector(".el_hamburger");
+//   hamburgerButton.addEventListener("click", function () {
+//     const expanded = this.getAttribute("aria-expanded") === "true";
+//     this.setAttribute("aria-expanded", !expanded);
+//     this.classList.toggle("active");
+
+//     // 関連するドロワーメニューの取得
+//     const drawer = document.getElementById(this.getAttribute("aria-controls"));
+//     drawer.classList.toggle("active");
+//   });
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // ハンバーガーメニューボタンにイベントリスナーを設定
+  document.querySelectorAll(".el_hamburger").forEach(function (button) {
     button.addEventListener("click", function () {
-      // aria-expanded属性の切り替え
       const expanded = this.getAttribute("aria-expanded") === "true";
       this.setAttribute("aria-expanded", !expanded);
-
-      // クリックされたハンバーガーメニューに関連付けられたグローバルナビを取得
-      const selector = this.getAttribute("aria-controls");
-      const globalNavi = document.getElementById(selector);
-
-      console.log("Selector:", selector); // ここでセレクターをログ出力
-      console.log("Global Navi Element:", globalNavi); // ここで取得された要素をログ出力
-
-      // グローバルナビが存在する場合、.activeクラスをトグル
-      if (globalNavi) {
-        globalNavi.classList.toggle("active");
-      }
-
-      // ハンバーガーメニュー自身にも.activeクラスをトグル
       this.classList.toggle("active");
+
+      // 関連するドロワーメニューの取得とトグル
+      const drawer = document.getElementById(this.getAttribute("aria-controls"));
+      if (drawer) {
+        drawer.classList.toggle("active");
+      }
+    });
+  });
+
+  // 全てのナビゲーションリンクにイベントリスナーを追加
+  document.querySelectorAll(".bl_globalNavi_link a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      // 全てのドロワーメニューとハンバーガーメニューボタンを処理
+      document.querySelectorAll(".el_hamburger").forEach(function (button) {
+        const controls = button.getAttribute("aria-controls");
+        const drawer = document.getElementById(controls);
+        if (drawer && drawer.classList.contains("active")) {
+          drawer.classList.remove("active");
+          button.setAttribute("aria-expanded", "false");
+          button.classList.remove("active");
+        }
+      });
     });
   });
 });
+
+
+
+
 
 // 波の非表示
 // ここでは、ボタンのクリックにより波形SVGの表示状態を制御します。
@@ -536,25 +606,25 @@ document.body.addEventListener("mousemove", (e) => {
 });
 
 // anime js
-// if (document.querySelector(".bl_bubble")) {
-//   anime({
-//     targets: ".bl_bubble",
-//     keyframes: [
-//       { scaleX: 1.05, scaleY: 0.95, translateX: -10, translateY: -10, duration: 2000 },
-//       { scaleX: 0.95, scaleY: 1.05, translateX: 10, translateY: 10, duration: 2000 },
-//       { scaleX: 1.1, scaleY: 0.9, translateX: -20, translateY: -20, duration: 2000 },
-//       { scaleX: 0.9, scaleY: 1.1, translateX: 20, translateY: 20, duration: 2000 },
-//       { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, duration: 2000 },
-//       // 追加する不規則な動き
-//       { scaleX: 1.03, scaleY: 0.97, translateX: 15, translateY: -15, duration: 2000 },
-//       { scaleX: 0.97, scaleY: 1.03, translateX: -15, translateY: 15, duration: 2000 },
-//       { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, duration: 2000 },
-//     ],
-//     loop: true,
-//     easing: "easeInOutSine",
-//     duration: 10000,
-//   });
-// }
+if (document.querySelector(".bl_bubble")) {
+  anime({
+    targets: ".bl_bubble",
+    keyframes: [
+      { scaleX: 1.05, scaleY: 0.95, translateX: -10, translateY: -10, duration: 2000 },
+      { scaleX: 0.95, scaleY: 1.05, translateX: 10, translateY: 10, duration: 2000 },
+      { scaleX: 1.1, scaleY: 0.9, translateX: -20, translateY: -20, duration: 2000 },
+      { scaleX: 0.9, scaleY: 1.1, translateX: 20, translateY: 20, duration: 2000 },
+      { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, duration: 2000 },
+      // 追加する不規則な動き
+      { scaleX: 1.03, scaleY: 0.97, translateX: 15, translateY: -15, duration: 2000 },
+      { scaleX: 0.97, scaleY: 1.03, translateX: -15, translateY: 15, duration: 2000 },
+      { scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, duration: 2000 },
+    ],
+    loop: true,
+    easing: "easeInOutSine",
+    duration: 10000,
+  });
+}
 
 // app固定用
 function adjustElementPosition() {

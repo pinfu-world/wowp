@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body id="fv" class="p_top">
+<body id="fv" class="p_top" style="opacity: 1;">
     <div class="ly_fvWrapper slideshow" id="slideshow">
         <ol class="slides">
 
@@ -421,28 +421,29 @@
     <script src="./assets/js/modernizr.js"></script>
     <script src="./assets/js/classie.js"></script>
     <script src="./assets/js/bundle.js"></script>
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var transitionLinks = document.querySelectorAll(".transition-link");
-        
-            transitionLinks.forEach(function(link) {
-                link.addEventListener("click", function(e) {
-                    e.preventDefault(); // デフォルトのリンク動作を停止
-                    var target = e.target.href; // 遷移先URLを取得
-        
-                    // フェードアウトアニメーション
-                    gsap.to("body", {
-                        opacity: 0,
-                        duration: 0.5,
-                        onComplete: function() {
-                            window.location.href = target; // アニメーション完了後にページ遷移
-                        }
-                    });
-                });
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var transitionLinks = document.querySelectorAll(".transition-link");
+
+    transitionLinks.forEach(function(link) {
+        link.addEventListener("click", function(e) {
+            e.preventDefault(); // デフォルトのリンク動作を停止
+            var target = e.currentTarget.href; // 遷移先URLを正しく取得
+
+            // フェードアウトアニメーション
+            gsap.to("body", {
+                opacity: 0,
+                duration: 0.5, // 10秒間のフェードアウト
+                onComplete: function() {
+                    window.location.href = target; // アニメーション完了後にページ遷移
+                }
             });
         });
-        </script> -->
-        <script>document.addEventListener("DOMContentLoaded", function() {
+    });
+});
+
+        </script>
+        <!-- <script>document.addEventListener("DOMContentLoaded", function() {
        document.addEventListener("click", function(e) {
     // クリックされた要素がリンクかどうかをチェック
     var link = e.target.closest('a[href]');
@@ -462,7 +463,7 @@
     }
 });
 
-        </script>
+        </script> -->
 </body>
 
 </html>

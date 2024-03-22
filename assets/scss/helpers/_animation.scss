@@ -255,12 +255,7 @@
   opacity: 1;
 }
 
-/* スライドショーで最も重要なスタイル
-preserve-3d一部のアニメーションでは一部の内部アイテムが Z 軸上
-で移動する必要があるため、変換スタイルとして追加
-「tiltview」ラッパーは、上部を 50% に設定し、
-Y 軸上で -50% 変換することで中央に配置されます。
-また、X 軸と Z 軸を中心に回転させて 3D 外観を作成します。
+/* スライドショースタイル
  */
 .tiltview {
   transform-style: preserve-3d;
@@ -286,12 +281,6 @@ Y 軸上で -50% 変換することで中央に配置されます。
   opacity: 0;
 }
 
-/* 2種類のアニメーションを定義
-スライドの表示
-スライドの非表示
-6つの上下に移動と上下左右にスライドの定義
-*/
-
 /***********************/
 /* Slide right */
 /***********************/
@@ -310,7 +299,7 @@ Y 軸上で -50% 変換することで中央に配置されます。
 }
 
 .show[data-effect-in="slideRightIn"] .tiltview .bl_bubble {
-  animation: slideRightIn 1.5s 0.5s both;
+  animation: slideRightIn 0.8s 0.5s both;
 }
 
 @keyframes slideRightIn {
