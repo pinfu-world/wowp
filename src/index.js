@@ -3,6 +3,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import vertexShader from "./shaders/vertexShader.glsl";
 import fragmentShader from "./shaders/fragmentShader.glsl";
 
+
 if (document.querySelector("#webgl1") !== null) {
   // #canvas1用の初期化コード
 
@@ -595,6 +596,13 @@ window.addEventListener("resize", adjustElementPosition);
 (function (window) {
   "use strict";
 
+    // ページにid="fv"が存在するかどうかをチェック
+    var fvElement = document.getElementById("fv");
+    if (!fvElement) {
+      // id="fv"がない場合は、これ以降のコードを実行しない
+      return;
+    }
+
   Modernizr.addTest("csstransformspreserve3d", function () {
     var prop = Modernizr.prefixed("transformStyle");
     var val = "preserve-3d";
@@ -822,3 +830,48 @@ TiltSlider.prototype._showItem = function(pos) {
 })(window);
 
 
+
+
+/**
+ * Gsap
+ */
+
+if (document.body.id === "p_top") {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('.scroll-fade-in').forEach(function(element) {
+    gsap.from(element, {
+      duration: 1.5,
+      y: 50,
+      opacity: 0,
+      ease: "power4.inOut", // イージング関数を調整
+      scrollTrigger: {
+        trigger: element,
+        start: "top 90%", // 画面の上から90%の位置でアニメーションを開始
+        toggleActions: "play none none none"
+      }
+    });
+  });
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var transitionLinks = document.querySelectorAll(".transition-link");
+
+  transitionLinks.forEach(function(link) {
+      link.addEventListener("click", function(e) {
+          e.preventDefault(); // リンクのデフォルト動作を停止
+
+          var href = this.getAttribute("href"); // リンク先のURLを取得
+
+          // ここでアニメーションを実行...
+          gsap.to("#content", {
+              opacity: 0,
+              duration: 0.5,
+              onComplete: function() {
+                  window.location.href = href; // アニメーション完了後にリンク先に遷移
+              }
+          });
+      });
+  });
+});

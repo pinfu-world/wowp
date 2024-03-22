@@ -364,12 +364,12 @@ Y 軸上で -50% 変換することで中央に配置されます。
 /***********************/
 /* Slide right */
 /***********************/
-// .hide[data-effect-out="slideRightOut"] .tiltview a {
-//   animation: slideRightOut 1.5s both;
-// }
 .hide[data-effect-out="slideRightOut"] .tiltview .bl_bubble {
   animation: slideRightOut 1.5s both;
 }
+// .hide[data-effect-out="slideRightOut"] .tiltview .bl_bubble {
+//   animation: slideRightOut .1s both;
+// }
 
 
 // .hide[data-effect-out="slideRightOut"] .tiltview.col div:nth-child(2),
@@ -392,13 +392,13 @@ Y 軸上で -50% 変換することで中央に配置されます。
 // }
 
 .show[data-effect-in="slideRightIn"] .tiltview .bl_bubble {
-  animation: slideRightIn 1.5s 0.5s both;
+  animation: slideRightIn 1.5s 1.5s both;
 }
 
-.show[data-effect-in="slideRightIn"] .tiltview.col .bl_bubble:nth-child(2),
-.show[data-effect-in="slideRightIn"] .tiltview.row .bl_bubble:first-child {
-  animation-delay: 0.75s;
-}
+// .show[data-effect-in="slideRightIn"] .tiltview.col .bl_bubble:nth-child(2),
+// .show[data-effect-in="slideRightIn"] .tiltview.row .bl_bubble:first-child {
+//   animation-delay: 0.75s;
+// }
 
 @keyframes slideRightIn {
   0% {

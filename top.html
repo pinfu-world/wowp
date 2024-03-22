@@ -133,9 +133,9 @@
             <section id="concept" class="ly_content ly_content_concept bl_concept">
 
                 <div class="bl_sideBySide_wrapper">
-                    <h2 class="el_lv2Heading el_lv2Heading_white bl_concept_ttl">CONCEPT</h2>
+                    <h2 class="el_lv2Heading el_lv2Heading_white bl_concept_ttl  scroll-fade-in">CONCEPT</h2>
 
-                    <div class="bl_sideBySide">
+                    <div class="bl_sideBySide  scroll-fade-in">
                         <div class="bl_sideBySide_body">
                             <h3 class="el_lv3Heading hp_pl5 bl_sideBySide_ttl">
                                 <svg class="hp_pc" width="537" height="160" viewBox="0 0 537 160" fill="none"
@@ -267,7 +267,7 @@
                     </div>
                 </div>
 
-                <div class="bl_sideBySide_imgBox hl_sp">
+                <div class="bl_sideBySide_imgBox hl_sp scroll-fade-in">
                     <img src="./assets/img/iphone15_2.png" width="719" height="723" alt="">
                 </div>
                 <div class="bl_concept_wave1 el_waveStatic">
@@ -280,11 +280,11 @@
             </section>
 
             <section id="app" class="ly_content_app bl_app">
-                <div class="bl_app_wrapper">
+                <div class="bl_app_wrapper  scroll-fade-in">
                     <div class="ly_content_featureWrapper">
-                        <h2 class="bl_app_ttl el_lv2Heading el_lv2Heading_LB">APP</h2>
+                        <h2 class="bl_app_ttl el_lv2Heading el_lv2Heading_LB scroll-fade-in">APP</h2>
 
-                        <div class="ly_content_feature">
+                        <div class="ly_content_feature scroll-fade-in">
                             <div class="bl_featureBlock">
                                 <div class="bl_featureBlock_num">1</div>
 
@@ -371,9 +371,6 @@
                                                 d="M664.721 33.7142C664.13 34.7217 663.548 35.8224 663.152 36.6134C662.015 38.8029 659.662 43.1516 658.542 45.5277C657.646 47.3835 657.817 47.6967 659.845 48.3223C662.634 49.1294 669.571 50.887 673.524 52.3457L671.677 56.665C670.534 56.1338 669.349 55.6538 668.175 55.2008C665.793 54.2136 660.297 52.5633 656.879 51.5808C653.176 50.4655 652.745 48.906 654.458 45.4562C655.804 42.7855 658.212 38.1208 659.235 35.5279C659.685 34.421 660.156 33.1425 660.302 32.3L664.721 33.7142Z"
                                                 fill="#7BADEF" />
                                         </svg>
-
-
-
 
                                         <svg class="bl_app_ttl_sp hp_sp" width="265" height="125" viewBox="0 0 265 125"
                                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -484,7 +481,7 @@
 
                 <div class="bl_app2_wrapper">
 
-                    <div class="ly_content_featureWrapper bl_shapeWrapper">
+                    <div class="ly_content_featureWrapper bl_shapeWrapper scroll-fade-in">
                         <div class="ly_content_feature">
                             <div class="bl_featureBlock bl_featureBlock_reverse">
 
@@ -654,7 +651,7 @@
             <section class="ly_content_app bl_app3">
                 <div class="bl_app3_wrapper">
 
-                    <div class="ly_content_featureWrapper bl_shaperWrapper">
+                    <div class="ly_content_featureWrapper bl_shaperWrapper scroll-fade-in">
 
                         <div class="ly_content_feature">
                             <div class="bl_featureBlock">
@@ -880,7 +877,7 @@
 
                 <div class="bl_app4_wrapper">
 
-                    <div class="ly_content_featureWrapper bl_shaperWrapper">
+                    <div class="ly_content_featureWrapper bl_shaperWrapper scroll-fade-in">
 
                         <div class="ly_content_feature">
                             <div class="bl_featureBlock bl_featureBlock_4 bl_featureBlock_reverse">
@@ -1032,7 +1029,7 @@
 
             <section id="movie" class="ly_content_video bl_videoSection">
 
-                <div class="bl_videoBlock">
+                <div class="bl_videoBlock scroll-fade-in">
                     <div class="bl_videoBlock_inner">
                         <h2 class="bl_videoBlock_title el_lv2Heading el_lv2Heading_video el_lv2Heading_white">MOVIE</h2>
 
@@ -1080,7 +1077,7 @@
                 <div class="bl_about_wrapper">
                     <div class="bl_about_bc"></div>
 
-                    <div class="bl_about_tableArea">
+                    <div class="bl_about_tableArea scroll-fade-in">
                         <h2 class="bl_about_title el_lv2Heading el_lv2Heading_CB hp_characterGray">ABOUT US</h2>
                         <div class="bl_horizTable">
                             <table>
@@ -1151,9 +1148,21 @@
             </div>
         </footer>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <!-- <script src="assets/vendors/imagesloaded.pkgd.min.js"></script> -->
     <!-- <script src="assets/vendors/fresco/js/fresco.js"></script> -->
     <script src="./assets/js/bundle.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // フェードインアニメーション
+            gsap.from("body", {
+                opacity: 0,
+                duration: 3
+            });
+        });
+        </script>
 </body>
 
 </html>

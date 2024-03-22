@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body class="p_top">
+<body id="fv" class="p_top">
     <div class="ly_fvWrapper slideshow" id="slideshow">
         <ol class="slides">
 
@@ -102,7 +102,7 @@
 
                     <div class="bl_bubble_box tiltview">
                         <div class="bl_bubble">
-                            <a href="">
+                            <a href="./top.html" class="transition-link">
                                 <div class="bl_bubble_inner"></div>
                                 <img src="./assets/img/iphpne15_fv.png" width="519" height="489"
                                     alt="アプリ画面の表示したアイフォン" />
@@ -136,7 +136,7 @@
                     <canvas id="waveCanvas"></canvas>
                 </div>
                 <div class="ly_fv_skipIcon">
-                    <a class="el_btn el_btn_arrowRight">
+                    <a href="./top.html" class="el_btn el_btn_arrowRight transition-link">
                         SKIP
                     </a>
                 </div>
@@ -222,7 +222,7 @@
 
                     <div class="bl_bubble_box tiltview">
                         <div class="bl_bubble">
-                            <a href="">
+                            <a href="./top.html" class="transition-link">
                                 <div class="bl_bubble_inner"></div>
                                 <img src="./assets/img/iphone13_fv.png" width="519" height="489"
                                     alt="アプリ画面の表示したアイフォン" />
@@ -255,7 +255,7 @@
                     <canvas id="waveCanvas2"></canvas>
                 </div>
                 <div class="ly_fv_skipIcon">
-                    <a class="el_btn el_btn_arrowRight">
+                    <a href="./top.html" class="el_btn el_btn_arrowRight transition-link">
                         SKIP
                     </a>
                 </div>
@@ -349,7 +349,7 @@
 
                     <div class="bl_bubble_box tiltview">
                         <div class="bl_bubble bl_bubble_fv3">
-                            <a href="">
+                            <a href="./top.html" class="transition-link">
                                 <div class="bl_bubble_inner"></div>
                                 <img src="./assets/img/iphone13_fv2.png" width="519" height="489"
                                     alt="アプリ画面の表示したアイフォン" />
@@ -384,7 +384,7 @@
                     <canvas id="waveCanvas3"></canvas>
                 </div>
                 <div class="ly_fv_skipIcon">
-                    <a class="el_btn el_btn_arrowRight">
+                    <a href="./top.html" class="el_btn el_btn_arrowRight transition-link">
                         SKIP
                     </a>
                 </div>
@@ -398,10 +398,32 @@
     <!-- <script src="assets/vendors/imagesloaded.pkgd.min.js"></script> -->
     <!-- <script src="assets/vendors/fresco/js/fresco.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="./assets/js/modernizr.js"></script>
     <script src="./assets/js/classie.js"></script>
     <script src="./assets/js/bundle.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var transitionLinks = document.querySelectorAll(".transition-link");
+        
+            transitionLinks.forEach(function(link) {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault(); // デフォルトのリンク動作を停止
+                    var target = e.target.href; // 遷移先URLを取得
+        
+                    // フェードアウトアニメーション
+                    gsap.to("body", {
+                        opacity: 0,
+                        duration: 0.5,
+                        onComplete: function() {
+                            window.location.href = target; // アニメーション完了後にページ遷移
+                        }
+                    });
+                });
+            });
+        });
+        </script>
 </body>
 
 </html>
