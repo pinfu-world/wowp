@@ -677,7 +677,7 @@ window.addEventListener("resize", adjustElementPosition);
   TiltSlider.prototype.options = {};
 
   TiltSlider.prototype._init = function () {
-    this._addNavigation();
+    // this._addNavigation();
     this._initEvents();
     this._initScrollEvents(); // スクロールイベントの初期化
     this._initDragEvents(); // ドラッグイベントの初期化
@@ -719,19 +719,13 @@ TiltSlider.prototype._initDragEvents = function() {
   });
 
   window.addEventListener('mouseup', function(e) {
-      if (!self.isDragging) return; // ドラッグ状態でなければ何もしない
+      if (!self.isDragging) return;
       self.isDragging = false;
       var threshold = 100; // ドラッグの閾値
       if (Math.abs(startX - endX) > threshold) {
-          // ドラッグ距離に基づいて newPos を計算
           var direction = startX > endX ? 1 : -1;
-          var newPos = self.current + direction;
-          // newPosが範囲外にならないように調整
-          if (newPos >= self.itemsCount) {
-              newPos = 0; // 最後のスライドから先に進んだ場合は最初に戻る
-          } else if (newPos < 0) {
-              newPos = self.itemsCount - 1; // 最初のスライドより前に行った場合は最後のスライドに移動
-          }
+          // スライドのインデックスを更新して循環させる
+          var newPos = (self.current + direction + self.itemsCount) % self.itemsCount;
           self._showItem(newPos);
       }
   });
@@ -740,33 +734,34 @@ TiltSlider.prototype._initDragEvents = function() {
 
 
 
+
   // add the navigation to the DOM　ナビ
   TiltSlider.prototype._addNavigation = function () {
-    // add nav "dots"
-    this.nav = document.createElement("nav");
-    var inner = "";
-    for (var i = 0; i < this.itemsCount; ++i) {
-      inner += i === 0 ? '<span class="current"></span>' : "<span></span>";
-    }
-    this.nav.innerHTML = inner;
-    this.el.appendChild(this.nav);
-    this.navDots = [].slice.call(this.nav.children);
+    // // add nav "dots"
+    // this.nav = document.createElement("nav");
+    // var inner = "";
+    // for (var i = 0; i < this.itemsCount; ++i) {
+    //   inner += i === 0 ? '<span class="current"></span>' : "<span></span>";
+    // }
+    // this.nav.innerHTML = inner;
+    // this.el.appendChild(this.nav);
+    // this.navDots = [].slice.call(this.nav.children);
   };
 
 TiltSlider.prototype._initEvents = function () {
-  var self = this;
-  this.navDots.forEach(function (dot, idx) {
-      dot.addEventListener("click", function () {
-          if (self.isAnimating) return; // アニメーション中は処理を行わない
+  // var self = this;
+  // this.navDots.forEach(function (dot, idx) {
+  //     dot.addEventListener("click", function () {
+  //         if (self.isAnimating) return; // アニメーション中は処理を行わない
           
-          // idxが現在のスライドインデックスと同じで、それが最後のスライドの場合、最初のスライドへ戻る
-          if (idx === self.current && idx === self.itemsCount - 1) {
-              self._showItem(0); // 最初のスライドへ
-          } else {
-              self._showItem(idx); // それ以外の場合はクリックされたスライドへ
-          }
-      });
-  });
+  //         // idxが現在のスライドインデックスと同じで、それが最後のスライドの場合、最初のスライドへ戻る
+  //         if (idx === self.current && idx === self.itemsCount - 1) {
+  //             self._showItem(0); // 最初のスライドへ
+  //         } else {
+  //             self._showItem(idx); // それ以外の場合はクリックされたスライドへ
+  //         }
+  //     });
+  // });
 };
 
 
@@ -827,104 +822,3 @@ TiltSlider.prototype._showItem = function(pos) {
 })(window);
 
 
-
-
-//   Modernizr.addTest('csstransformspreserve3d', function () {
-//     var prop = Modernizr.prefixed('transformStyle');
-//     var val = 'preserve-3d';
-//     var computedStyle;
-//     if (!prop) return false;
-
-//     prop = prop.replace(/([A-Z])/g, function (str, m1) {
-//       return '-' + m1.toLowerCase();
-//     }).replace(/^ms-/, '-ms-');
-
-//     Modernizr.testStyles('#modernizr{' + prop + ':' + val + ';}', function (el, rule) {
-//       computedStyle = window.getComputedStyle ? getComputedStyle(el, null).getPropertyValue(prop) : '';
-//     });
-
-//     return (computedStyle === val);
-//   });
-
-//   var support = {
-//     animations: Modernizr.cssanimations,
-//     preserve3d: Modernizr.csstransformspreserve3d,
-//     transforms3d: Modernizr.csstransforms3d,
-//   },
-//   isSupported = support.animations && support.preserve3d && support.transforms3d,
-//   animEndEventNames = {
-//     WebkitAnimation: "webkitAnimationEnd",
-//     OAnimation: "oAnimationEnd",
-//     msAnimation: "MSAnimationEnd",
-//     animation: "animationend",
-//   },
-//   animEndEventName = animEndEventNames[Modernizr.prefixed("animation")];
-
-//   function TiltSlider(el, options) {
-//     this.el = el;
-//     this.items = this.el.querySelector("ol.slides").children;
-//     this.itemsCount = this.items.length;
-//     if (!this.itemsCount) return;
-//     this.current = 0;
-//     this._init();
-//     this._initEvents();
-//   }
-
-//   TiltSlider.prototype._init = function () {
-//     this.items[0].classList.add('current');
-//   };
-
-//   TiltSlider.prototype._initEvents = function () {
-//     var self = this;
-//     window.addEventListener("scroll", function () {
-//       var newIndex = self._determineItemIndexBasedOnScroll();
-//       if (newIndex !== self.current) {
-//         self._showItem(newIndex);
-//       }
-//     });
-//   };
-
-//   TiltSlider.prototype._determineItemIndexBasedOnScroll = function () {
-//     var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-//     var index = Math.min(this.itemsCount - 1, Math.floor(scrollY / 500)); // この500は、スクロール量とアイテムインデックスの比率を調整するためのものです
-//     return index;
-//   };
-
-//   TiltSlider.prototype._showItem = function (pos) {
-//     if (this.isAnimating) return false;
-//     this.isAnimating = true;
-//     var currentItem = this.items[this.current];
-//     var nextItem = this.items[pos];
-
-//     // 現在のアイテムから次のアイテムへのクラスの切り替え
-//     currentItem.classList.remove('current');
-//     nextItem.classList.add('current');
-
-//     var self = this;
-//     var onEndAnimation = function () {
-//       self.isAnimating = false;
-//       self.current = pos;
-//     };
-
-//     if (!isSupported) {
-//       onEndAnimation();
-//     } else {
-//       nextItem.addEventListener(animEndEventName, function evt() {
-//         nextItem.removeEventListener(animEndEventName, evt);
-//         onEndAnimation();
-//       });
-//     }
-//   };
-
-//   // グローバルな名前空間に追加
-//   window.TiltSlider = TiltSlider;
-// })(window);
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   var el = document.querySelector("#slideshow");
-//   if (el) {
-//     new TiltSlider(el);
-//   } else {
-//     console.log("Slideshow element not found");
-//   }
-// });
