@@ -102,7 +102,7 @@
 
                     <div class="bl_bubble_box tiltview">
                         <div class="bl_bubble">
-                            <a href="./top.html" class="transition-link">
+                            <a href="./top.html">
                                 <div class="bl_bubble_inner"></div>
                                 <img src="./assets/img/iphpne15_fv.png" width="519" height="489"
                                     alt="アプリ画面の表示したアイフォン" />
@@ -222,7 +222,7 @@
 
                     <div class="bl_bubble_box tiltview">
                         <div class="bl_bubble">
-                            <a href="./top.html" class="transition-link">
+                            <a href="./top.html">
                                 <div class="bl_bubble_inner"></div>
                                 <img src="./assets/img/iphone13_fv.png" width="519" height="489"
                                     alt="アプリ画面の表示したアイフォン" />
@@ -349,7 +349,7 @@
 
                     <div class="bl_bubble_box tiltview">
                         <div class="bl_bubble bl_bubble_fv3">
-                            <a href="./top.html" class="transition-link">
+                            <a href="./top.html">
                                 <div class="bl_bubble_inner"></div>
                                 <img src="./assets/img/iphone13_fv2.png" width="519" height="489"
                                     alt="アプリ画面の表示したアイフォン" />
@@ -403,7 +403,7 @@
     <script src="./assets/js/modernizr.js"></script>
     <script src="./assets/js/classie.js"></script>
     <script src="./assets/js/bundle.js"></script>
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             var transitionLinks = document.querySelectorAll(".transition-link");
         
@@ -423,6 +423,27 @@
                 });
             });
         });
+        </script> -->
+        <script>document.addEventListener("DOMContentLoaded", function() {
+       document.addEventListener("click", function(e) {
+    // クリックされた要素がリンクかどうかをチェック
+    var link = e.target.closest('a[href]');
+    if (!link) return; // リンクがクリックされていない場合は何もしない
+
+    var href = link.getAttribute('href');
+    if (!href || href.indexOf('http') !== 0) { // 外部リンクのみ処理する場合
+        e.preventDefault(); // デフォルトのリンク動作を停止
+        // アニメーション後にページ遷移
+        gsap.to("body", {
+            opacity: 0,
+            duration: 0.5,
+            onComplete: function() {
+                window.location.href = href;
+            }
+        });
+    }
+});
+
         </script>
 </body>
 
