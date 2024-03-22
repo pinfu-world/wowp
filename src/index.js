@@ -679,7 +679,66 @@ window.addEventListener("resize", adjustElementPosition);
   TiltSlider.prototype._init = function () {
     this._addNavigation();
     this._initEvents();
+    this._initScrollEvents(); // スクロールイベントの初期化
+    this._initDragEvents(); // ドラッグイベントの初期化
   };
+
+  TiltSlider.prototype._initScrollEvents = function() {
+    var self = this,
+        lastTime = 0;
+    window.addEventListener("wheel", function(e) {
+        var delta = e.deltaY,
+            currentTime = new Date().getTime();
+
+        // 短時間に複数回のスクロールイベントが発生するのを防ぐ
+        if(currentTime - lastTime < 1200){
+            return;
+        }
+        if (delta > 0) {
+            self._showItem(self.current + 1); // 下にスクロールすると次のスライドへ
+        } else {
+            self._showItem(self.current - 1); // 上にスクロールすると前のスライドへ
+        }
+        lastTime = currentTime;
+    });
+};
+
+TiltSlider.prototype._initDragEvents = function() {
+  var self = this,
+      startX,
+      endX;
+
+  this.el.addEventListener('mousedown', function(e) {
+      startX = e.pageX;
+      self.isDragging = true;
+  });
+
+  window.addEventListener('mousemove', function(e) {
+      if (!self.isDragging) return;
+      endX = e.pageX;
+  });
+
+  window.addEventListener('mouseup', function(e) {
+      if (!self.isDragging) return; // ドラッグ状態でなければ何もしない
+      self.isDragging = false;
+      var threshold = 100; // ドラッグの閾値
+      if (Math.abs(startX - endX) > threshold) {
+          // ドラッグ距離に基づいて newPos を計算
+          var direction = startX > endX ? 1 : -1;
+          var newPos = self.current + direction;
+          // newPosが範囲外にならないように調整
+          if (newPos >= self.itemsCount) {
+              newPos = 0; // 最後のスライドから先に進んだ場合は最初に戻る
+          } else if (newPos < 0) {
+              newPos = self.itemsCount - 1; // 最初のスライドより前に行った場合は最後のスライドに移動
+          }
+          self._showItem(newPos);
+      }
+  });
+};
+
+
+
 
   // add the navigation to the DOM　ナビ
   TiltSlider.prototype._addNavigation = function () {
@@ -693,21 +752,6 @@ window.addEventListener("resize", adjustElementPosition);
     this.el.appendChild(this.nav);
     this.navDots = [].slice.call(this.nav.children);
   };
-
-  TiltSlider.prototype._initEvents = function () {
-    var self = this;
-    this.navDots.forEach(function (dot, idx) {
-        dot.addEventListener("click", function () {
-            // 現在のアニメーションが進行中でなければ切り替えを実行
-            if (!self.isAnimating) {
-                self._showItem(idx);
-            }
-        });
-    });
-};
-
-
-
 
 TiltSlider.prototype._initEvents = function () {
   var self = this;
@@ -728,8 +772,17 @@ TiltSlider.prototype._initEvents = function () {
 
 
 TiltSlider.prototype._showItem = function(pos) {
-  if (this.isAnimating) return false;
+  if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
   this.isAnimating = true;
+
+  var currentItem = this.items[this.current], // 現在のアイテム
+  nextItem = this.items[pos]; // 次に表示するアイテム
+
+  if (!currentItem || !nextItem) {
+    console.error('Invalid items: currentItem or nextItem is undefined');
+    this.isAnimating = false;
+    return;
+  }
 
   // スライドの範囲を超えていないかチェックし、必要に応じてリセット
   if (pos >= this.itemsCount) {
@@ -773,12 +826,8 @@ TiltSlider.prototype._showItem = function(pos) {
   window.TiltSlider = TiltSlider;
 })(window);
 
-/**
- *
- * ナビを除いて書き直したもの
- */
-// (function (window) {
-//   "use strict";
+
+
 
 //   Modernizr.addTest('csstransformspreserve3d', function () {
 //     var prop = Modernizr.prefixed('transformStyle');
