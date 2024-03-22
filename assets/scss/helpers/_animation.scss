@@ -172,3 +172,308 @@
     height: 100%; 
   }
 
+
+
+
+
+/*fv　アニメーション
+---------------------------------------------*/
+
+
+
+/* スライドの設定 */
+.slideshow {
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.slides {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  height: 800px;
+  width: 100%;
+  overflow: hidden;
+  background: #ddd;
+  color: #333;
+}
+
+/* jsが使えないもの用。いらない？ */
+.no-js .slides {
+  height: auto;
+}
+
+/* 各リストの設定 */
+.slides > li {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  visibility: hidden;
+  perspective: 1600px;
+}
+
+/* no-jsはフォールバック用 */
+.no-js .slides > li {
+  position: relative;
+  visibility: visible;
+}
+
+/* ナビはいらないか？携帯では必要？ */
+.slideshow > nav {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.slideshow > nav span {
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+  border-top: 10px solid #fff;
+  border-bottom: 10px solid #fff;
+  background-color: #ddd;
+  cursor: pointer;
+  margin: 0 3px;
+  transition: background-color 0.2s;
+}
+
+.slideshow > nav span:hover {
+  background-color: #333;
+}
+
+.slideshow > nav span.current {
+  background-color: #aaa;
+}
+
+/* 不透明度の遷移が必要なので、透明度を0にしておく */
+.description {
+  width: 50%;
+  padding: 2em 4em;
+  font-size: 1.5em;
+  position: relative;
+  z-index: 1000;
+  opacity: 0;
+}
+
+.no-js .description {
+  opacity: 1;
+}
+
+.description h2 {
+  font-size: 200%;
+}
+
+/* スライドショーで最も重要なスタイル
+preserve-3d一部のアニメーションでは一部の内部アイテムが Z 軸上
+で移動する必要があるため、変換スタイルとして追加
+「tiltview」ラッパーは、上部を 50% に設定し、
+Y 軸上で -50% 変換することで中央に配置されます。
+また、X 軸と Z 軸を中心に回転させて 3D 外観を作成します。
+ */
+.tiltview {
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  transform: translateY(-50%) rotateX(0deg) rotateZ(0deg);
+}
+
+/* リンクと画像の設定 */
+// .tiltview a {
+//   outline: 1px solid transparent;
+// }
+
+// .tiltview a,
+// .tiltview a .bl_bubble_inner,
+// .tiltview a img {
+//   max-width: 100%;
+//   display: block;
+//   margin: 0 auto;
+// }
+
+// .tiltview a:first-child {
+//   margin-bottom: 30px;
+// }
+
+// .tiltview.row a {
+//   width: 48%;
+//   width: calc(50% - 15px);
+//   margin: 0;
+// }
+
+// .tiltview.row a:nth-child(2) {
+//   left: 50%;
+//   left: calc(50% + 15px);
+//   position: absolute;
+//   top: 0;
+// }
+.tiltview .bl_bubble {
+  outline: 1px solid transparent;
+}
+
+.tiltview .bl_bubble{
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.tiltview div:first-child {
+  margin-bottom: 30px;
+}
+
+.tiltview.row .bl_bubble {
+  width: 48%;
+  width: calc(50% - 15px);
+  margin: 0;
+}
+
+.tiltview.row .bl_bubble:nth-child(2) {
+  left: 50%;
+  left: calc(50% + 15px);
+  position: absolute;
+  top: 0;
+}
+
+/* Show/Hide */
+.slides > li.current,
+.slides > li.show {
+  visibility: visible;
+}
+
+/* descriptionのフェードインアウト */
+.description {
+  transition: opacity 0.8s;
+}
+
+.current .description,
+.show .description {
+  opacity: 1;
+}
+
+.hide .description {
+  opacity: 0;
+}
+
+/* 2種類のアニメーションを定義
+スライドの表示
+スライドの非表示
+6つの上下に移動と上下左右にスライドの定義
+*/
+
+/***********************/
+/* Slide right */
+/***********************/
+// .hide[data-effect-out="slideRightOut"] .tiltview a {
+//   animation: slideRightOut 1.5s both;
+// }
+.hide[data-effect-out="slideRightOut"] .tiltview .bl_bubble {
+  animation: slideRightOut 3.5s both;
+}
+
+
+// .hide[data-effect-out="slideRightOut"] .tiltview.col div:nth-child(2),
+// .hide[data-effect-out="slideRightOut"] .tiltview.row div:first-child {
+//   animation-delay: 0.25s;
+// }
+
+@keyframes slideRightOut {
+  25% {
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    transform: translateX(-30px);
+  }
+  100% {
+    transform: translate(3000px, -1000px);
+  }
+}
+
+// .show[data-effect-in="slideRightIn"] .tiltview a {
+//   animation: slideRightIn 1.5s 0.5s both;
+// }
+
+.show[data-effect-in="slideRightIn"] .tiltview .bl_bubble {
+  animation: slideRightIn 3.5s 0.5s both;
+}
+
+.show[data-effect-in="slideRightIn"] .tiltview.col .bl_bubble:nth-child(2),
+.show[data-effect-in="slideRightIn"] .tiltview.row .bl_bubble:first-child {
+  animation-delay: 0.75s;
+}
+
+@keyframes slideRightIn {
+  0% {
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    transform: translate(-5000px, 2500px);
+  }
+  75% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Fallback for no 3D Transforms and no preserve-3d */
+// .no-csstransformspreserve3d .show .tiltview a,
+// .no-csstransformspreserve3d .hide .tiltview a,
+// .no-csstransforms3d .show .tiltview a,
+// .no-csstransforms3d .hide .tiltview a {
+//   animation: none !important;
+// }
+.no-csstransformspreserve3d .show .tiltview .bl_bubble,
+.no-csstransformspreserve3d .hide .tiltview .bl_bubble,
+.no-csstransforms3d .show .tiltview .bl_bubble,
+.no-csstransforms3d .hide .tiltview .bl_bubble {
+  animation: none !important;
+}
+
+.no-csstransforms3d .tiltview.col {
+  top: -50%;
+}
+
+.no-csstransforms3d .tiltview.row {
+  top: 20px;
+}
+
+/* レスポンシブ。クリックできないようにしている */
+@media screen and (max-width: 65.3125em) {
+  .description,
+  .tiltview {
+    width: 100%;
+  }
+
+  .tiltview {
+    left: 0;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 33.75em) {
+  .description {
+    font-size: 1.1em;
+  }
+
+  .slideshow > nav span {
+    width: 20px;
+    height: 40px;
+    margin: 0 10px;
+  }
+}
+
+@media screen and (max-width: 24em) {
+  .slides {
+    height: 320px;
+  }
+
+  .description {
+    font-size: 1em;
+    padding: 1.4em;
+  }
+
+  .no-csstransforms3d .tiltview.col,
+  .no-csstransforms3d .tiltview.row {
+    top: 0;
+  }
+}
+

@@ -1551,7 +1551,7 @@
   height: clamp(23.063rem, 7.093rem + 33.27vw, 33.813rem);
   border-radius: 50%;
   overflow: hidden;
-  position: absolute;
+  // position: absolute;
   top: 20vh;
   left: 54vw;
   animation: float 6s ease-in-out infinite, breathe 3s ease-in-out infinite;
