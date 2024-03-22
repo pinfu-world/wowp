@@ -178,13 +178,9 @@
 
 /*fv　アニメーション
 ---------------------------------------------*/
-
-
-
 /* スライドの設定 */
 .slideshow {
   position: relative;
-  margin-bottom: 100px;
 }
 
 .slides {
@@ -192,11 +188,13 @@
   padding: 0;
   margin: 0;
   position: relative;
-  height: 800px;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
-  background: #ddd;
-  color: #333;
+
+  @include mq() {
+    min-height: 800px;
+  }
 }
 
 /* jsが使えないもの用。いらない？ */
@@ -223,7 +221,7 @@
 .slideshow > nav {
   text-align: center;
   margin-top: 20px;
-}
+} 
 
 .slideshow > nav span {
   display: inline-block;
@@ -248,8 +246,6 @@
 /* 不透明度の遷移が必要なので、透明度を0にしておく */
 .description {
   width: 50%;
-  padding: 2em 4em;
-  font-size: 1.5em;
   position: relative;
   z-index: 1000;
   opacity: 0;
@@ -257,10 +253,6 @@
 
 .no-js .description {
   opacity: 1;
-}
-
-.description h2 {
-  font-size: 200%;
 }
 
 /* スライドショーで最も重要なスタイル
@@ -271,68 +263,7 @@ Y 軸上で -50% 変換することで中央に配置されます。
 また、X 軸と Z 軸を中心に回転させて 3D 外観を作成します。
  */
 .tiltview {
-  position: absolute;
-  left: 50%;
-  width: 50%;
-  top: 50%;
   transform-style: preserve-3d;
-  transform: translateY(-50%) rotateX(0deg) rotateZ(0deg);
-}
-
-/* リンクと画像の設定 */
-// .tiltview a {
-//   outline: 1px solid transparent;
-// }
-
-// .tiltview a,
-// .tiltview a .bl_bubble_inner,
-// .tiltview a img {
-//   max-width: 100%;
-//   display: block;
-//   margin: 0 auto;
-// }
-
-// .tiltview a:first-child {
-//   margin-bottom: 30px;
-// }
-
-// .tiltview.row a {
-//   width: 48%;
-//   width: calc(50% - 15px);
-//   margin: 0;
-// }
-
-// .tiltview.row a:nth-child(2) {
-//   left: 50%;
-//   left: calc(50% + 15px);
-//   position: absolute;
-//   top: 0;
-// }
-.tiltview .bl_bubble {
-  outline: 1px solid transparent;
-}
-
-.tiltview .bl_bubble{
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
-.tiltview div:first-child {
-  margin-bottom: 30px;
-}
-
-.tiltview.row .bl_bubble {
-  width: 48%;
-  width: calc(50% - 15px);
-  margin: 0;
-}
-
-.tiltview.row .bl_bubble:nth-child(2) {
-  left: 50%;
-  left: calc(50% + 15px);
-  position: absolute;
-  top: 0;
 }
 
 /* Show/Hide */
@@ -367,15 +298,6 @@ Y 軸上で -50% 変換することで中央に配置されます。
 .hide[data-effect-out="slideRightOut"] .tiltview .bl_bubble {
   animation: slideRightOut 1.5s both;
 }
-// .hide[data-effect-out="slideRightOut"] .tiltview .bl_bubble {
-//   animation: slideRightOut .1s both;
-// }
-
-
-// .hide[data-effect-out="slideRightOut"] .tiltview.col div:nth-child(2),
-// .hide[data-effect-out="slideRightOut"] .tiltview.row div:first-child {
-//   animation-delay: 0.25s;
-// }
 
 @keyframes slideRightOut {
   25% {
@@ -387,18 +309,9 @@ Y 軸上で -50% 変換することで中央に配置されます。
   }
 }
 
-// .show[data-effect-in="slideRightIn"] .tiltview a {
-//   animation: slideRightIn 1.5s 0.5s both;
-// }
-
 .show[data-effect-in="slideRightIn"] .tiltview .bl_bubble {
-  animation: slideRightIn 1.5s 1.5s both;
+  animation: slideRightIn 1.5s 0.5s both;
 }
-
-// .show[data-effect-in="slideRightIn"] .tiltview.col .bl_bubble:nth-child(2),
-// .show[data-effect-in="slideRightIn"] .tiltview.row .bl_bubble:first-child {
-//   animation-delay: 0.75s;
-// }
 
 @keyframes slideRightIn {
   0% {
@@ -414,12 +327,6 @@ Y 軸上で -50% 変換することで中央に配置されます。
 }
 
 /* Fallback for no 3D Transforms and no preserve-3d */
-// .no-csstransformspreserve3d .show .tiltview a,
-// .no-csstransformspreserve3d .hide .tiltview a,
-// .no-csstransforms3d .show .tiltview a,
-// .no-csstransforms3d .hide .tiltview a {
-//   animation: none !important;
-// }
 .no-csstransformspreserve3d .show .tiltview .bl_bubble,
 .no-csstransformspreserve3d .hide .tiltview .bl_bubble,
 .no-csstransforms3d .show .tiltview .bl_bubble,
@@ -436,44 +343,44 @@ Y 軸上で -50% 変換することで中央に配置されます。
 }
 
 /* レスポンシブ。クリックできないようにしている */
-@media screen and (max-width: 65.3125em) {
-  .description,
-  .tiltview {
-    width: 100%;
-  }
+// @media screen and (max-width: 65.3125em) {
+//   .description,
+//   .tiltview {
+//     width: 100%;
+//   }
 
-  .tiltview {
-    left: 0;
-    opacity: 0.3;
-    pointer-events: none;
-  }
-}
+//   .tiltview {
+//     left: 0;
+//     opacity: 0.3;
+//     pointer-events: none;
+//   }
+// }
 
-@media screen and (max-width: 33.75em) {
-  .description {
-    font-size: 1.1em;
-  }
+// @media screen and (max-width: 33.75em) {
+//   .description {
+//     font-size: 1.1em;
+//   }
 
-  .slideshow > nav span {
-    width: 20px;
-    height: 40px;
-    margin: 0 10px;
-  }
-}
+//   .slideshow > nav span {
+//     width: 20px;
+//     height: 40px;
+//     margin: 0 10px;
+//   }
+// }
 
-@media screen and (max-width: 24em) {
-  .slides {
-    height: 320px;
-  }
+// @media screen and (max-width: 24em) {
+//   .slides {
+//     height: 320px;
+//   }
 
-  .description {
-    font-size: 1em;
-    padding: 1.4em;
-  }
+//   .description {
+//     font-size: 1em;
+//     padding: 1.4em;
+//   }
 
-  .no-csstransforms3d .tiltview.col,
-  .no-csstransforms3d .tiltview.row {
-    top: 0;
-  }
-}
+//   .no-csstransforms3d .tiltview.col,
+//   .no-csstransforms3d .tiltview.row {
+//     top: 0;
+//   }
+// }
 

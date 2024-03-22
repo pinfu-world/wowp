@@ -451,7 +451,12 @@
 .el_fvIllust {
   position: absolute;
   top: 38%;
-  right: -16%;
+  right: 19%;
+  z-index: -1;
+
+  @media screen and (max-width: 1024px) and (min-height: 800px) {
+    right: 0;
+  }
 
   @include mq() {
     width: 132px;
@@ -463,6 +468,7 @@
     top: 34%;
     right: initial;
     left: 44%;
+    z-index: 0;
 
     @include mq() {
       width: 58px;
@@ -473,20 +479,16 @@
   }
 
   &_3 {
-    left: 45%;
-    top: 29%;
+    left: 41%;
+    top: 24%;
     z-index: 2;
 
     @include mq() {
       width: 124px;
       height: 64px;
-      right: 27%;
+      left: 62%;
       top: 63%;
-      left: initial;
-    }
-
-    @include mq("sp") {
-      right: 20%;
+      right: initial;
     }
 
     @include mq("adj") {
@@ -513,7 +515,7 @@
 
 .el_spScroll {
   position: absolute;
-  bottom: 12%;
+  bottom: 8%;
   left: 47%;
   height: 50px;
 

@@ -14,12 +14,20 @@
     top: 75%;
     transform: translateX(-50%);
     z-index: 2;
+
+    @media screen and (max-width: 1024px) and (min-height: 800px) {
+      top: 80%;
+    }
   }
 
   &_wave {
     position: absolute;
     bottom: -5px;
     z-index: 1;
+  
+      @include mq() {
+        height: 130px;
+      }
   }
 
   &_skipIcon {

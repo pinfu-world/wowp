@@ -328,7 +328,6 @@ meter {
 /* スライドの設定 */
 .slideshow {
   position: relative;
-  margin-bottom: 100px;
 }
 
 .slides {
@@ -336,11 +335,14 @@ meter {
   padding: 0;
   margin: 0;
   position: relative;
-  height: 800px;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
-  background: #ddd;
-  color: #333;
+}
+@media screen and (max-width: 768px) {
+  .slides {
+    min-height: 800px;
+  }
 }
 
 /* jsが使えないもの用。いらない？ */
@@ -394,8 +396,6 @@ meter {
 /* 不透明度の遷移が必要なので、透明度を0にしておく */
 .description {
   width: 50%;
-  padding: 2em 4em;
-  font-size: 1.5em;
   position: relative;
   z-index: 1000;
   opacity: 0;
@@ -403,10 +403,6 @@ meter {
 
 .no-js .description {
   opacity: 1;
-}
-
-.description h2 {
-  font-size: 200%;
 }
 
 /* スライドショーで最も重要なスタイル
@@ -417,42 +413,8 @@ Y 軸上で -50% 変換することで中央に配置されます。
 また、X 軸と Z 軸を中心に回転させて 3D 外観を作成します。
  */
 .tiltview {
-  position: absolute;
-  left: 50%;
-  width: 50%;
-  top: 50%;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-transform: translateY(-50%) rotateX(0deg) rotateZ(0deg);
-          transform: translateY(-50%) rotateX(0deg) rotateZ(0deg);
-}
-
-/* リンクと画像の設定 */
-.tiltview .bl_bubble {
-  outline: 1px solid transparent;
-}
-
-.tiltview .bl_bubble {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
-.tiltview div:first-child {
-  margin-bottom: 30px;
-}
-
-.tiltview.row .bl_bubble {
-  width: 48%;
-  width: calc(50% - 15px);
-  margin: 0;
-}
-
-.tiltview.row .bl_bubble:nth-child(2) {
-  left: 50%;
-  left: calc(50% + 15px);
-  position: absolute;
-  top: 0;
 }
 
 /* Show/Hide */
@@ -485,8 +447,8 @@ Y 軸上で -50% 変換することで中央に配置されます。
 /* Slide right */
 /***********************/
 .hide[data-effect-out=slideRightOut] .tiltview .bl_bubble {
-  -webkit-animation: slideRightOut 3.5s both;
-          animation: slideRightOut 3.5s both;
+  -webkit-animation: slideRightOut 1.5s both;
+          animation: slideRightOut 1.5s both;
 }
 
 @-webkit-keyframes slideRightOut {
@@ -515,14 +477,8 @@ Y 軸上で -50% 変換することで中央に配置されます。
   }
 }
 .show[data-effect-in=slideRightIn] .tiltview .bl_bubble {
-  -webkit-animation: slideRightIn 3.5s 0.5s both;
-          animation: slideRightIn 3.5s 0.5s both;
-}
-
-.show[data-effect-in=slideRightIn] .tiltview.col .bl_bubble:nth-child(2),
-.show[data-effect-in=slideRightIn] .tiltview.row .bl_bubble:first-child {
-  -webkit-animation-delay: 0.75s;
-          animation-delay: 0.75s;
+  -webkit-animation: slideRightIn 1.5s 0.5s both;
+          animation: slideRightIn 1.5s 0.5s both;
 }
 
 @-webkit-keyframes slideRightIn {
@@ -576,40 +532,6 @@ Y 軸上で -50% 変換することで中央に配置されます。
 }
 
 /* レスポンシブ。クリックできないようにしている */
-@media screen and (max-width: 65.3125em) {
-  .description,
-  .tiltview {
-    width: 100%;
-  }
-  .tiltview {
-    left: 0;
-    opacity: 0.3;
-    pointer-events: none;
-  }
-}
-@media screen and (max-width: 33.75em) {
-  .description {
-    font-size: 1.1em;
-  }
-  .slideshow > nav span {
-    width: 20px;
-    height: 40px;
-    margin: 0 10px;
-  }
-}
-@media screen and (max-width: 24em) {
-  .slides {
-    height: 320px;
-  }
-  .description {
-    font-size: 1em;
-    padding: 1.4em;
-  }
-  .no-csstransforms3d .tiltview.col,
-  .no-csstransforms3d .tiltview.row {
-    top: 0;
-  }
-}
 .hp_pl5 {
   padding-left: 5%;
 }
@@ -794,10 +716,20 @@ a:hover {
           transform: translateX(-50%);
   z-index: 2;
 }
+@media screen and (max-width: 1024px) and (min-height: 800px) {
+  .ly_fv_scrollDrag {
+    top: 80%;
+  }
+}
 .ly_fv_wave {
   position: absolute;
   bottom: -5px;
   z-index: 1;
+}
+@media screen and (max-width: 768px) {
+  .ly_fv_wave {
+    height: 130px;
+  }
 }
 .ly_fv_skipIcon {
   position: absolute;
@@ -1997,24 +1929,38 @@ a:hover {
   display: block;
 }
 
+.bl_bubble_box {
+  position: absolute;
+  top: 11vh;
+  left: 54vw;
+}
+@media screen and (max-width: 1024px) and (min-height: 850px) {
+  .bl_bubble_box {
+    top: 15vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@media screen and (max-width: 768px) {
+  .bl_bubble_box {
+    width: 330px;
+    height: 338px;
+    top: 10vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+
 .bl_bubble {
   width: clamp(21.875rem, 6.834rem + 31.33vw, 32rem);
   height: clamp(23.063rem, 7.093rem + 33.27vw, 33.813rem);
   border-radius: 50%;
   overflow: hidden;
-  top: 20vh;
-  left: 54vw;
   -webkit-animation: float 6s ease-in-out infinite, breathe 3s ease-in-out infinite;
           animation: float 6s ease-in-out infinite, breathe 3s ease-in-out infinite;
   background-color: rgba(255, 255, 255, 0.5);
-}
-@media screen and (max-width: 768px) {
-  .bl_bubble {
-    width: 330px;
-    height: 338px;
-    top: 10vh;
-    left: 28%;
-  }
 }
 @media screen and (max-width: 630px) {
   .bl_bubble {
@@ -2025,6 +1971,10 @@ a:hover {
   .bl_bubble {
     left: 9%;
   }
+}
+.bl_bubble a {
+  position: relative;
+  z-index: 200;
 }
 .bl_bubble_fv3 {
   top: 15vh;
@@ -2317,35 +2267,65 @@ a:hover {
   z-index: 2;
   font-weight: 700;
   top: 50%;
-  left: 10%;
+  left: 8%;
   -webkit-transform: translateY(-80%);
           transform: translateY(-80%);
 }
+@media screen and (max-width: 1024px) and (min-height: 850px) {
+  .bl_fvTxtArea {
+    top: 52vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
 @media screen and (max-width: 768px) {
   .bl_fvTxtArea {
-    top: 66%;
-    left: 29%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    top: 57%;
+    min-width: 302px;
   }
 }
-@media screen and (max-width: 630px) {
-  .bl_fvTxtArea {
-    left: 19%;
+.bl_fvTxtArea_2 {
+  left: 10%;
+}
+@media screen and (max-width: 1024px) and (min-height: 850px) {
+  .bl_fvTxtArea_2 {
+    top: 52vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
   }
 }
-@media screen and (max-width: 470px) {
-  .bl_fvTxtArea {
-    left: 12%;
+@media screen and (max-width: 768px) {
+  .bl_fvTxtArea_2 {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    top: 57%;
+    min-width: 302px;
   }
 }
 .bl_fvTxtArea_3 {
   top: 26%;
   -webkit-transform: translateY(0);
           transform: translateY(0);
+  max-width: 486px;
+}
+@media screen and (max-width: 1024px) and (min-height: 850px) {
+  .bl_fvTxtArea_3 {
+    top: 52vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
 }
 @media screen and (max-width: 768px) {
   .bl_fvTxtArea_3 {
-    top: 51%;
-    left: 41%;
+    top: 53%;
+    left: 50%;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }
@@ -2358,6 +2338,7 @@ a:hover {
 @media screen and (max-width: 768px) {
   .bl_fvTxtArea_tagline {
     font-size: 1.375rem;
+    min-width: 302px;
   }
 }
 .bl_fvTxtArea_tagline_small {
@@ -2366,7 +2347,7 @@ a:hover {
 .bl_fvTxtArea_tagline_fv3Small {
   text-align: center;
   line-height: 1.4;
-  font-size: 28px;
+  font-size: 20px;
   margin-bottom: 30px;
 }
 .bl_fvTxtArea_message {
@@ -2381,6 +2362,21 @@ a:hover {
   .bl_fvTxtArea_message {
     font-size: 1.9375rem;
   }
+}
+.bl_fvTxtArea_message_3 {
+  font-size: 40px;
+}
+@media screen and (max-width: 768px) {
+  .bl_fvTxtArea_message_3 {
+    font-size: 1.9375rem;
+  }
+}
+
+.bl_fv_appLink {
+  position: fixed;
+  z-index: 1000;
+  bottom: 3%;
+  left: 5%;
 }
 
 .el_headerLogo {
@@ -2797,7 +2793,13 @@ a:hover {
 .el_fvIllust {
   position: absolute;
   top: 38%;
-  right: -16%;
+  right: 19%;
+  z-index: -1;
+}
+@media screen and (max-width: 1024px) and (min-height: 800px) {
+  .el_fvIllust {
+    right: 0;
+  }
 }
 @media screen and (max-width: 768px) {
   .el_fvIllust {
@@ -2810,6 +2812,7 @@ a:hover {
   top: 34%;
   right: initial;
   left: 44%;
+  z-index: 0;
 }
 @media screen and (max-width: 768px) {
   .el_fvIllust_2 {
@@ -2820,22 +2823,17 @@ a:hover {
   }
 }
 .el_fvIllust_3 {
-  left: 45%;
-  top: 29%;
+  left: 41%;
+  top: 24%;
   z-index: 2;
 }
 @media screen and (max-width: 768px) {
   .el_fvIllust_3 {
     width: 124px;
     height: 64px;
-    right: 27%;
+    left: 62%;
     top: 63%;
-    left: initial;
-  }
-}
-@media screen and (max-width: 630px) {
-  .el_fvIllust_3 {
-    right: 20%;
+    right: initial;
   }
 }
 @media screen and (max-width: 470px) {
@@ -2846,7 +2844,7 @@ a:hover {
 
 .el_spScroll {
   position: absolute;
-  bottom: 12%;
+  bottom: 8%;
   left: 47%;
   height: 50px;
 }

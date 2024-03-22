@@ -1540,8 +1540,23 @@
 // // js使う前
 
 .bl_bubble_box {
-  // display: flex;
-  // justify-content: center;
+  position: absolute;
+  top: 11vh;
+  left: 54vw;
+
+  @media screen and (max-width: 1024px) and (min-height: 850px) {
+    top: 15vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  @include mq() {
+    width: 330px;
+    height: 338px;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .bl_bubble {
@@ -1552,18 +1567,12 @@
   border-radius: 50%;
   overflow: hidden;
   // position: absolute;
-  top: 20vh;
-  left: 54vw;
+ 
   animation: float 6s ease-in-out infinite, breathe 3s ease-in-out infinite;
   // box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5);
   background-color: rgba(255, 255, 255, 0.5);
 
-  @include mq() {
-    width: 330px;
-    height: 338px;
-    top: 10vh;
-    left: 28%;
-  }
+
 
   @include mq("sp") {
     left: 19%;
@@ -1571,6 +1580,11 @@
 
   @include mq("adj") {
     left: 9%;
+  }
+
+  & a {
+    position: relative;
+    z-index: 200;
   }
 
   &_fv3 {
@@ -1912,29 +1926,61 @@
   z-index: 2;
   font-weight: 700;
   top: 50%;
-  left: 10%;
+  left: 8%;
   transform: translateY(-80%);
 
+  @media screen and (max-width: 1024px) and (min-height: 850px) {
+    top: 52vh;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   @include mq {
-    top: 66%;
-    left: 29%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 57%;
+    min-width: 302px;
   }
 
   @include mq("sp") {
-    left: 19%;
+    // left: 19%;
   }
 
   @include mq("adj") {
-    left: 12%;
+    // left: 12%;
+  }
+
+  &_2 {
+    left: 10%;
+
+    @media screen and (max-width: 1024px) and (min-height: 850px) {
+      top: 52vh;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @include mq {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 57%;
+      min-width: 302px;
+    }
   }
 
   &_3 {
     top: 26%;
     transform: translateY(0);
+    max-width: 486px;
+
+    @media screen and (max-width: 1024px) and (min-height: 850px) {
+      top: 52vh;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
     @include mq {
-      top: 51%;
-      left: 41%;
+      top: 53%;
+      left: 50%;
       transform: translateX(-50%);
     }
   }
@@ -1947,6 +1993,7 @@
 
     @include mq() {
       font-size: rem(22);
+      min-width: 302px;
     }
 
     &_small {
@@ -1956,7 +2003,7 @@
     &_fv3Small {
       text-align: center;
       line-height: 1.4;
-      font-size: 28px;
+      font-size: 20px;
       margin-bottom: 30px;
     }
   }
@@ -1974,5 +2021,21 @@
     @include mq() {
       font-size: rem(31);
     }
+
+    &_3 {
+      font-size: 40px;
+      // margin-left: 15%;
+
+      @include mq() {
+        font-size: rem(31);
+      }
+    }
   }
+}
+
+.bl_fv_appLink {
+  position: fixed;
+    z-index: 1000;
+    bottom: 3%;
+    left: 5%;
 }
