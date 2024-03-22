@@ -648,7 +648,7 @@ window.addEventListener("resize", adjustElementPosition);
     var el = document.querySelector("#slideshow");
     if (el) {
       var tiltSlider = new TiltSlider(el); // ここで TiltSlider のインスタンスを作成
-      tiltSlider.initEvents(); // インスタンスに対して initEvents メソッドを直接呼び出す
+      tiltSlider._initEvents(); // インスタンスに対して initEvents メソッドを直接呼び出す
     } else {
       console.log("Slideshow element not found");
     }
@@ -696,346 +696,49 @@ window.addEventListener("resize", adjustElementPosition);
 
   TiltSlider.prototype._initEvents = function () {
     var self = this;
-    // show a new item when clicking the navigation "dots"　ナビのアニメーション
     this.navDots.forEach(function (dot, idx) {
-      dot.addEventListener("click", function () {
-        if (idx !== self.current) {
-          self._showItem(idx);
-        }
-      });
+        dot.addEventListener("click", function () {
+            // 現在のアニメーションが進行中でなければ切り替えを実行
+            if (!self.isAnimating) {
+                self._showItem(idx);
+            }
+        });
     });
-  };
+};
 
-  // TiltSlider.prototype._showItem = function (pos) {
-  //   console.log("Starting _showItem with pos:", pos);
-  //   if (this.isAnimating) {
-  //     console.log("Animation is already in progress.");
-  //     return false;
-  //   }
-  //   console.log("Animation starting...");
-  //   this.isAnimating = true;
 
-  //   classie.removeClass(this.navDots[this.current], "current");
 
-  //   var self = this,
-  //     // the current item
-  //     currentItem = this.items[this.current]; //現在のアイテム
 
-  //   this.current = pos;
-  //   console.log("Current item index updated to:", this.current);
-
-  //   // next item to come in
-  //   var nextItem = this.items[pos], // 正しいアイテムを選択するために修正
-  //     outEffect = "slideRightOut", // エフェクトを直接指定
-  //     inEffect = "slideRightIn"; // エフェクトを直接指定
-
-  //   currentItem.setAttribute("data-effect-out", outEffect);
-  //   nextItem.setAttribute("data-effect-in", inEffect);
-
-  //   classie.addClass(this.navDots[this.current], "current");
-
-  //   var cntAnims = 0,
-  //     // the number of elements that actually animate inside the current item
-  //     animElemsCurrentCount =
-  //       currentItem.querySelector(".tiltview").children.length,
-  //     // the number of elements that actually animate inside the next item
-  //     animElemsNextCount = nextItem.querySelector(".tiltview").children.length,
-  //     // keep track of the number of animations that are terminated
-  //     animEndCurrentCnt = 0,
-  //     animEndNextCnt = 0,
-  //     // check function for the end of each animation
-  //     isFinished = function () {
-  //       ++cntAnims;
-  //       console.log("Animation part completed. Total completed:", cntAnims);
-  //       if (cntAnims === 2) {
-  //         self.isAnimating = false;
-  //         console.log("All animations completed. Resetting isAnimating flag.");
-  //       }
-  //     },
-  //     // function for the end of the current item animation
-  //     onEndAnimationCurrentItem = function () {
-  //       ++animEndCurrentCnt;
-  //       console.log(
-  //         "Animation end for current item. Count:",
-  //         animEndCurrentCnt
-  //       );
-  //       var endFn = function () {
-  //         classie.removeClass(currentItem, "hide");
-  //         classie.removeClass(currentItem, "current");
-  //         isFinished();
-  //       };
-
-  //       if (!isSupported) {
-  //         endFn();
-  //       } else if (animEndCurrentCnt === animElemsCurrentCount) {
-  //         currentItem.removeEventListener(
-  //           animEndEventName,
-  //           onEndAnimationCurrentItem
-  //         );
-  //         endFn();
-  //       }
-  //     },
-  //     // function for the end of the next item animation
-  //     onEndAnimationNextItem = function () {
-  //       console.log("Animation end for next item. Count:", animEndNextCnt);
-  //       ++animEndNextCnt;
-  //       var endFn = function () {
-  //         classie.removeClass(nextItem, "show");
-  //         classie.addClass(nextItem, "current");
-  //         isFinished();
-  //       };
-
-  //       if (!isSupported) {
-  //         console.log("サポートされていない場合");
-  //         endFn();
-  //       } else if (animEndNextCnt === animElemsNextCount) {
-  //         console.log("サポートされている場合");
-  //         nextItem.removeEventListener(
-  //           animEndEventName,
-  //           onEndAnimationNextItem
-  //         );
-  //         endFn();
-  //       }
-  //     };
-
-  //   classie.addClass(currentItem, "hide");
-  //   classie.addClass(nextItem, "show");
-
-  //   if (isSupported) {
-  //     console.log("Adding animationend event listeners.");
-  //     currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-  //     nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
-  //   } else {
-  //     onEndAnimationCurrentItem();
-  //     onEndAnimationNextItem();
-  //   }
-  // };
-
-//   TiltSlider.prototype._showItem = function(pos) {
-//     console.log("Starting _showItem with pos:", pos);
-//     if (this.isAnimating) {
-//         console.log("Animation is already in progress.");
-//         return false;
-//     }
-//     console.log("Animation starting...");
-//     this.isAnimating = true;
-
-//     classie.removeClass(this.navDots[this.current], "current");
-
-//     var self = this,
-//         currentItem = this.items[this.current],
-//         nextItem = this.items[pos];
-
-//     this.current = pos;
-//     console.log("Current item index updated to:", this.current);
-
-//     var outEffect = "slideRightOut", // 'out' effect directly specified
-//         inEffect = "slideRightIn"; // 'in' effect directly specified
-
-//     currentItem.setAttribute("data-effect-out", outEffect);
-//     nextItem.setAttribute("data-effect-in", inEffect);
-
-//     classie.addClass(this.navDots[this.current], "current");
-
-//     var animElemsCurrentCount = currentItem.querySelector(".tiltview").children.length,
-//         animElemsNextCount = nextItem.querySelector(".tiltview").children.length,
-//         animEndCurrentCnt = 0,
-//         animEndNextCnt = 0,
-//         isFinished = function() {
-//             if (animEndCurrentCnt === animElemsCurrentCount && animEndNextCnt === animElemsNextCount) {
-//                 self.isAnimating = false;
-//                 console.log("All animations completed. Resetting isAnimating flag.");
-//             }
-//         };
-
-//     // Function for the end of the current item animation
-//     var onEndAnimationCurrentItem = function() {
-//         animEndCurrentCnt++;
-//         if (animEndCurrentCnt === animElemsCurrentCount) {
-//             currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
-//             classie.removeClass(currentItem, "hide");
-//             isFinished();
-//             // Start the 'in' animation for the next item after 'out' animation is completed
-//             classie.addClass(nextItem, "show");
-//             nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
-//         }
-//     };
-
-//     // Function for the end of the next item animation
-//     var onEndAnimationNextItem = function() {
-//         animEndNextCnt++;
-//         if (animEndNextCnt === animElemsNextCount) {
-//             nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-//             classie.removeClass(nextItem, "show");
-//             classie.addClass(nextItem, "current");
-//             isFinished();
-//         }
-//     };
-
-//     classie.addClass(currentItem, "hide");
-//     currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-// };
-
-// TiltSlider.prototype._showItem = function(pos) {
-//     if (this.isAnimating) return false;
-//     this.isAnimating = true;
-
-//     var self = this,
-//         currentItem = this.items[this.current],
-//         nextItem = this.items[pos];
-
-//     this.current = pos;
-
-//     var outEffect = "slideRightOut",
-//         inEffect = "slideRightIn";
-
-//     currentItem.setAttribute("data-effect-out", outEffect);
-//     nextItem.setAttribute("data-effect-in", inEffect);
-
-//     var animElemsCurrentCount = currentItem.querySelector(".tiltview").children.length,
-//         animElemsNextCount = nextItem.querySelector(".tiltview").children.length,
-//         animEndCurrentCnt = 0,
-//         animEndNextCnt = 0;
-
-//     var onEndAnimationCurrentItem = function() {
-//         animEndCurrentCnt++;
-//         if (animEndCurrentCnt === animElemsCurrentCount) {
-//             currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
-//             classie.removeClass(currentItem, "hide");
-//             // Check if all animations have completed, then reset for next iteration
-//             if (self.current + 1 < self.items.length) {
-//                 self._showItem(self.current + 1);
-//             } else {
-//                 self._showItem(0); // Restart from the first item
-//             }
-//         }
-//     };
-
-//     var onEndAnimationNextItem = function() {
-//         animEndNextCnt++;
-//         if (animEndNextCnt === animElemsNextCount) {
-//             nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-//             classie.removeClass(nextItem, "show");
-//             classie.addClass(nextItem, "current");
-//             self.isAnimating = false;
-//         }
-//     };
-
-//     classie.addClass(currentItem, "hide");
-//     currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-//     nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
-// };
-
-// TiltSlider.prototype._showItem = function(pos) {
-//   if (this.isAnimating) return false;
-//   this.isAnimating = true;
-
-//   var self = this,
-//       currentItem = this.items[this.current],
-//       nextItem = this.items[pos];
-
-//   var outEffect = "slideRightOut",
-//       inEffect = "slideRightIn";
-
-//   currentItem.setAttribute("data-effect-out", outEffect);
-//   nextItem.setAttribute("data-effect-in", inEffect);
-
-//   var onEndAnimationCurrentItem = function() {
-//       currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
-//       classie.removeClass(currentItem, "hide");
-
-//       // Start the 'in' animation for the next item after 'out' animation is completed
-//       classie.addClass(nextItem, "show");
-//   };
-
-//   var onEndAnimationNextItem = function() {
-//       nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-//       classie.removeClass(nextItem, "show");
-//       classie.addClass(nextItem, "current");
-//       self.isAnimating = false;
-
-//       // Check if there are more items to animate, otherwise restart from the first item
-//       var nextPos = (pos + 1) % self.items.length;
-//       self.current = pos; // Update the current position
-
-//       // Wait a bit before starting the next animation to ensure it does not start too quickly
-//       setTimeout(function() {
-//           self._showItem(nextPos);
-//       }, 50); // Adjust the delay as needed
-//   };
-
-//   classie.addClass(currentItem, "hide");
-//   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-//   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
-// };
-
-// TiltSlider.prototype._showItem = function(pos) {
-//   if (this.isAnimating) return false;
-//   this.isAnimating = true;
-
-//   var self = this,
-//       currentItem = this.items[this.current],
-//       nextItem = this.items[pos];
-
-//   var outEffect = "slideRightOut",
-//       inEffect = "slideRightIn";
-
-//   currentItem.setAttribute("data-effect-out", outEffect);
-//   nextItem.setAttribute("data-effect-in", inEffect);
-
-//   var animEndCurrentCnt = 0,
-//       animEndNextCnt = 0,
-//       animElemsCurrentCount = currentItem.querySelector(".tiltview").children.length,
-//       animElemsNextCount = nextItem.querySelector(".tiltview").children.length;
-
-//   var onEndAnimationCurrentItem = function() {
-//       animEndCurrentCnt++;
-//       if (animEndCurrentCnt === animElemsCurrentCount) {
-//           currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
-//           classie.removeClass(currentItem, "hide");
-//           // Start the 'in' animation for the next item after 'out' animation is completed
-//           classie.addClass(nextItem, "show");
-//       }
-//   };
-
-//   var onEndAnimationNextItem = function() {
-//       animEndNextCnt++;
-//       if (animEndNextCnt === animElemsNextCount) {
-//           nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-//           classie.removeClass(nextItem, "show");
-//           classie.addClass(nextItem, "current");
-//           self.isAnimating = false;
-
-//           // Move to the next item or loop back to the start
-//           var nextIndex = (pos + 1) % self.items.length;
-//           setTimeout(function() { self._showItem(nextIndex); }, 1000); // Delay before starting the next animation
-//       }
-//   };
-
-//   // Ensure the animation loop continues by adding event listeners
-//   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-//   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
-
-//   this.current = pos; // Update the current position
-//   classie.addClass(currentItem, "hide"); // Start the 'out' animation
-// };
-
-TiltSlider.prototype.initEvents = function() {
+TiltSlider.prototype._initEvents = function () {
   var self = this;
-  this.navDots.forEach(function(dot, idx) {
-      dot.addEventListener('click', function() {
-          self._showItem(idx);
+  this.navDots.forEach(function (dot, idx) {
+      dot.addEventListener("click", function () {
+          if (self.isAnimating) return; // アニメーション中は処理を行わない
+          
+          // idxが現在のスライドインデックスと同じで、それが最後のスライドの場合、最初のスライドへ戻る
+          if (idx === self.current && idx === self.itemsCount - 1) {
+              self._showItem(0); // 最初のスライドへ
+          } else {
+              self._showItem(idx); // それ以外の場合はクリックされたスライドへ
+          }
       });
   });
 };
+
+
 
 TiltSlider.prototype._showItem = function(pos) {
   if (this.isAnimating) return false;
   this.isAnimating = true;
 
+  // スライドの範囲を超えていないかチェックし、必要に応じてリセット
+  if (pos >= this.itemsCount) {
+    pos = 0;
+  }
+
   var self = this,
-      currentItem = this.items[this.current],
-      nextItem = this.items[pos];
+      currentItem = this.items[this.current], // 現在のアイテム
+      nextItem = this.items[pos]; // 次に表示するアイテム
 
   var outEffect = "slideRightOut",
       inEffect = "slideRightIn";
@@ -1062,6 +765,8 @@ TiltSlider.prototype._showItem = function(pos) {
   this.current = pos; // Update the current position
   classie.addClass(currentItem, "hide"); // Start the 'out' animation
 };
+
+
 
 
   // add to global namespace
