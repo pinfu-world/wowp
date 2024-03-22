@@ -351,48 +351,6 @@
     init();
   })();
 
-
-// // videの場合
-// // モーダルを取得
-// let modal = document.querySelector(".bl_videoModal");
-
-// // モーダルを開くボタンを取得
-// let btn = document.querySelector(".bl_videoBlock_link");
-
-// // モーダルを閉じる<span>要素を取得
-// let span = document.querySelector(".bl_videoModal_closeBtn");
-
-// // ビデオ要素を取得
-// let video = modal.querySelector("video");
-
-// // ボタンをクリックするとモーダルを表示し、ビデオを再生
-// btn.addEventListener("click", function (event) {
-//   event.preventDefault(); // デフォルトの動作（リンクの遷移など）をキャンセル
-//   modal.style.display = "block";
-//   setTimeout(() => {
-//     modal.classList.add("show"); // 少し遅らせて.showクラスを追加
-//     video.play(); // ビデオを再生
-//   }, 10); // DOMが更新されるのを待つために微小な遅延を設ける
-// });
-
-// // <span> (x) またはモーダルの外側をクリックするとモーダルを閉じ、ビデオを停止
-// const closeModal = () => {
-//   modal.classList.remove('show'); // .showクラスを削除してフェードアウト
-//   setTimeout(() => {
-//     modal.style.display = "none"; // 完全に非表示にする
-//     video.pause(); // ビデオの再生を停止
-//     video.currentTime = 0; // ビデオを最初から再開するために時間をリセット
-//   }, 500); // アニメーションの時間に合わせて遅延を設ける
-// };
-
-// span.onclick = closeModal;
-
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     closeModal();
-//   }
-// };
-
 // youtubeの場合
 document.addEventListener("DOMContentLoaded", function () {
   // bodyタグにfrontPageのIDが存在するかチェック
@@ -442,67 +400,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // グローバルナビ
-// document.addEventListener("DOMContentLoaded", function () {
-//   // 全てのハンバーガーメニューボタンを取得
-//   const hamburgerButtons = document.querySelectorAll(".el_hamburger");
-
-//   // 各ハンバーガーメニューボタンにイベントリスナーを設定
-//   hamburgerButtons.forEach(function (button) {
-//     button.addEventListener("click", function () {
-//       // aria-expanded属性の切り替え
-//       const expanded = this.getAttribute("aria-expanded") === "true";
-//       this.setAttribute("aria-expanded", !expanded);
-
-//       // クリックされたハンバーガーメニューに関連付けられたグローバルナビを取得
-//       const selector = this.getAttribute("aria-controls");
-//       const globalNavi = document.getElementById(selector);
-
-//       console.log("Selector:", selector); // ここでセレクターをログ出力
-//       console.log("Global Navi Element:", globalNavi); // ここで取得された要素をログ出力
-
-//       // グローバルナビが存在する場合、.activeクラスをトグル
-//       if (globalNavi) {
-//         globalNavi.classList.toggle("active");
-//       }
-
-//       // ハンバーガーメニュー自身にも.activeクラスをトグル
-//       this.classList.toggle("active");
-//     });
-//   });
-// });
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   // ナビゲーションリンクにイベントリスナーを追加
-//   document.querySelectorAll(".bl_globalNavi_link a").forEach(function (link) {
-//     link.addEventListener("click", function () {
-//       // ドロワーメニューの取得
-//       const drawer = document.getElementById("drawer");
-//       if (drawer.classList.contains("active")) {
-//         drawer.classList.remove("active");
-//       }
-
-//       // ハンバーガーメニューボタンのaria-expanded属性と.activeクラスを更新
-//       const hamburgerButton = document.querySelector(".el_hamburger");
-//       if (hamburgerButton.getAttribute("aria-expanded") === "true") {
-//         hamburgerButton.setAttribute("aria-expanded", "false");
-//         hamburgerButton.classList.remove("active");
-//       }
-//     });
-//   });
-
-//   // ハンバーガーメニューボタンにイベントリスナーを設定
-//   const hamburgerButton = document.querySelector(".el_hamburger");
-//   hamburgerButton.addEventListener("click", function () {
-//     const expanded = this.getAttribute("aria-expanded") === "true";
-//     this.setAttribute("aria-expanded", !expanded);
-//     this.classList.toggle("active");
-
-//     // 関連するドロワーメニューの取得
-//     const drawer = document.getElementById(this.getAttribute("aria-controls"));
-//     drawer.classList.toggle("active");
-//   });
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
   // ハンバーガーメニューボタンにイベントリスナーを設定
   document.querySelectorAll(".el_hamburger").forEach(function (button) {
@@ -576,6 +473,32 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   });
 });
+
+// タッチしたとき
+document.addEventListener("DOMContentLoaded", (event) => {
+  const appleLinkWrappers = document.querySelectorAll(".el_appleLink_wrapper");
+
+  appleLinkWrappers.forEach((wrapper) => {
+    const appLinkPop = wrapper.querySelector(".el_appLink_pop");
+
+    if (appLinkPop) {
+      // タップ時のイベントリスナーを追加
+      wrapper.addEventListener("click", function(e) {
+        // 他のポップが開いていたら閉じる
+        document.querySelectorAll('.el_appLink_pop.active').forEach(activePop => {
+          if (activePop !== appLinkPop) {
+            activePop.classList.remove('active');
+          }
+        });
+
+        // クリックされた要素の.popに対して.activeクラスをトグル
+        appLinkPop.classList.toggle("active");
+      });
+    }
+  });
+});
+
+
 
 // ドラッグ操作の追加
 let isDown = false; // マウスがクリックされているか追跡
@@ -803,10 +726,6 @@ TiltSlider.prototype._initDragEvents = function() {
   });
 };
 
-
-
-
-
   // add the navigation to the DOM　ナビ
   TiltSlider.prototype._addNavigation = function () {
     // // add nav "dots"
@@ -885,9 +804,6 @@ TiltSlider.prototype._showItem = function(pos) {
   this.current = pos; // Update the current position
   classie.addClass(currentItem, "hide"); // Start the 'out' animation
 };
-
-
-
 
   // add to global namespace
   window.TiltSlider = TiltSlider;

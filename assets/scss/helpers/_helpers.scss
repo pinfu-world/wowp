@@ -82,3 +82,9 @@
   }
 
 }
+
+.hp_tb {
+  @include mq ("tb") {
+    display: block;
+  }
+}

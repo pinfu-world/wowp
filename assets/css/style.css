@@ -597,6 +597,12 @@ meter {
   }
 }
 
+@media screen and (max-width: 1025px) and (min-height: 800px) {
+  .hp_tb {
+    display: block;
+  }
+}
+
 .bl_globalNavi {
   position: fixed;
   top: 0;
@@ -726,6 +732,11 @@ a:hover {
   bottom: 30px;
   right: 45px;
   z-index: 10;
+}
+@media screen and (max-width: 630px) {
+  .ly_fv_skipIcon {
+    right: 20px;
+  }
 }
 .ly_fv_skipIcon a {
   color: #ffffff;
@@ -2367,6 +2378,11 @@ a:hover {
   z-index: 1000;
   bottom: 3%;
   left: 5%;
+}
+@media screen and (max-width: 630px) {
+  .bl_fv_appLink {
+    right: 15px;
+  }
 }
 
 .el_headerLogo {

@@ -2038,4 +2038,8 @@
     z-index: 1000;
     bottom: 3%;
     left: 5%;
+
+    @include mq ("sp") {
+      right: 15px;
+    }
 }
