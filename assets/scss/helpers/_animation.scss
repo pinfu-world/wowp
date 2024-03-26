@@ -27,6 +27,24 @@
   }
 }
 
+// ボーダーアニメーション
+@keyframes borderAnimation {
+  0%{
+      border-width: 1px;
+  }
+  50% {
+      border-width: 10px;
+  }
+
+  70% {
+      border-width: 7px;
+  }
+
+  100%  {
+      border-width: 4px;
+  }
+}
+
 // video modal
 .bl_videoBlock_link {
   transition: all 0.3s ease;
