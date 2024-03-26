@@ -521,7 +521,6 @@ meter {
   top: 20px;
 }
 
-/* レスポンシブ。クリックできないようにしている */
 .hp_pl5 {
   padding-left: 5%;
 }
@@ -732,6 +731,7 @@ a:hover {
   bottom: 30px;
   right: 45px;
   z-index: 10;
+  pointer-events: auto;
 }
 @media screen and (max-width: 630px) {
   .ly_fv_skipIcon {
@@ -2382,6 +2382,7 @@ a:hover {
 @media screen and (max-width: 630px) {
   .bl_fv_appLink {
     right: 15px;
+    width: 250px;
   }
 }
 
@@ -2871,7 +2872,6 @@ a:hover {
   width: 2px;
   height: 30px;
   background: #5999e8;
-  /*線の動き1.4秒かけて動く。永遠にループ*/
   -webkit-animation: scrollMove 1.4s ease-in-out infinite;
           animation: scrollMove 1.4s ease-in-out infinite;
   opacity: 0;

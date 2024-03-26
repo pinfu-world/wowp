@@ -3,41 +3,4 @@
 @use "../helpers/mixin" as *;
 @use "../helpers/variables" as *;
 
-.ly_content {
-  
-}
 
-// .ly_content {
-//   position: relative;
-//
-
-//   &_concept {
-// 
-//     // height: clamp(34.375rem, 15.806rem + 38.68vw, 46.875rem);
-//     height: 750px;
-
-//     @include mq("sp") {
-//       padding-right: 15px;
-//       padding-left: 5%;
-//       height: 1190px;
-//     }
-//   }
-
-//   &_featureWrapper {
-//     max-width: 1138px;
-//     padding: 0 15px;
-//     margin: 0 auto;
-
-//     @include mq() {
-//       padding-left: initial;
-//     }
-//   }
-
-//   &_app {
-//     height: 880px;
-
-//     @include mq() {
-//       height: 1300px;
-//     }
-//   }
-// }

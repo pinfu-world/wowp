@@ -1,101 +1,3 @@
-// import * as THREE from "three";
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-// import vertexShader from "./shaders/vertexShader.glsl";
-// import fragmentShader from "./shaders/fragmentShader.glsl";
-
-
-// if (document.querySelector("#webgl1") !== null) {
-//   // #canvas1用の初期化コード
-
-//   /**
-//    * Sizes
-//    */
-//   const sizes = {
-//     width: window.innerWidth,
-//     height: window.innerHeight,
-//   };
-
-//   // Canvas
-//   const canvas = document.querySelector("#webgl");
-
-//   // Scene
-//   const scene = new THREE.Scene();
-
-//   /**
-//    * Textures
-//    */
-//   const textureLoader = new THREE.TextureLoader();
-
-//   // Geometry
-//   const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
-
-//   // Material
-//   const material = new THREE.ShaderMaterial({
-//     vertexShader,
-//     fragmentShader,
-//   });
-
-//   // Mesh
-//   const mesh = new THREE.Mesh(geometry, material);
-//   scene.add(mesh);
-
-//   // Camera
-//   const camera = new THREE.PerspectiveCamera(
-//     75,
-//     sizes.width / sizes.height,
-//     0.1,
-//     100
-//   );
-//   camera.position.set(0.25, -0.25, 1);
-//   scene.add(camera);
-
-//   // Controls
-//   const controls = new OrbitControls(camera, canvas);
-//   controls.enableDamping = true;
-
-//   /**
-//    * Renderer
-//    */
-//   const renderer = new THREE.WebGLRenderer({
-//     canvas: canvas,
-//   });
-//   renderer.setSize(sizes.width, sizes.height);
-//   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-//   window.addEventListener("resize", () => {
-//     sizes.width = window.innerWidth;
-//     sizes.height = window.innerHeight;
-
-//     camera.aspect = sizes.width / sizes.height;
-//     camera.updateProjectionMatrix();
-
-//     renderer.setSize(sizes.width, sizes.height);
-//     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-//   });
-
-//   /**
-//    * Animate
-//    */
-//   const clock = new THREE.Clock();
-
-//   const animate = () => {
-//     //時間取得
-//     const elapsedTime = clock.getElapsedTime();
-
-//     controls.update();
-
-//     renderer.render(scene, camera);
-
-//     window.requestAnimationFrame(animate);
-//   };
-
-//   animate();
-// }
-
-// else  (document.querySelector('#canvas2') !== null) {
-//   // #canvas2用の初期化コード
-// }
-
 
   (function () {
     let unit = 100,
@@ -479,11 +381,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const appleLinkWrappers = document.querySelectorAll(".el_appleLink_wrapper");
 
   appleLinkWrappers.forEach((wrapper) => {
+    // .el_appLink_pop を探す
     const appLinkPop = wrapper.querySelector(".el_appLink_pop");
 
     if (appLinkPop) {
-      // タップ時のイベントリスナーを追加
-      wrapper.addEventListener("click", function(e) {
+      // タップ（touchend）時のイベントリスナーを追加
+      wrapper.addEventListener("touchend", function(e) {
+        // デフォルトのイベントを防止（リンクなどのデフォルト動作をキャンセルするため）
+        e.preventDefault();
+
         // 他のポップが開いていたら閉じる
         document.querySelectorAll('.el_appLink_pop.active').forEach(activePop => {
           if (activePop !== appLinkPop) {
@@ -491,12 +397,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
           }
         });
 
-        // クリックされた要素の.popに対して.activeクラスをトグル
+        // タップされた要素の.popに対して.activeクラスをトグル
         appLinkPop.classList.toggle("active");
+
+        // イベントの伝播を停止（ドキュメントの他の部分でタッチイベントが捕捉されるのを防ぐ）
+        e.stopPropagation();
+      });
+
+      // ドキュメント全体に対するタッチイベントをリスンし、
+      // タッチされた要素が .el_appLink_pop の外だった場合、active クラスを除去
+      // この部分は、wrapper の外でタップされた場合の挙動を制御するために追加します
+      document.addEventListener("touchend", function(e) {
+        if (!appLinkPop.contains(e.target) && appLinkPop.classList.contains('active')) {
+          appLinkPop.classList.remove("active");
+        }
       });
     }
   });
 });
+
 
 
 
@@ -645,7 +564,6 @@ window.addEventListener("resize", adjustElementPosition);
       var tiltSlider = new TiltSlider(el); // ここで TiltSlider のインスタンスを作成
       tiltSlider._initEvents(); // インスタンスに対して initEvents メソッドを直接呼び出す
     } else {
-      console.log("Slideshow element not found");
     }
   });
 
@@ -678,25 +596,22 @@ window.addEventListener("resize", adjustElementPosition);
     this._initDragEvents(); // ドラッグイベントの初期化
   };
 
-  TiltSlider.prototype._initScrollEvents = function() {
-    var self = this,
-        lastTime = 0;
-    window.addEventListener("wheel", function(e) {
-        var delta = e.deltaY,
-            currentTime = new Date().getTime();
+TiltSlider.prototype._initScrollEvents = function() {
+  let lastTime = 0;
 
-        // 短時間に複数回のスクロールイベントが発生するのを防ぐ
-        if(currentTime - lastTime < 1200){
-            return;
-        }
-        if (delta > 0) {
-            self._showItem(self.current + 1); // 下にスクロールすると次のスライドへ
-        } else {
-            self._showItem(self.current - 1); // 上にスクロールすると前のスライドへ
-        }
-        lastTime = currentTime;
-    });
+  window.addEventListener("wheel", e => {
+    const currentTime = Date.now();
+    if (currentTime - lastTime < 1200) { // 短時間の連続スクロールを無視
+      return;
+    }
+
+    this._showItem(this.current + 1); // スクロール方向に関わらず次のスライドへ
+
+    lastTime = currentTime; // 最後のスクロール時間を更新
+  });
 };
+
+
 
 TiltSlider.prototype._initDragEvents = function() {
   var self = this,
@@ -725,6 +640,38 @@ TiltSlider.prototype._initDragEvents = function() {
       }
   });
 };
+
+TiltSlider.prototype._initTouchEvents = function() {
+  let startX = 0; // タッチ開始のX座標
+  let startY = 0; // タッチ開始のY座標
+  let moveX = 0;  // タッチ移動時のX座標
+  let moveY = 0;  // タッチ移動時のY座標
+
+  this.el.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX;
+    startY = e.touches[0].pageY;
+  });
+
+  this.el.addEventListener('touchmove', (e) => {
+    moveX = e.touches[0].pageX;
+    moveY = e.touches[0].pageY;
+  });
+
+  this.el.addEventListener('touchend', (e) => {
+    const deltaX = moveX - startX;
+    const deltaY = moveY - startY;
+
+    // スワイプの方向を検出（左右のみ）
+    if (Math.abs(deltaX) > Math.abs(deltaY)) { // 水平方向の移動がより大きい
+      if (deltaX > 50) { // 右にスワイプ
+        this._showItem(this.current - 1); // 前のアイテムを表示
+      } else if (deltaX < -50) { // 左にスワイプ
+        this._showItem(this.current + 1); // 次のアイテムを表示
+      }
+    }
+  });
+};
+
 
   // add the navigation to the DOM　ナビ
   TiltSlider.prototype._addNavigation = function () {
@@ -759,13 +706,13 @@ TiltSlider.prototype._initEvents = function () {
 
 TiltSlider.prototype._showItem = function(pos) {
   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+  
   this.isAnimating = true;
 
-  var currentItem = this.items[this.current], // 現在のアイテム
-  nextItem = this.items[pos]; // 次に表示するアイテム
+  var currentItem = this.items[this.current]; // 現在のアイテム
+  var nextItem = this.items[pos]; // 次に表示するアイテム
 
   if (!currentItem || !nextItem) {
-    console.error('Invalid items: currentItem or nextItem is undefined');
     this.isAnimating = false;
     return;
   }
@@ -773,37 +720,43 @@ TiltSlider.prototype._showItem = function(pos) {
   // スライドの範囲を超えていないかチェックし、必要に応じてリセット
   if (pos >= this.itemsCount) {
     pos = 0;
+    nextItem = this.items[pos]; // posのリセット後にnextItemを更新
   }
 
-  var self = this,
-      currentItem = this.items[this.current], // 現在のアイテム
-      nextItem = this.items[pos]; // 次に表示するアイテム
-
-  var outEffect = "slideRightOut",
-      inEffect = "slideRightIn";
+  var self = this;
+  var outEffect = "slideRightOut";
+  var inEffect = "slideRightIn";
 
   currentItem.setAttribute("data-effect-out", outEffect);
   nextItem.setAttribute("data-effect-in", inEffect);
 
-  var onEndAnimationCurrentItem = function() {
-      currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
-      classie.removeClass(currentItem, "hide");
-      classie.addClass(nextItem, "show");
-  };
+  // アニメーション終了時の処理
+  var onEndAnimationCurrentItem = () => {
+    currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
+    currentItem.classList.remove("hide");
+    nextItem.classList.add("show");
+};
+
 
   var onEndAnimationNextItem = function() {
-      nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-      classie.removeClass(nextItem, "show");
-      classie.addClass(nextItem, "current");
-      self.isAnimating = false;
+    nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
+    nextItem.classList.remove("show");
+    nextItem.classList.add("current");
+    self.isAnimating = false;
+    // ここで他の必要な処理を行う
   };
 
+  // アニメーション終了イベントリスナーを設定
   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
 
-  this.current = pos; // Update the current position
-  classie.addClass(currentItem, "hide"); // Start the 'out' animation
+  // アニメーションを開始するためのクラスを適用
+  currentItem.classList.add("hide");
+  // 次のアイテムへのアニメーションクラスの適用は、
+
+  this.current = pos; // 現在の位置を更新
 };
+
 
   // add to global namespace
   window.TiltSlider = TiltSlider;

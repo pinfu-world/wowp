@@ -497,22 +497,6 @@
   }
 }
 
-// .el_fvIllust2 {
-//   position: absolute;
-//   top: 32%;
-//   left: 37%;
-// }
-
-// .el_fvIllust3 {
-//   position: absolute;
-//   top: 29%;
-//   left: 37%;
-// }
-
-// .el_snsLink {
-//   line-height: 1;
-// }
-
 .el_spScroll {
   position: absolute;
   bottom: 8%;
@@ -536,7 +520,6 @@
       width: 2px;
       height: 30px;
       background: #5999e8;
-      /*線の動き1.4秒かけて動く。永遠にループ*/
       animation: scrollMove 1.4s ease-in-out infinite;
       opacity: 0;
     }

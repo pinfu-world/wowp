@@ -8,6 +8,7 @@
     現在地周辺の観光スポットまとめやクーポンをリアルタイムにお届けします。">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <meta name="robots" content="noindex">
     <title>wowp｜検索時間0秒-新時代お出かけ観光アプリ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +27,7 @@
     <div class="container">
         <header class="ly_header" id="top">
             <h1 class="el_headerLogo">
-                <a href="#">
+                <a href="/">
                     <img src="./assets/img/header_logo.svg" width="82" height="27" alt="wowp">
                 </a>
             </h1>
@@ -1151,12 +1152,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <!-- <script src="assets/vendors/imagesloaded.pkgd.min.js"></script> -->
-    <!-- <script src="assets/vendors/fresco/js/fresco.js"></script> -->
     <script src="./assets/js/bundle.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // フェードインアニメーション
+          
             gsap.from("body", {
                 opacity: 0,
                 duration: 3
