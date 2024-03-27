@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Three.js Animation</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.162.0/three.module.js" integrity="sha512-0XQNqFQUDxCJPikfkl+TwMm0YblRLrIoBb7MvYZ4Q7BUoeNBXUvW/PawMUgT2jn3w/AFTxANjy0mJ94ob215mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    let scene, camera, renderer, mesh;
+
+    init();
+    animate();
+
+    function init() {
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // ジオメトリとマテリアルを使用してメッシュを作成
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+        mesh = new THREE.Mesh(geometry, material);
+
+        scene.add(mesh);
+
+        camera.position.z = 5;
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // ここでメッシュのプロパティを更新
+        mesh.rotation.x += 0.01;
+        mesh.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+    }
+    console.log("hello")
+</script>
+</body>
+</html>

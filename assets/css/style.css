@@ -180,32 +180,92 @@ meter {
     border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
   }
 }
-@-webkit-keyframes borderAnimation {
-  0% {
-    border-width: 1px;
+@-webkit-keyframes fvFluidanimation {
+  0%, 100% {
+    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
   }
-  50% {
-    border-width: 10px;
+  7% {
+    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
+  }
+  14% {
+    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  }
+  21% {
+    border-radius: 47% 53% 46% 54%/52% 58% 42% 48%;
+  }
+  28% {
+    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  }
+  35% {
+    border-radius: 57% 43% 47% 53%/55% 65% 35% 45%;
+  }
+  42% {
+    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  }
+  49% {
+    border-radius: 61% 39% 61% 39%/67% 44% 56% 33%;
+  }
+  56% {
+    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  }
+  63% {
+    border-radius: 55% 45% 55% 45%/60% 54% 46% 40%;
   }
   70% {
-    border-width: 7px;
+    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
   }
-  100% {
-    border-width: 4px;
+  77% {
+    border-radius: 48% 52% 58% 42%/53% 59% 41% 47%;
+  }
+  84% {
+    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+  91% {
+    border-radius: 54% 46% 52% 48%/55% 63% 37% 45%;
   }
 }
-@keyframes borderAnimation {
-  0% {
-    border-width: 1px;
+@keyframes fvFluidanimation {
+  0%, 100% {
+    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
   }
-  50% {
-    border-width: 10px;
+  7% {
+    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
+  }
+  14% {
+    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  }
+  21% {
+    border-radius: 47% 53% 46% 54%/52% 58% 42% 48%;
+  }
+  28% {
+    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  }
+  35% {
+    border-radius: 57% 43% 47% 53%/55% 65% 35% 45%;
+  }
+  42% {
+    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  }
+  49% {
+    border-radius: 61% 39% 61% 39%/67% 44% 56% 33%;
+  }
+  56% {
+    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  }
+  63% {
+    border-radius: 55% 45% 55% 45%/60% 54% 46% 40%;
   }
   70% {
-    border-width: 7px;
+    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
   }
-  100% {
-    border-width: 4px;
+  77% {
+    border-radius: 48% 52% 58% 42%/53% 59% 41% 47%;
+  }
+  84% {
+    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+  91% {
+    border-radius: 54% 46% 52% 48%/55% 63% 37% 45%;
   }
 }
 .bl_videoBlock_link {
@@ -1983,18 +2043,40 @@ a:hover {
 }
 
 .bl_bubble {
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
-  position: relative;
-  border: 10px solid rgba(255, 255, 255, 0.3);
-  -webkit-animation: fluidanimation 5s infinite ease, borderAnimation 3s infinite;
-          animation: fluidanimation 5s infinite ease, borderAnimation 3s infinite;
+  width: 500px;
+  height: 500px;
+  -webkit-animation: stretch 4s ease 0s infinite alternate both, borderAnimation 5s ease 0s infinite alternate both;
+          animation: stretch 4s ease 0s infinite alternate both, borderAnimation 5s ease 0s infinite alternate both;
+  border-radius: 50%;
+}
+@-webkit-keyframes stretch {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  100% {
+    -webkit-transform: scale(0.9, 0.9);
+            transform: scale(0.9, 0.9);
+  }
+}
+@keyframes stretch {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  100% {
+    -webkit-transform: scale(0.9, 0.9);
+            transform: scale(0.9, 0.9);
+  }
 }
 
-.bl_bubble img {
-  width: 100%;
-  height: auto;
+.bl_bubble_img {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  -webkit-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
+  border: 30px solid blue;
 }
 
 .bl_fvShape {

@@ -1664,46 +1664,99 @@
 // }
 
 
-// 修正
-// .bl_bubble_box {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border: 10px solid rgba(255, 255, 255, .8);
-//   // background-color: rgba(255, 255, 255, .8);
-//   // animation: fluidanimation 5s infinite ease, borderAnimation 3s infinite;
+// 修正　一律で太くなる
+// .bl_bubble {
+//   overflow: hidden;
+//   position: relative;
+//   clip-path: circle(50% at 50% 50%);
+//   border: 10px solid rgba(255, 255, 255, .3);
+//   animation: fvFluidanimation 10s infinite ease-in-out, borderAnimation 3s infinite;
 // }
 
-.bl_bubble {
-  width: 300px;
-  height: 300px;
-  overflow: hidden;
-  position: relative;
-  // clip-path: circle(50% at 50% 50%);
-  border: 10px solid rgba(255, 255, 255, .3);
-  animation: fluidanimation 5s infinite ease, borderAnimation 3s infinite;
-}
-
-.bl_bubble img {
-  width: 100%;
-  height: auto;
-}
-
-// .bl_bubble::before {
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   border: 3px solid black;
-//   border-radius: 50%;
-//   animation: pulse 5s infinite ease-in-out;
-//   z-index: 0;
+// .bl_bubble img {
+//   // width: 100%;
+//   // height: auto;
 // }
 
 // 修正閉じ
 
+// 修正　疑似要素使用
+// .bl_bubble_box {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+// }
+
+// .bl_bubble {
+//   width: 519px;
+//   height: 489px;
+//   position: relative;
+//   overflow: hidden;
+//   border-radius: 20px; /* 必要に応じて調整 */
+//   position: relative; /* z-indexを効かせるために必要 */
+// }
+
+// .bl_bubble::before, .bl_bubble::after {
+//   content: '';
+//   position: absolute;
+//   top: -2px;
+//   left: -2px;
+//   right: -2px;
+//   bottom: -2px;
+//   border: 2px solid transparent;
+//   border-radius: 20px; /* bl_bubbleと同じ値に */
+//   z-index: 10; /* imgより前面に出るように */
+//   position: absolute; /* z-indexを有効化 */
+//   border-color: black; /* 明確に色を指定 */
+// }
+
+// .bl_bubble::before {
+//   border-top-color: black;
+//   border-bottom-color: black;
+//   animation: borderAnimation 3s infinite ease-in-out;
+// }
+
+// .bl_bubble::after {
+//   border-right-color: black;
+//   border-left-color: black;
+//   animation: borderAnimation 3s infinite ease-in-out 1.5s; /* 半周期遅れで開始 */
+// }
+
+// @keyframes borderAnimation {
+//   0%, 100% { transform: scale(1); }
+//   50% { transform: scale(1.1); }
+// }
+// 修正疑似要素　閉じ
+
+// 修正　ネットで見つけたやつ
+
+.bl_bubble {
+  width: 500px;
+  height: 500px;
+  animation: stretch 4s ease 0s infinite alternate both,
+  borderAnimation 5s ease 0s infinite alternate both;
+  @keyframes stretch {
+    0% { transform: scale( 1, 1 ); }
+    100% { transform: scale( .9, .9 ); }
+  }
+  // border: 5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+.bl_bubble_img {
+  width: 500px;
+  height: 500px;
+  // background-color: skyblue;
+  // clip-path: circle(50% at 50% 50%);
+  // border: 30px solid rgba(245, 246, 250, 0.5);
+  border-radius: 50%;
+  transition: all 0.8s ease-in-out;
+  border: 30px solid blue;
+
+}
+
+// 修正閉じ
 
 .bl_fvShape {
   position: absolute;
