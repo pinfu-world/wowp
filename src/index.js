@@ -643,34 +643,45 @@ window.addEventListener("resize", adjustElementPosition);
     });
   };
 
-  TiltSlider.prototype._initDragEvents = function () {
+  TiltSlider.prototype._initDragEvents = function() {
     var self = this,
-      startX,
-      endX;
+        startX;
 
-    this.el.addEventListener("mousedown", function (e) {
-      startX = e.pageX;
-      self.isDragging = true;
+    this.el.addEventListener("mousedown", function(e) {
+        startX = e.pageX;
+        self.isDragging = true;
     });
 
-    window.addEventListener("mousemove", function (e) {
-      if (!self.isDragging) return;
-      endX = e.pageX;
+    window.addEventListener("mousemove", function(e) {
+        if (!self.isDragging) return;
     });
 
-    window.addEventListener("mouseup", function (e) {
-      if (!self.isDragging) return;
-      self.isDragging = false;
-      var threshold = 100; // ドラッグの閾値
-      if (Math.abs(startX - endX) > threshold) {
-        var direction = startX > endX ? 1 : -1;
-        // スライドのインデックスを更新して循環させる
-        var newPos =
-          (self.current + direction + self.itemsCount) % self.itemsCount;
-        self._showItem(newPos);
-      }
+    window.addEventListener("mouseup", function(e) {
+        if (!self.isDragging) return;
+        self.isDragging = false;
+
+        if (Math.abs(startX - e.pageX) > 100) { // ドラッグ距離が100pxを超えた場合
+            if (self.current === self.itemsCount - 1) { // 最後のスライドであるかチェック
+                document.body.classList.add('fade_out'); // フェードアウトアニメーションを<body>に適用
+                // 'animationend' イベントを<body>に設定
+                document.body.addEventListener('animationend', function() {
+                    window.location.href = '../top.html'; // アニメーション完了後に遷移
+                }, { once: true });
+            } else {
+                var newPos = self.current + 1;
+                self._showItem(newPos);
+            }
+        }
     });
-  };
+};
+
+
+
+
+
+
+
+
 
   TiltSlider.prototype._initTouchEvents = function () {
     let startX = 0; // タッチ開始のX座標
@@ -720,74 +731,191 @@ window.addEventListener("resize", adjustElementPosition);
   };
 
   TiltSlider.prototype._initEvents = function () {
-    // var self = this;
-    // this.navDots.forEach(function (dot, idx) {
-    //     dot.addEventListener("click", function () {
-    //         if (self.isAnimating) return; // アニメーション中は処理を行わない
-    //         // idxが現在のスライドインデックスと同じで、それが最後のスライドの場合、最初のスライドへ戻る
-    //         if (idx === self.current && idx === self.itemsCount - 1) {
-    //             self._showItem(0); // 最初のスライドへ
-    //         } else {
-    //             self._showItem(idx); // それ以外の場合はクリックされたスライドへ
-    //         }
-    //     });
-    // });
+
   };
 
-  TiltSlider.prototype._showItem = function (pos) {
-    if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+  // TiltSlider.prototype._showItem = function (pos) {
+  //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
 
-    this.isAnimating = true;
+  //   this.isAnimating = true;
 
-    var currentItem = this.items[this.current]; // 現在のアイテム
-    var nextItem = this.items[pos]; // 次に表示するアイテム
+  //   var currentItem = this.items[this.current]; // 現在のアイテム
+  //   var nextItem = this.items[pos]; // 次に表示するアイテム
 
-    if (!currentItem || !nextItem) {
-      this.isAnimating = false;
-      return;
-    }
+  //   if (!currentItem || !nextItem) {
+  //     this.isAnimating = false;
+  //     return;
+  //   }
 
-    // スライドの範囲を超えていないかチェックし、必要に応じてリセット
-    if (pos >= this.itemsCount) {
-      pos = 0;
-      nextItem = this.items[pos]; // posのリセット後にnextItemを更新
-    }
+  //   // スライドの範囲を超えていないかチェックし、必要に応じてリセット
+  //   if (pos >= this.itemsCount) {
+  //     pos = 0;
+  //     nextItem = this.items[pos]; // posのリセット後にnextItemを更新
+  //   }
 
-    var self = this;
-    var outEffect = "slideRightOut";
-    var inEffect = "slideRightIn";
+  //   var self = this;
+  //   var outEffect = "slideRightOut";
+  //   var inEffect = "slideRightIn";
 
-    currentItem.setAttribute("data-effect-out", outEffect);
-    nextItem.setAttribute("data-effect-in", inEffect);
+  //   currentItem.setAttribute("data-effect-out", outEffect);
+  //   nextItem.setAttribute("data-effect-in", inEffect);
 
-    // アニメーション終了時の処理
-    var onEndAnimationCurrentItem = () => {
-      currentItem.removeEventListener(
-        animEndEventName,
-        onEndAnimationCurrentItem
-      );
-      currentItem.classList.remove("hide");
-      nextItem.classList.add("show");
-    };
+  //   // アニメーション終了時の処理
+  //   var onEndAnimationCurrentItem = () => {
+  //     currentItem.removeEventListener(
+  //       animEndEventName,
+  //       onEndAnimationCurrentItem
+  //     );
+  //     currentItem.classList.remove("hide");
+  //     nextItem.classList.add("show");
+  //   };
 
-    var onEndAnimationNextItem = function () {
-      nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-      nextItem.classList.remove("show");
-      nextItem.classList.add("current");
-      self.isAnimating = false;
-      // ここで他の必要な処理を行う
-    };
+  //   var onEndAnimationNextItem = function () {
+  //     nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
+  //     nextItem.classList.remove("show");
+  //     nextItem.classList.add("current");
+  //     self.isAnimating = false;
+  //     // ここで他の必要な処理を行う
+  //   };
 
-    // アニメーション終了イベントリスナーを設定
-    currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-    nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
+  //   // アニメーション終了イベントリスナーを設定
+  //   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
+  //   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
 
-    // アニメーションを開始するためのクラスを適用
-    currentItem.classList.add("hide");
-    // 次のアイテムへのアニメーションクラスの適用は、
+  //   // アニメーションを開始するためのクラスを適用
+  //   currentItem.classList.add("hide");
+  //   // 次のアイテムへのアニメーションクラスの適用は、
 
-    this.current = pos; // 現在の位置を更新
+  //   this.current = pos; // 現在の位置を更新
+  // };
+  // 最後に別ページへ遷移
+  // TiltSlider.prototype._showItem = function (pos) {
+  //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+  
+  //   this.isAnimating = true;
+  
+  //   var currentItem = this.items[this.current]; // 現在のアイテム
+  //   var nextItem = this.items[pos]; // 次に表示するアイテム
+  
+  //   if (!currentItem || !nextItem) {
+  //     this.isAnimating = false;
+  //     return;
+  //   }
+  
+  //   // スライドの範囲を超えていないかチェックし、必要に応じてリセット
+  //   if (pos >= this.itemsCount) {
+  //     pos = 0;
+  //     nextItem = this.items[pos]; // posのリセット後にnextItemを更新
+  //   }
+  
+  //   var self = this;
+  //   var outEffect = "slideRightOut";
+  //   var inEffect = "slideRightIn";
+  
+  //   currentItem.setAttribute("data-effect-out", outEffect);
+  //   nextItem.setAttribute("data-effect-in", inEffect);
+  
+  //   // アニメーション終了時の処理
+  //   var onEndAnimationCurrentItem = () => {
+  //     currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
+  //     currentItem.classList.remove("hide");
+  //     nextItem.classList.add("show");
+  //   };
+  
+  //   var onEndAnimationNextItem = function () {
+  //     nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
+  //     nextItem.classList.remove("show");
+  //     nextItem.classList.add("current");
+  //     self.isAnimating = false;
+      
+  //     // 最後のスライドの後にページ遷移する処理
+  //     if (pos === self.itemsCount - 1) {
+  //       window.location.href = '../top.html'; // ここに遷移させたいページのURLを指定
+  //     }
+  //   };
+  
+  //   // アニメーション終了イベントリスナーを設定
+  //   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
+  //   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
+  
+  //   currentItem.classList.add("hide"); // アニメーションを開始するためのクラスを適用
+  
+  //   this.current = pos; // 現在の位置を更新
+  // };
+
+  // _showItem メソッドの改修版
+TiltSlider.prototype._showItem = function(pos) {
+  if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+
+  this.isAnimating = true;
+
+  var currentItem = this.items[this.current];
+  var nextItem = this.items[pos];
+
+  if (!currentItem || !nextItem) {
+    this.isAnimating = false;
+    return;
+  }
+
+  if (pos >= this.itemsCount) {
+    pos = 0;
+    nextItem = this.items[pos];
+  }
+
+  var self = this;
+  currentItem.setAttribute("data-effect-out", "slideRightOut");
+  nextItem.setAttribute("data-effect-in", "slideRightIn");
+
+  var onEndAnimationCurrentItem = function() {
+    currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
+    currentItem.classList.remove("hide");
+    nextItem.classList.add("show");
   };
+
+  var onEndAnimationNextItem = function() {
+    nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
+    nextItem.classList.remove("show");
+    nextItem.classList.add("current");
+    self.isAnimating = false;
+
+    // 最後のスライドの後にページ遷移する処理
+    if (pos === self.itemsCount - 1) {
+      self._setupTransitionEventsForLastSlide(); // 最後のスライドでのイベントリスナーを設定
+    }
+  };
+
+  // アニメーション終了イベントリスナーを設定
+  currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
+  nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
+
+  currentItem.classList.add("hide");
+  nextItem.classList.remove("current");
+
+  this.current = pos; // 現在の位置を更新
+};
+  
+  // 最後のスライドでのページ遷移をトリガーするためのイベントリスナーを設定する
+TiltSlider.prototype._setupTransitionEventsForLastSlide = function() {
+  var self = this;
+
+  // スクロールによるページ遷移のトリガー
+  var handleScrollToTransition = function(event) {
+    window.removeEventListener('wheel', handleScrollToTransition); // 一度のスクロールで1回だけ発火
+    window.location.href = '../top.html'; // ここに遷移先のURLを設定
+  };
+
+  // ドラッグ（マウスまたはタッチ操作）によるページ遷移のトリガー
+  var handleDragEndToTransition = function(event) {
+    window.removeEventListener('mouseup', handleDragEndToTransition);
+    window.removeEventListener('touchend', handleDragEndToTransition); // 一度のドラッグで1回だけ発火
+    window.location.href = '../top.html'; // ここに遷移先のURLを設定
+  };
+
+  // イベントリスナーを追加
+  window.addEventListener('wheel', handleScrollToTransition);
+  window.addEventListener('mouseup', handleDragEndToTransition);
+  window.addEventListener('touchend', handleDragEndToTransition);
+};
 
   // add to global namespace
   window.TiltSlider = TiltSlider;
