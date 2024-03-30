@@ -16,6 +16,7 @@ $cYellow: #FFE144;
 
 // breakpoints
 $breakpoints: (
+  "spc": "screen and (max-width: 1025px)",
   "tb": "screen and (max-width: 1025px) and (min-height: 800px)",
   "mq": "screen and (max-width: 768px)",
   "sp": "screen and (max-width: 630px)",

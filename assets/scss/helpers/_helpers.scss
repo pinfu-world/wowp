@@ -55,18 +55,16 @@
 
 .hp_sp {
   display: none;
-  
+
   @include mq() {
     display: block;
   }
 }
 
-.hp_fsz { 
-
+.hp_fsz {
   & textpath {
     font-size: 16px;
   }
-  
 }
 
 .hp_disInline {
@@ -76,15 +74,43 @@
 }
 
 .hp_spFsz22 {
-
   @include mq() {
-      font-size: rem(22);
+    font-size: rem(22);
   }
-
 }
 
 .hp_tb {
-  @include mq ("tb") {
+  @include mq("tb") {
     display: block;
   }
+}
+
+.hp_indent {
+  padding-left: 1.5em;
+  display: block;
+}
+
+.hp_indent_2 {
+  text-indent: -1em;
+  padding-left: 1em;
+  display: block;
+}
+
+.hp_indent_3 {
+  text-indent: -1.5em;
+    padding-left: 1.5em;
+    display: block;
+}
+
+.hp_indent_4 {
+  padding-left: 1em;
+  display: block;
+}
+
+.hp_mbless {
+  margin-bottom: initial !important;
+}
+
+.hp_underline {
+  text-decoration: underline;
 }

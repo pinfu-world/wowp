@@ -99,9 +99,15 @@
   &_noActive {
     pointer-events: none;
 
+
     @include mq() {
       width: 119px;
       height: 38px;
+    }
+
+    & img {
+      height: 49px;
+      vertical-align: initial;
     }
   }
 
@@ -129,6 +135,7 @@
     }
   }
 }
+
 
 .el_appLink_noActive_GNavi {
   @include mq() {
@@ -213,6 +220,10 @@
   position: relative;
 
   @include mq() {
+    font-size: rem(38);
+  }
+
+  @include mq("adj") {
     font-size: rem(28);
   }
 
@@ -229,14 +240,20 @@
       height: 22px;
 
       @include mq() {
-        content: url(../img/title_icon_white_s.svg);
-        top: -22px;
+        content: "";
+        background-image: url(../img/title_icon_white.svg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        top: -5px;
+        width: 14px;
+        height: 18px;
       }
 
-      //   @include mq("sp") {
-      //     content: url(../img/title_icon_small.svg);
-      //     top: -12px;
-      //   }
+        @include mq("adj") {
+          background-image: none;
+          content: url(../img/title_icon_white_s.svg);
+          top: -24px;
+        }
     }
   }
   &_LB {
@@ -253,16 +270,39 @@
 
       @include mq() {
         content: url(../img/title_icon_LB_s.svg);
-        top: -22px;
+        top: -28px;
       }
     }
   }
+  &_CB {
+    color: $cLightBlue;
+    position: relative;
+
+    &::before {
+      content: url(../img/title_icon_CB.svg);
+      position: absolute;
+      top: -40px;
+      left: 0;
+      width: 17px;
+      height: 22px;
+
+      @include mq() {
+        content: url(../img/title_icon_CB_s.svg);
+        top: -28px;
+      }
+
+        @include mq("adj") {
+          top: -22px;
+        }
+    }
+  }
+
 }
 
 .el_fluidShapeMiddle {
   width: 248px;
   height: 246px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationM 30s ease 0s infinite;
 
   @include mq() {
     width: 161px;
@@ -273,7 +313,7 @@
 .el_fluidShapeMiddle2 {
   width: 290px;
   height: 263px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationM2 30s ease 0s infinite;
 
   @include mq() {
     width: 145.5px;
@@ -284,7 +324,7 @@
 .el_fluidShapeMiddle3 {
   width: 197px;
   height: 167px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationM 30s ease 0s infinite;
 
   @include mq() {
     width: 94px;
@@ -295,7 +335,7 @@
 .el_fluidShapeLarge {
   width: 308px;
   height: 306px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationL 30s ease 0s infinite;
 
   @include mq() {
     width: 200px;
@@ -306,7 +346,7 @@
 .el_fluidShapeSmall {
   width: 153px;
   height: 152px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationS 30s ease 0s infinite;
 
   @include mq() {
     width: 76px;
@@ -317,12 +357,12 @@
 .el_fluidShapeSmall2 {
   width: 39px;
   height: 40px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationS 30s ease 0s infinite;
 
   @include mq() {
     top: initial;
-    bottom: 147px;
-    left: -39%;
+    bottom: 63px;
+    left: -24%;
     z-index: 1;
   }
 }
@@ -330,19 +370,19 @@
 .el_fluidShapeSmall3 {
   width: 56px;
   height: 58px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationS 30s ease 0s infinite;
 }
 
 .el_fluidShapeSmall4 {
   width: 30px;
   height: 31px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationS 30s ease 0s infinite;
 }
 
 .el_fluidShapeSmall5 {
   width: 109px;
   height: 108px;
-  animation: fluidanimation 30s ease 0s infinite;
+  animation: fluidanimationS 30s ease 0s infinite;
 }
 
 // // top アプリリンク

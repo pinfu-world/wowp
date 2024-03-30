@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Hole Effect</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+        }
+        #canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        canvas {
+            z-index: 2;
+        }
+        .image-behind {
+            position: absolute;
+            top: 50%;
+            left: 75%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            width: 500px;
+            height: 500px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="bl_slideBox">
+    <img src="./assets/img/iphpne15_fv.png" width="500" height="500" alt="背景画像" class="image-behind">
+    <canvas id="canvas"></canvas>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

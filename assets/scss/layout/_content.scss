@@ -3,4 +3,24 @@
 @use "../helpers/mixin" as *;
 @use "../helpers/variables" as *;
 
+.ly_content_feature {
+    @include mq ("sp") {
+        margin-top: 10%;
+    }
 
+    @include mq("adj") {
+        margin-top: 33%;
+    }
+
+    &_app3 {
+        @include mq("sp") {
+            margin-top: initial;
+        }
+    }
+
+    &_app4 {
+        @include mq("sp") {
+            margin-top: initial;
+        }
+    }
+}

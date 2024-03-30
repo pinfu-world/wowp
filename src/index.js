@@ -252,53 +252,95 @@
   init();
 })();
 
-// youtubeの場合
-document.addEventListener("DOMContentLoaded", function () {
-  // bodyタグにfrontPageのIDが存在するかチェック
-  if (document.body.id === "frontPage") {
-    // DOM要素を取得
-    let modal = document.querySelector(".bl_videoModal");
-    let btn = document.querySelector(".bl_videoBlock_link");
-    let span = document.querySelector(".bl_videoModal_closeBtn");
-    let iframe = document.querySelector(".bl_videoModal_video");
-    let body = document.body; // スクロール禁止を適用するためのbody要素
+// videの場合
+// モーダルを取得
+// let modal = document.querySelector(".bl_videoModal");
 
-    // YouTubeの動画IDと基本URL
-    let videoID = "UTnE0qQ41eE"; // ここに動画IDを設定
-    let baseURL = `https://www.youtube.com/embed/${videoID}?`;
+// // モーダルを開くボタンを取得
+// let btn = document.querySelector(".bl_videoBlock_link");
 
-    // モーダルを開くボタンをクリックするとモーダルを表示
-    btn.addEventListener("click", function (event) {
-      event.preventDefault();
-      modal.style.display = "block";
-      body.classList.add("js_bodyNoScroll"); // スクロール禁止クラスを追加
-      setTimeout(() => {
-        modal.classList.add("is_show");
-        // 自動再生するURLを設定（ミュートなし）
-        iframe.src = `${baseURL}autoplay=1`; // ミュートを解除
-      }, 10);
-    });
+// // モーダルを閉じる<span>要素を取得
+// let span = document.querySelector(".bl_videoModal_closeBtn");
 
-    // モーダルを閉じる関数
-    const closeModal = () => {
-      modal.classList.remove("is_show");
-      setTimeout(() => {
-        modal.style.display = "none";
-        body.classList.remove("js_bodyNoScroll"); // スクロール禁止クラスを削除
-        // 再生を停止し、iframeのsrcをリセット
-        iframe.src = "";
-      }, 500);
-    };
+// // ビデオ要素を取得
+// let video = modal.querySelector("video");
 
-    // クリックイベントを追加
-    span.onclick = closeModal;
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        closeModal();
-      }
-    };
-  }
-});
+// // ボタンをクリックするとモーダルを表示し、ビデオを再生
+// btn.addEventListener("click", function (event) {
+//   event.preventDefault(); // デフォルトの動作（リンクの遷移など）をキャンセル
+//   modal.style.display = "block";
+//   setTimeout(() => {
+//     modal.classList.add("is_show"); // 少し遅らせて.showクラスを追加
+//     video.play(); // ビデオを再生
+//   }, 10); // DOMが更新されるのを待つために微小な遅延を設ける
+// });
+
+// // <span> (x) またはモーダルの外側をクリックするとモーダルを閉じ、ビデオを停止
+// const closeModal = () => {
+//   modal.classList.remove('is_show'); // .showクラスを削除してフェードアウト
+//   setTimeout(() => {
+//     modal.style.display = "none"; // 完全に非表示にする
+//     video.pause(); // ビデオの再生を停止
+//     video.currentTime = 0; // ビデオを最初から再開するために時間をリセット
+//   }, 500); // アニメーションの時間に合わせて遅延を設ける
+// };
+
+// span.onclick = closeModal;
+
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     closeModal();
+//   }
+// };
+const modal = document.querySelector(".bl_videoModal");
+
+if (modal) {
+    // モーダルを開くボタンを取得
+    const btn = document.querySelector(".bl_videoBlock_link");
+
+    // モーダルを閉じる<span>要素を取得
+    const span = document.querySelector(".bl_videoModal_closeBtn");
+
+    // ビデオ要素を取得
+    const video = modal.querySelector("video");
+
+    if (btn && span && video) {
+        // ボタンをクリックするとモーダルを表示し、ビデオを再生
+        btn.addEventListener("click", (event) => {
+            event.preventDefault(); // デフォルトの動作（リンクの遷移など）をキャンセル
+            modal.style.display = "block";
+            setTimeout(() => {
+                modal.classList.add("is_show"); // 少し遅らせて.showクラスを追加
+                video.play(); // ビデオを再生
+            }, 10); // DOMが更新されるのを待つために微小な遅延を設ける
+        });
+
+        // <span> (x) またはモーダルの外側をクリックするとモーダルを閉じ、ビデオを停止
+        const closeModal = () => {
+            modal.classList.remove('is_show'); // .showクラスを削除してフェードアウト
+            setTimeout(() => {
+                modal.style.display = "none"; // 完全に非表示にする
+                video.pause(); // ビデオの再生を停止
+                video.currentTime = 0; // ビデオを最初から再開するために時間をリセット
+            }, 500); // アニメーションの時間に合わせて遅延を設ける
+        };
+
+        span.onclick = closeModal;
+
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+    } else {
+        console.error("Some elements are missing");
+    }
+} else {
+    // console.error("Modal element is missing");
+}
+
+
+
 
 // グローバルナビ
 document.addEventListener("DOMContentLoaded", function () {
