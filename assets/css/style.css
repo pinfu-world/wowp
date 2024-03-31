@@ -1328,6 +1328,31 @@ a:hover {
   }
 }
 
+.bl_spVideo {
+  width: 170px;
+  height: auto;
+  border: 7px solid black;
+  border-radius: 20px;
+  margin-bottom: 20%;
+  margin-left: 10%;
+}
+@media screen and (max-width: 1025px) {
+  .bl_spVideo {
+    width: 140px;
+    margin-top: 62%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .bl_spVideo {
+    width: 170px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .bl_spVideo {
+    width: 143px;
+  }
+}
+
 .bl_shapeWrapper {
   position: relative;
   z-index: 2;
