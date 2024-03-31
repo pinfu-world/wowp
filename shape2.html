@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perlin Noise Border Radius</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+    <style>
+        #dynamicImage {
+            width: 200px;
+            height: 200px;
+            transition: border-radius 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+
+<img id="dynamicImage" src="./assets/img/iphpne15_fv.png" alt="Dynamic Radius Image">
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const dynamicImage = document.getElementById("dynamicImage");
+    const noise = new SimplexNoise();
+    let time = 0;
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // パーリンノイズを使用してborder-radiusの値を生成
+        const topLeft = Math.abs(noise.noise2D(1, time)) * 100;
+        const topRight = Math.abs(noise.noise2D(2, time)) * 100;
+        const bottomRight = Math.abs(noise.noise2D(3, time)) * 100;
+        const bottomLeft = Math.abs(noise.noise2D(4, time)) * 100;
+
+        // border-radiusを適用
+        dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+
+        time += 0.005;
+    }
+
+    animate();
+});
+</script>
+
+</body>
+</html>

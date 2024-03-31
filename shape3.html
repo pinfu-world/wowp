@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Hole Effect</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 50%;
+            left: 75%;
+            transform: translate(-50%, -50%);
+        }
+
+        canvas {
+            z-index: 2;
+        }
+
+        .bl_slideBox {
+            position: absolute;
+            top: 10%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            width: 480px;
+            height: 480px;
+            display: block;
+            border-radius: 50%;
+            border: 30px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            transition: border-width 0.2s ease;
+            /* ボーダーの太さの変化にアニメーションを適用 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bl_slideBox">
+        <img id="dynamicImage" src="./assets/img/iphpne15_fv.png" width="500" height="500" alt="背景画像"
+            class="image-behind">
+        <!-- <canvas id="canvas"></canvas> -->
+    </div>
+    <section class="ly_fv">
+        <div class="el_fluidShapeSmall2 bl_fvShape bl_fvShape_1 hp_bcSTB"></div>
+        <div class="el_fluidShapeSmall bl_fvShape bl_fvShape_2 hp_bcSB"></div>
+        <div class="el_fluidShapeMiddle2 bl_fvShape bl_fvShape_3 hp_bcCream"></div>
+        <div class="el_fluidShapeSmall2 bl_fvShape bl_fvShape_4 hp_bcCB"></div>
+        <div class="el_fluidShapeSmall3 bl_fvShape bl_fvShape_5 hp_bcSTB"></div>
+        <div class="el_fluidShapeSmall4 bl_fvShape bl_fvShape_6 hp_bcCream"></div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+
+    <script src="./perlin.js"></script>
+    <script src="./script.js"></script>
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+    const dynamicImage = document.querySelector(".bl_slideBox");
+    const noise = new SimplexNoise();
+    let time = 0;
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // border-radiusの計算はそのままに、scaleも動的に変更
+        const topLeft = Math.min(80, Math.max(30, Math.abs(noise.noise2D(1, time + 10)) * 100));
+        const topRight = Math.min(80, Math.max(30, Math.abs(noise.noise2D(2, time + 20)) * 100));
+        const bottomRight = Math.min(80, Math.max(30, Math.abs(noise.noise2D(3, time + 30)) * 100));
+        const bottomLeft = Math.min(80, Math.max(30, Math.abs(noise.noise2D(4, time + 40)) * 100));
+        const scale = 1 + Math.abs(noise.noise2D(5, time)) * 0.05; // スケールを微妙に変化させる
+
+        dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+        dynamicImage.style.transform = `scale(${scale})`; // スケール変化を適用
+
+        time += 0.001;
+    }
+
+    animate();
+});
+
+    </script> -->
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dynamicImage = document.querySelector(".bl_slideBox");
+            const noise = new SimplexNoise();
+            let time = 0;
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // ノイズ関数を使ってborder-radiusの各角を動的に変化させる
+                const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50; // 50から100%の間
+                const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50; // 同上
+                const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50; // 同上
+                const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50; // 同上
+
+                // border-radiusを適用
+                dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+
+                time += 0.01;
+            }
+
+            animate();
+        });
+    </script> -->
+
+    <!-- 2番まし -->
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const dynamicImage = document.querySelector(".bl_slideBox");
+    let time = 0;
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // ノイズ関数を使ってborder-radiusの各角を動的に変化させる
+        const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50; // 50から100%の間
+        const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50; // 同上
+        const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50; // 同上
+        const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50; // 同上
+
+        // border-radiusを適用
+        dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+
+        time += 0.003;
+    }
+
+    animate();
+});
+
+    </script> -->
+
+    <!-- 一番まし -->
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dynamicImage = document.querySelector(".bl_slideBox");
+            let time = 0;
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // border-radiusの各角を動的に変化させる
+                const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50; // 50から100%の間
+                const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
+                const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
+                const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
+
+                // スケールを動的に変化させる
+                const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.25 + 0.75; // スケールは0.75から1.0の間で変化
+
+                // border-radiusとスケールを適用
+                dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+                dynamicImage.style.transform = `scale(${scale})`;
+
+                time += 0.003; // 時間の進行を調整
+            }
+
+            animate();
+        });
+    </script> -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const dynamicImage = document.querySelector(".bl_slideBox");
+            let time = 0;
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // スケールとborder-radiusの変化
+                const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.25 + 0.75;
+                const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50;
+                const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
+                const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
+                const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
+
+                // ボーダーの太さを動的に変化させる
+                // ボーダーの太さを動的に変化させる
+                const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 30 + 10; // 10pxから40pxの間で変化
+
+                // スタイルを適用
+                dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+                dynamicImage.style.transform = `scale(${scale})`;
+                dynamicImage.style.borderWidth = `${borderWidth}px`;
+
+                time += 0.003;
+            }
+
+            animate();
+        });
+    </script>
+
+</body>
+
+</html>

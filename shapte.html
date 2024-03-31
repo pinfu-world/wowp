@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Canvas Hole Effect</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
     <style>
         body, html {
             margin: 0;
@@ -14,7 +15,7 @@
         #canvas {
             position: absolute;
             top: 50%;
-            left: 50%;
+            left: 75%;
             transform: translate(-50%, -50%);
         }
         canvas {
@@ -26,18 +27,31 @@
             left: 75%;
             transform: translate(-50%, -50%);
             z-index: 1;
-            width: 500px;
-            height: 500px;
+            width: 480px;
+            height: 480px;
             display: block;
+            border-radius: 50%;
+            border: 30px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
     <div class="bl_slideBox">
-    <img src="./assets/img/iphpne15_fv.png" width="500" height="500" alt="背景画像" class="image-behind">
+    <img id="dynamicImage" src="./assets/img/iphpne15_fv.png" width="500" height="500" alt="背景画像" class="image-behind">
     <canvas id="canvas"></canvas>
     </div>
+    <section class="ly_fv">
+        <div class="el_fluidShapeSmall2 bl_fvShape bl_fvShape_1 hp_bcSTB"></div>
+        <div class="el_fluidShapeSmall bl_fvShape bl_fvShape_2 hp_bcSB"></div>
+        <div class="el_fluidShapeMiddle2 bl_fvShape bl_fvShape_3 hp_bcCream"></div>
+        <div class="el_fluidShapeSmall2 bl_fvShape bl_fvShape_4 hp_bcCB"></div>
+        <div class="el_fluidShapeSmall3 bl_fvShape bl_fvShape_5 hp_bcSTB"></div>
+        <div class="el_fluidShapeSmall4 bl_fvShape bl_fvShape_6 hp_bcCream"></div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="./perlin.js"></script>
     <script src="script.js"></script>
+    
 </body>
 </html>

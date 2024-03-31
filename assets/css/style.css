@@ -1329,9 +1329,9 @@ a:hover {
 }
 
 .bl_spVideo {
-  width: 170px;
+  width: 200px;
   height: auto;
-  border: 7px solid black;
+  border: 10px solid black;
   border-radius: 20px;
   margin-bottom: 20%;
   margin-left: 10%;
@@ -1339,7 +1339,7 @@ a:hover {
 @media screen and (max-width: 1025px) {
   .bl_spVideo {
     width: 140px;
-    margin-top: 62%;
+    margin-top: 20%;
   }
 }
 @media screen and (max-width: 768px) {
@@ -1524,6 +1524,7 @@ a:hover {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    margin-top: 7%;
   }
 }
 .bl_featureBlock_num {
@@ -1539,7 +1540,7 @@ a:hover {
 @media screen and (max-width: 768px) {
   .bl_featureBlock_num {
     font-size: 120px;
-    top: 260px;
+    top: 17%;
     left: 6%;
   }
 }
@@ -1549,12 +1550,13 @@ a:hover {
   }
 }
 .bl_featureBlock_num_2 {
-  top: 0;
+  top: -31%;
   color: #9EDCFE;
 }
 @media screen and (max-width: 768px) {
   .bl_featureBlock_num_2 {
     left: 8%;
+    top: 0;
   }
 }
 @media screen and (max-width: 630px) {
@@ -1569,7 +1571,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .bl_featureBlock_num_3 {
-    top: -3%;
+    top: 5%;
     bottom: initial;
     left: 80%;
   }
@@ -1613,47 +1615,47 @@ a:hover {
 .bl_featureBlock_imgWrapper_reverse {
   margin-left: initial;
 }
-@media screen and (max-width: 768px) {
-  .bl_featureBlock_imgWrapper_reverse {
-    margin-top: 13%;
-  }
-}
-@media screen and (max-width: 630px) {
-  .bl_featureBlock_imgWrapper_reverse {
-    margin-top: 25%;
-  }
-}
 .bl_featureBlock_imgWrapper_4 {
   margin-left: initial;
 }
 .bl_featureBlock_spShape {
   position: absolute;
-  top: 80px;
+  top: 30px;
   left: -70px;
   z-index: -1;
 }
 @media screen and (max-width: 768px) {
   .bl_featureBlock_spShape {
-    top: 40px;
+    top: 110px;
     left: -40px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .bl_featureBlock_spShape {
+    top: 65px;
   }
 }
 .bl_featureBlock_spShape_2 {
   position: absolute;
   top: initial;
-  bottom: 110px;
-  left: 121px;
+  bottom: 65px;
+  left: 80px;
   z-index: -1;
+}
+@media screen and (max-width: 768px) {
+  .bl_featureBlock_spShape_2 {
+    left: 105px;
+  }
 }
 @media screen and (max-width: 630px) {
   .bl_featureBlock_spShape_2 {
-    bottom: 80px;
+    bottom: 50px;
     left: 50px;
   }
 }
 .bl_featureBlock_body {
   width: 65%;
-  margin-top: -5%;
+  margin-top: -10%;
 }
 @media screen and (max-width: 768px) {
   .bl_featureBlock_body {
@@ -1664,6 +1666,9 @@ a:hover {
 .bl_featureBlock_body_app1 {
   padding-top: initial;
 }
+.bl_featureBlock_body_app4 {
+  margin-top: initial;
+}
 .bl_featureBlock_shape_3 {
   position: absolute;
   top: 10%;
@@ -1672,7 +1677,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .bl_featureBlock_shape_3 {
-    top: 13%;
+    top: 31%;
     right: -20%;
   }
 }
@@ -1880,7 +1885,7 @@ a:hover {
   position: absolute;
   bottom: 11%;
   left: -3%;
-  z-index: 1;
+  z-index: 2;
 }
 @media screen and (max-width: 768px) {
   .bl_app2_shape1 {
@@ -1896,7 +1901,7 @@ a:hover {
   position: absolute;
   bottom: 23%;
   left: 10%;
-  z-index: 1;
+  z-index: 2;
 }
 @media screen and (max-width: 768px) {
   .bl_app2_shape2 {
@@ -1906,7 +1911,7 @@ a:hover {
 .bl_app2_shape3 {
   position: absolute;
   right: 3%;
-  bottom: 33%;
+  bottom: 38%;
   z-index: 1;
 }
 
@@ -1918,12 +1923,23 @@ a:hover {
 }
 .bl_app3_wrapper {
   max-width: 1250px;
-  padding: 0 15px;
+  padding: 8% 15px 9%;
   margin: 0 auto;
+}
+@media screen and (max-width: 1025px) {
+  .bl_app3_wrapper {
+    padding-top: 15%;
+  }
 }
 @media screen and (max-width: 768px) {
   .bl_app3_wrapper {
+    padding-top: 8%;
     margin-bottom: 250px;
+  }
+}
+@media screen and (max-width: 630px) {
+  .bl_app3_wrapper {
+    padding: 0 15px;
   }
 }
 .bl_app3 .bl_app3_wave {
@@ -2003,6 +2019,15 @@ a:hover {
 }
 .bl_app4_wave2 {
   margin-top: -21%;
+}
+
+@media screen and (max-width: 768px) {
+  .bl_spVideo_wrapper_app2 {
+    margin-top: 25%;
+  }
+}
+.bl_spVideo_wrapper_app3 {
+  margin-top: -15%;
 }
 
 .bl_videoSection {

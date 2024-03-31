@@ -203,16 +203,16 @@
 }
 
 .bl_spVideo {
-  width: 170px;
+  width: 200px;
   height: auto;
-  border: 7px solid black;
+  border: 10px solid black;
   border-radius: 20px;
   margin-bottom: 20%;
   margin-left: 10%;
 
   @include mq("spc") {
     width: 140px;
-    margin-top: 62%;
+    margin-top: 20%;
   }
 
   @include mq() {
@@ -355,6 +355,7 @@
 
     @include mq() {
       flex-direction: column;
+      margin-top: 7%;
     }
   }
 
@@ -376,7 +377,7 @@
 
     @include mq() {
       font-size: 120px;
-      top: 260px;
+      top: 17%;
       left: 6%;
     }
 
@@ -391,11 +392,12 @@
     }
 
     &_2 {
-      top: 0;
+      top: -31%;
       color: $cSkyBlue;
 
       @include mq() {
         left: 8%;
+        top: 0;
       }
 
       @include mq("sp") {
@@ -412,7 +414,7 @@
       left: 45%;
 
       @include mq() {
-        top: -3%;
+        top: 5%;
         bottom: initial;
         left: 80%;
       }
@@ -459,11 +461,11 @@
       margin-left: initial;
 
       @include mq() {
-        margin-top: 13%;
+        // margin-top: 13%;
       }
 
       @include mq("sp") {
-        margin-top: 25%;
+        // margin-top: 25%;
       }
     }
 
@@ -501,24 +503,32 @@
 
   &_spShape {
     position: absolute;
-    top: 80px;
+    top: 30px;
     left: -70px;
     z-index: -1;
 
     @include mq() {
-      top: 40px;
+      top: 110px;
       left: -40px;
+    }
+
+    @include mq("sp") {
+      top: 65px;
     }
 
     &_2 {
       position: absolute;
       top: initial;
-      bottom: 110px;
-      left: 121px;
+      bottom: 65px;
+      left: 80px;
       z-index: -1;
 
+      @include mq() {
+        left: 105px;
+      }
+
       @include mq("sp") {
-        bottom: 80px;
+        bottom: 50px;
         left: 50px;
       }
     }
@@ -527,7 +537,7 @@
   &_body {
     width: 65%;
     // padding-top: 60px;
-    margin-top: -5%;
+    margin-top: -10%;
 
     @include mq() {
       width: 100%;
@@ -536,6 +546,10 @@
 
     &_app1 {
       padding-top: initial;
+    }
+
+    &_app4 {
+      margin-top: initial;
     }
   }
 
@@ -568,7 +582,7 @@
     z-index: -2;
 
     @include mq() {
-      top: 13%;
+      top: 31%;
       right: -20%;
     }
   }
@@ -965,7 +979,7 @@
     position: absolute;
     bottom: 11%;
     left: -3%;
-    z-index: 1;
+    z-index: 2;
 
     @include mq() {
       bottom: 4%;
@@ -980,7 +994,7 @@
     position: absolute;
     bottom: 23%;
     left: 10%;
-    z-index: 1;
+    z-index: 2;
 
     @include mq() {
       bottom: 8%;
@@ -990,7 +1004,7 @@
   &_shape3 {
     position: absolute;
     right: 3%;
-    bottom: 33%;
+    bottom: 38%;
     z-index: 1;
   }
 }
@@ -1016,11 +1030,20 @@
 
   &_wrapper {
     max-width: 1250px;
-    padding: 0 15px;
+    padding: 8% 15px 9%;
     margin: 0 auto;
 
+    @include mq ("spc") {
+      padding-top: 15%;
+    }
+
     @include mq() {
+      padding-top: 8%;
       margin-bottom: 250px;
+    }
+
+    @include mq("sp") {
+      padding: 0 15px;
     }
   }
 
@@ -1180,6 +1203,18 @@
   //     top: 50%;
   //     right: -20px;
   //   }
+}
+
+.bl_spVideo_wrapper {
+  &_app2 {
+    @include mq() {
+      margin-top: 25%;
+    }
+  }
+
+  &_app3 {
+    margin-top: -15%;
+  }
 }
 
 .bl_videoSection {
