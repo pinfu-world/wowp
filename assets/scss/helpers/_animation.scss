@@ -139,8 +139,6 @@
   }
 }
 
-
-
 @keyframes fvFluidanimation {
   0%,
   100% {
@@ -186,24 +184,6 @@
     border-radius: 54% 46% 52% 48% / 55% 63% 37% 45%;
   }
 }
-
-// ボーダーアニメーション
-// @keyframes borderAnimation {
-//   0%{
-//       border-width: 1px;
-//   }
-//   50% {
-//       border-width: 50px;
-//   }
-
-//   70% {
-//       border-width: 7px;
-//   }
-
-//   100%  {
-//       border-width: 4px;
-//   }
-// }
 
 // フェードアウト
 .fade_out {
@@ -364,20 +344,6 @@
     opacity: 1;
   }
 }
-
-// .bl_videoModal_container {
-//   overflow: hidden; /* コンテナ外のコンテンツを非表示にする */
-//   width: calc(100% + 10px); /* 必要に応じてコンテナの幅を調整 */
-//   height: 100%; /* コンテナの高さを設定 */
-//   position: relative; /* コンテナの位置を調整 */
-// }
-
-// .bl_videoModal_video {
-//   position: absolute; /* ビデオの位置を絶対位置に設定 */
-//   right: -2px; /* 白い線を隠すためにビデオをずらす */
-//   width: calc(100% + 10px); /* ビデオの幅を調整 */
-//   height: 100%; /* ビデオの高さを設定 */
-// }
 
 .js_bodyNoScroll {
   overflow: hidden;

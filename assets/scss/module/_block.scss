@@ -1755,60 +1755,6 @@
   display: block;
 }
 
-// // fv bubble
-// // .bl_bubble {
-// //   width: 150px; /* 泡の大きさを設定 */
-// //   height: 150px; /* 泡の大きさを設定 */
-// //   border-radius: 50%;
-// //   overflow: hidden;
-// //   position: relative; /* 必要に応じて調整 */
-// //   top: 50vh; /* 画面中央に配置する例 */
-// //   left: 50vw; /* 画面中央に配置する例 */
-// //   background-color: $cWhite;
-// //   animation: float 6s ease-in-out infinite;
-// //   animation: float 6s ease-in-out infinite, shadowFloat 6s ease-in-out infinite;
-// //   /* 薄い白の枠を追加 */
-// //   box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5);
-// // }
-
-// // .bl_bubble img {
-// //   width: 100%;
-// //   height: auto;
-// //   display: block;
-// // }
-
-// // @keyframes float {
-// //   0%, 100% {
-// //     transform: translate(0, 0) rotate(0deg);
-// //   }
-// //   25% {
-// //     transform: translate(-10px, -20px) rotate(-10deg);
-// //   }
-// //   50% {
-// //     transform: translate(10px, -30px) rotate(10deg);
-// //   }
-// //   75% {
-// //     transform: translate(-10px, -20px) rotate(-5deg);
-// //   }
-// // }
-
-// // @keyframes shadowFloat {
-// //   0%, 100% {
-// //     box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5);
-// //   }
-// //   25% {
-// //     box-shadow: 0 0 12px 6px rgba(255, 255, 255, 0.5);
-// //   }
-// //   50% {
-// //     box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5);
-// //   }
-// //   75% {
-// //     box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
-// //   }
-// // }
-
-// // js使う前
-
 .bl_bubble_box {
   position: absolute;
   top: 11vh;
@@ -1829,202 +1775,24 @@
   }
 }
 
-// .bl_bubble {
-//   // width: 512px; 512-350
-//   width: clamp(21.875rem, 6.834rem + 31.33vw, 32rem);
-//   // height: 541px; 5410369
-//   // height: clamp(23.063rem, 7.093rem + 33.27vw, 33.813rem);
-//   border-radius: 50%;
-//   overflow: hidden;
-//   // position: absolute;
-
-//   // animation: float 6s ease-in-out infinite, breathe 3s ease-in-out infinite;
-//   // box-shadow: 0 0 8px 4px rgba(255, 255, 255, 0.5);
-//   background-color: rgba(255, 255, 255, 0.5);
-
-//   @include mq("sp") {
-//     left: 19%;
-//   }
-
-//   @include mq("adj") {
-//     left: 9%;
-//   }
-
-//   & a {
-//     position: relative;
-//     z-index: 200;
-//   }
-
-//   &_fv3 {
-//     top: 15vh;
-//     left: 58vw;
-
-//     @include mq() {
-//       width: 330px;
-//       height: 338px;
-//       top: 10vh;
-//       left: 28%;
-//     }
-
-//     @include mq("sp") {
-//       left: 19%;
-//     }
-
-//     @include mq("adj") {
-//       left: 9%;
-//     }
-//   }
-// }
-
-// .bl_bubble_img {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow: hidden;
-//   border-radius: 50%;
-// }
-
-// .bl_bubble img {
-//   position: relative;
-//   width: 100%;
-//   height: auto;
-//   display: block;
-//   z-index: 2;
-// }
-
-// .bl_bubble::before {
-//   content: "";
-//   position: absolute;
-//   top: 5px;
-//   left: 5px;
-//   right: 5px;
-//   bottom: 5px;
-//   border-radius: 50%;
-//   box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.5);
-//   animation: innerFloat 6s ease-in-out infinite;
-//   z-index: 3;
-// }
-
-// .bl_bubble::after {
-//   content: "";
-//   position: absolute;
-//   top: 10px; /* 内側の泡との距離を調整 */
-//   left: 10px;
-//   right: 10px;
-//   bottom: 10px;
-//   border-radius: 50%;
-//   background-color: rgba(255, 255, 255, 0.5); /* 内側の泡と外側の泡の間の色 */
-//   animation: innerFloat 6s ease-in-out infinite; /* 必要に応じて同じか異なるアニメーションを適用 */
-// }
-
-// .bl_bubble_inner {
-//   position: absolute;
-//   top: 5px;
-//   left: 5px;
-//   right: 5px;
-//   bottom: 5px;
-//   border-radius: 50%;
-//   background-color: rgba(255, 255, 255, 0.5); /* 中間層の色 */
-//   z-index: 1;
-//   animation: breatheInner 3s ease-in-out infinite;
-// }
-
-// 修正　一律で太くなる
-// .bl_bubble {
-//   overflow: hidden;
-//   position: relative;
-//   clip-path: circle(50% at 50% 50%);
-//   border: 10px solid rgba(255, 255, 255, .3);
-//   animation: fvFluidanimation 10s infinite ease-in-out, borderAnimation 3s infinite;
-// }
-
-// .bl_bubble img {
-//   // width: 100%;
-//   // height: auto;
-// }
-
-// 修正閉じ
-
-// 修正　疑似要素使用
-// .bl_bubble_box {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-// }
-
-// .bl_bubble {
-//   width: 519px;
-//   height: 489px;
-//   position: relative;
-//   overflow: hidden;
-//   border-radius: 20px; /* 必要に応じて調整 */
-//   position: relative; /* z-indexを効かせるために必要 */
-// }
-
-// .bl_bubble::before, .bl_bubble::after {
-//   content: '';
-//   position: absolute;
-//   top: -2px;
-//   left: -2px;
-//   right: -2px;
-//   bottom: -2px;
-//   border: 2px solid transparent;
-//   border-radius: 20px; /* bl_bubbleと同じ値に */
-//   z-index: 10; /* imgより前面に出るように */
-//   position: absolute; /* z-indexを有効化 */
-//   border-color: black; /* 明確に色を指定 */
-// }
-
-// .bl_bubble::before {
-//   border-top-color: black;
-//   border-bottom-color: black;
-//   animation: borderAnimation 3s infinite ease-in-out;
-// }
-
-// .bl_bubble::after {
-//   border-right-color: black;
-//   border-left-color: black;
-//   animation: borderAnimation 3s infinite ease-in-out 1.5s; /* 半周期遅れで開始 */
-// }
-
-// @keyframes borderAnimation {
-//   0%, 100% { transform: scale(1); }
-//   50% { transform: scale(1.1); }
-// }
-// 修正疑似要素　閉じ
-
-// 修正　ネットで見つけたやつ
-
 .bl_bubble {
-  width: 500px;
-  height: 500px;
-  animation: stretch 4s ease 0s infinite alternate both,
-    borderAnimation 5s ease 0s infinite alternate both;
-  @keyframes stretch {
-    0% {
-      transform: scale(1, 1);
-    }
-    100% {
-      transform: scale(0.9, 0.9);
-    }
-  }
-  // border: 5px solid rgba(255, 255, 255, 0.5);
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
+  border: 30px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  transition: border-width 0.2s ease;
+  /* ボーダーの太さの変化にアニメーションを適用 */
 }
 
 .bl_bubble_img {
-  width: 500px;
-  height: 500px;
-  // background-color: skyblue;
-  // clip-path: circle(50% at 50% 50%);
-  // border: 30px solid rgba(245, 246, 250, 0.5);
-  border-radius: 50%;
-  transition: all 0.8s ease-in-out;
-  border: 30px solid blue;
+  // width: 580px;
+  // height: auto;
+  object-fit: cover;
+  margin-top: 45px;
 }
+
 
 // 修正閉じ
 
@@ -2083,7 +1851,7 @@
   &_5 {
     top: 60%;
     left: initial;
-    right: -20px;
+    right: 15px;
 
     @include mq() {
       top: 45%;

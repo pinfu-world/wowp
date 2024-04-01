@@ -2612,40 +2612,21 @@ a:hover {
 }
 
 .bl_bubble {
-  width: 500px;
-  height: 500px;
-  -webkit-animation: stretch 4s ease 0s infinite alternate both, borderAnimation 5s ease 0s infinite alternate both;
-          animation: stretch 4s ease 0s infinite alternate both, borderAnimation 5s ease 0s infinite alternate both;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-}
-@-webkit-keyframes stretch {
-  0% {
-    -webkit-transform: scale(1, 1);
-            transform: scale(1, 1);
-  }
-  100% {
-    -webkit-transform: scale(0.9, 0.9);
-            transform: scale(0.9, 0.9);
-  }
-}
-@keyframes stretch {
-  0% {
-    -webkit-transform: scale(1, 1);
-            transform: scale(1, 1);
-  }
-  100% {
-    -webkit-transform: scale(0.9, 0.9);
-            transform: scale(0.9, 0.9);
-  }
+  border: 30px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  -webkit-transition: border-width 0.2s ease;
+  transition: border-width 0.2s ease;
+  /* ボーダーの太さの変化にアニメーションを適用 */
 }
 
 .bl_bubble_img {
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  -webkit-transition: all 0.8s ease-in-out;
-  transition: all 0.8s ease-in-out;
-  border: 30px solid blue;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-top: 45px;
 }
 
 .bl_fvShape {
@@ -2703,7 +2684,7 @@ a:hover {
 .bl_fvShape_5 {
   top: 60%;
   left: initial;
-  right: -20px;
+  right: 15px;
 }
 @media screen and (max-width: 768px) {
   .bl_fvShape_5 {

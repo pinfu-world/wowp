@@ -252,46 +252,7 @@
   init();
 })();
 
-// videの場合
-// モーダルを取得
-// let modal = document.querySelector(".bl_videoModal");
-
-// // モーダルを開くボタンを取得
-// let btn = document.querySelector(".bl_videoBlock_link");
-
-// // モーダルを閉じる<span>要素を取得
-// let span = document.querySelector(".bl_videoModal_closeBtn");
-
-// // ビデオ要素を取得
-// let video = modal.querySelector("video");
-
-// // ボタンをクリックするとモーダルを表示し、ビデオを再生
-// btn.addEventListener("click", function (event) {
-//   event.preventDefault(); // デフォルトの動作（リンクの遷移など）をキャンセル
-//   modal.style.display = "block";
-//   setTimeout(() => {
-//     modal.classList.add("is_show"); // 少し遅らせて.showクラスを追加
-//     video.play(); // ビデオを再生
-//   }, 10); // DOMが更新されるのを待つために微小な遅延を設ける
-// });
-
-// // <span> (x) またはモーダルの外側をクリックするとモーダルを閉じ、ビデオを停止
-// const closeModal = () => {
-//   modal.classList.remove('is_show'); // .showクラスを削除してフェードアウト
-//   setTimeout(() => {
-//     modal.style.display = "none"; // 完全に非表示にする
-//     video.pause(); // ビデオの再生を停止
-//     video.currentTime = 0; // ビデオを最初から再開するために時間をリセット
-//   }, 500); // アニメーションの時間に合わせて遅延を設ける
-// };
-
-// span.onclick = closeModal;
-
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     closeModal();
-//   }
-// };
+// videoの場合
 const modal = document.querySelector(".bl_videoModal");
 
 if (modal) {
@@ -510,7 +471,8 @@ document.body.addEventListener("mousemove", (e) => {
 // }
 
 // anime({
-//   targets: ".bl_bubble",
+//   targets: ".bl_bubble img",
+//   easing: "ease-in-out", 
 //   keyframes: [
 //     { translateX: -10, translateY: -10, duration: 2000 },
 //     { translateX: 10, translateY: 10, duration: 2000 },
@@ -526,20 +488,25 @@ document.body.addEventListener("mousemove", (e) => {
 //   duration: 10000,
 // });
 
-// 修正、枠線をうようよ
-// anime({
-//   targets: '.bl_bubble',
-//   rotate: '1turn',
-//   scale: [
-//       {value: 0.95, duration: 5000, easing: 'easeInOutSine'},
-//       {value: 1, duration: 5000, easing: 'easeInOutSine'}
-//   ],
-//   loop: true,
-//   easing: 'easeInOutSine',
+anime({
+  targets: ".bl_bubble img",
+  easing: "easeInOutSine", // アニメーションの滑らかさを向上させるイージング関数
+  keyframes: [
+    { translateX: -10, translateY: -10 },
+    { translateX: 10, translateY: 10 },
+    { translateX: -20, translateY: -20 },
+    { translateX: 20, translateY: 20 },
+    { translateX: 0, translateY: 0 },
+    { translateX: 15, translateY: -15 },
+    { translateX: -15, translateY: 15 },
+    { translateX: 0, translateY: 0 },
+  ],
+  loop: true,
+  duration: 16000, // キーフレームの動作を滑らかにするための全体の期間を調整
+});
 
-// });
 
-// 修正閉じ
+
 
 // app固定用
 function adjustElementPosition() {
@@ -555,10 +522,6 @@ window.addEventListener("load", adjustElementPosition);
 window.addEventListener("resize", adjustElementPosition);
 
 /**
- *
- *
- *
- *
  *
  * fvアニメーション
  */
@@ -776,114 +739,7 @@ window.addEventListener("resize", adjustElementPosition);
 
   };
 
-  // TiltSlider.prototype._showItem = function (pos) {
-  //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
-
-  //   this.isAnimating = true;
-
-  //   var currentItem = this.items[this.current]; // 現在のアイテム
-  //   var nextItem = this.items[pos]; // 次に表示するアイテム
-
-  //   if (!currentItem || !nextItem) {
-  //     this.isAnimating = false;
-  //     return;
-  //   }
-
-  //   // スライドの範囲を超えていないかチェックし、必要に応じてリセット
-  //   if (pos >= this.itemsCount) {
-  //     pos = 0;
-  //     nextItem = this.items[pos]; // posのリセット後にnextItemを更新
-  //   }
-
-  //   var self = this;
-  //   var outEffect = "slideRightOut";
-  //   var inEffect = "slideRightIn";
-
-  //   currentItem.setAttribute("data-effect-out", outEffect);
-  //   nextItem.setAttribute("data-effect-in", inEffect);
-
-  //   // アニメーション終了時の処理
-  //   var onEndAnimationCurrentItem = () => {
-  //     currentItem.removeEventListener(
-  //       animEndEventName,
-  //       onEndAnimationCurrentItem
-  //     );
-  //     currentItem.classList.remove("hide");
-  //     nextItem.classList.add("show");
-  //   };
-
-  //   var onEndAnimationNextItem = function () {
-  //     nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-  //     nextItem.classList.remove("show");
-  //     nextItem.classList.add("current");
-  //     self.isAnimating = false;
-  //     // ここで他の必要な処理を行う
-  //   };
-
-  //   // アニメーション終了イベントリスナーを設定
-  //   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-  //   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
-
-  //   // アニメーションを開始するためのクラスを適用
-  //   currentItem.classList.add("hide");
-  //   // 次のアイテムへのアニメーションクラスの適用は、
-
-  //   this.current = pos; // 現在の位置を更新
-  // };
-  // 最後に別ページへ遷移
-  // TiltSlider.prototype._showItem = function (pos) {
-  //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
   
-  //   this.isAnimating = true;
-  
-  //   var currentItem = this.items[this.current]; // 現在のアイテム
-  //   var nextItem = this.items[pos]; // 次に表示するアイテム
-  
-  //   if (!currentItem || !nextItem) {
-  //     this.isAnimating = false;
-  //     return;
-  //   }
-  
-  //   // スライドの範囲を超えていないかチェックし、必要に応じてリセット
-  //   if (pos >= this.itemsCount) {
-  //     pos = 0;
-  //     nextItem = this.items[pos]; // posのリセット後にnextItemを更新
-  //   }
-  
-  //   var self = this;
-  //   var outEffect = "slideRightOut";
-  //   var inEffect = "slideRightIn";
-  
-  //   currentItem.setAttribute("data-effect-out", outEffect);
-  //   nextItem.setAttribute("data-effect-in", inEffect);
-  
-  //   // アニメーション終了時の処理
-  //   var onEndAnimationCurrentItem = () => {
-  //     currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
-  //     currentItem.classList.remove("hide");
-  //     nextItem.classList.add("show");
-  //   };
-  
-  //   var onEndAnimationNextItem = function () {
-  //     nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-  //     nextItem.classList.remove("show");
-  //     nextItem.classList.add("current");
-  //     self.isAnimating = false;
-      
-  //     // 最後のスライドの後にページ遷移する処理
-  //     if (pos === self.itemsCount - 1) {
-  //       window.location.href = '../top.html'; // ここに遷移させたいページのURLを指定
-  //     }
-  //   };
-  
-  //   // アニメーション終了イベントリスナーを設定
-  //   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-  //   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
-  
-  //   currentItem.classList.add("hide"); // アニメーションを開始するためのクラスを適用
-  
-  //   this.current = pos; // 現在の位置を更新
-  // };
 
   // _showItem メソッドの改修版
 TiltSlider.prototype._showItem = function(pos) {
@@ -1008,64 +864,115 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // 流体アニメーションfv
-// 流体アニメーション設定値
-const randomness = 300, // 振れ幅（例：90の場合は0〜90の値になる）
-  threshold = 500; // しきい値
-// 流体アニメーション関数を定義
-// const fluid = function () {
-//   // animate関数を使用
-//   $(".bl_bubble_img").animate(
-//     {
-//       borderTopLeftRadius: String(
-//         Math.round(Math.random() * randomness + threshold) + "px"
-//       ),
-//       borderTopRightRadius: String(
-//         Math.round(Math.random() * randomness + threshold) + "px"
-//       ),
-//       borderBottomLeftRadius: String(
-//         Math.round(Math.random() * randomness + threshold) + "px"
-//       ),
-//       borderBottomRightRadius: String(
-//         Math.round(Math.random() * randomness + threshold) + "px"
-//       ),
-//       // borderWidth: String(Math.round(Math.random() * borderRandomness + borderThreshold) + "px"),
-//     },
-//     {
-//       duration: 800,
-//       easing: "easeInOutQuad", // より滑らかな動きに
-//       complete: fluid,
-//     }
-//   );
-// };
-// cssの方がなめらか？
-function fluid() {
-  $(".bl_bubble_img").css({
-    borderTopLeftRadius: Math.round(Math.random() * randomness + threshold) + "px",
-    borderTopRightRadius: Math.round(Math.random() * randomness + threshold) + "px",
-    borderBottomLeftRadius: Math.round(Math.random() * randomness + threshold) + "px",
-    borderBottomRightRadius: Math.round(Math.random() * randomness + threshold) + "px",
-  });
+// document.addEventListener("DOMContentLoaded", () => {
+//   const dynamicImage = document.querySelector(".bl_bubble");
+//   let time = 0;
 
-  setTimeout(fluid, 800); // 800ミリ秒ごとに再帰的に実行
-}
-// requestAnimationFrameを使用
-// function fluid() {
-//   // バブルの枠に合わせてスタイルを変更
-//   $(".bl_bubble_img").css({
-//     borderTopLeftRadius: Math.round(Math.random() * randomness + threshold) + "px",
-//     borderTopRightRadius: Math.round(Math.random() * randomness + threshold) + "px",
-//     borderBottomLeftRadius: Math.round(Math.random() * randomness + threshold) + "px",
-//     borderBottomRightRadius: Math.round(Math.random() * randomness + threshold) + "px",
-//   });
+//   function animate() {
+//       requestAnimationFrame(animate);
 
-//   // 次のフレームでこの関数を再度実行
-//   window.requestAnimationFrame(fluid);
-// }
+//       // スケールとborder-radiusの変化
+//       const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.25 + 0.75;
+//       const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50;
+//       const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
+//       const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
+//       const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
 
-// window.requestAnimationFrame(fluid);
+//       // ボーダーの太さを動的に変化させる
+//       // ボーダーの太さを動的に変化させる
+// const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 40 + 10; // 10pxから50pxの間で変化
 
+//       // スタイルを適用
+//       dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+//       dynamicImage.style.transform = `scale(${scale})`;
+//       dynamicImage.style.borderWidth = `${borderWidth}px`;
 
+//       time += 0.002;
+//   }
 
-// 流体アニメーション関数を実行
-fluid();
+//   animate();
+// });
 
+// document.addEventListener("DOMContentLoaded", () => {
+//   const dynamicImage = document.querySelector(".bl_bubble");
+//   let time = 0;
+
+//   function animate() {
+//       requestAnimationFrame(animate);
+
+//       // スケールとborder-radiusの変化
+//       const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.45 + 0.75; // 0.75から1.2の間で変化
+//       const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50;
+//       const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
+//       const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
+//       const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
+
+//       // ボーダーの太さを動的に変化させる
+//       const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 40 + 10; // 10pxから50pxの間で変化
+
+//       // スタイルを適用
+//       dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+//       dynamicImage.style.transform = `scale(${scale})`;
+//       dynamicImage.style.borderWidth = `${borderWidth}px`;
+
+//       time += 0.002;
+//   }
+
+//   animate();
+// });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const dynamicImage = document.querySelector(".bl_bubble");
+//   const bubbleImage = dynamicImage.querySelector(".bl_bubble_img");
+//   let time = 0;
+
+//   function animate() {
+//       requestAnimationFrame(animate);
+
+//       const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.45 + 0.75; // 0.75から1.2の間で変化
+//       const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50;
+//       const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
+//       const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
+//       const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
+//       const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 40 + 10; // 10pxから50pxの間で変化
+
+//       dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+//       dynamicImage.style.transform = `scale(${scale})`;
+//       dynamicImage.style.borderWidth = `${borderWidth}px`;
+
+//       const inverseScale = 1 / scale;
+//       bubbleImage.style.transform = `scale(${inverseScale})`;
+
+//       time += 0.002;
+//   }
+
+//   animate();
+// });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const dynamicImage = document.querySelector(".bl_bubble");
+  const bubbleImage = dynamicImage.querySelector(".bl_bubble_scale");
+  let time = 0;
+
+  function animate() {
+      requestAnimationFrame(animate);
+
+      const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.45 + 0.75;
+      const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50;
+      const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
+      const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
+      const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
+      const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 40 + 10; 
+
+      dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+      dynamicImage.style.transform = `scale(${scale})`;
+      dynamicImage.style.borderWidth = `${borderWidth}px`;
+
+      const inverseScale = 1 / scale;
+      bubbleImage.style.transform = `scale(${inverseScale})`;
+
+      time += 0.002;
+  }
+
+  animate();
+});
