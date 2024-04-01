@@ -396,94 +396,6 @@ meter {
     border-radius: 50% 50% 50% 50%/50% 30% 70% 50%;
   }
 }
-@-webkit-keyframes fvFluidanimation {
-  0%, 100% {
-    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
-  }
-  7% {
-    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
-  }
-  14% {
-    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
-  }
-  21% {
-    border-radius: 47% 53% 46% 54%/52% 58% 42% 48%;
-  }
-  28% {
-    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
-  }
-  35% {
-    border-radius: 57% 43% 47% 53%/55% 65% 35% 45%;
-  }
-  42% {
-    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
-  }
-  49% {
-    border-radius: 61% 39% 61% 39%/67% 44% 56% 33%;
-  }
-  56% {
-    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
-  }
-  63% {
-    border-radius: 55% 45% 55% 45%/60% 54% 46% 40%;
-  }
-  70% {
-    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
-  }
-  77% {
-    border-radius: 48% 52% 58% 42%/53% 59% 41% 47%;
-  }
-  84% {
-    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
-  }
-  91% {
-    border-radius: 54% 46% 52% 48%/55% 63% 37% 45%;
-  }
-}
-@keyframes fvFluidanimation {
-  0%, 100% {
-    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
-  }
-  7% {
-    border-radius: 50% 50% 50% 50%/50% 50% 50% 50%;
-  }
-  14% {
-    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
-  }
-  21% {
-    border-radius: 47% 53% 46% 54%/52% 58% 42% 48%;
-  }
-  28% {
-    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
-  }
-  35% {
-    border-radius: 57% 43% 47% 53%/55% 65% 35% 45%;
-  }
-  42% {
-    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
-  }
-  49% {
-    border-radius: 61% 39% 61% 39%/67% 44% 56% 33%;
-  }
-  56% {
-    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
-  }
-  63% {
-    border-radius: 55% 45% 55% 45%/60% 54% 46% 40%;
-  }
-  70% {
-    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
-  }
-  77% {
-    border-radius: 48% 52% 58% 42%/53% 59% 41% 47%;
-  }
-  84% {
-    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
-  }
-  91% {
-    border-radius: 54% 46% 52% 48%/55% 63% 37% 45%;
-  }
-}
 .fade_out {
   -webkit-animation: fadeOut 1s ease-out forwards;
           animation: fadeOut 1s ease-out forwards;
@@ -751,8 +663,8 @@ meter {
 
 /* descriptionのフェードインアウト */
 .description {
-  -webkit-transition: opacity 0.8s;
-  transition: opacity 0.8s;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 }
 
 .current .description,
@@ -774,44 +686,40 @@ meter {
 
 @-webkit-keyframes slideRightOut {
   25% {
-    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
-            animation-timing-function: cubic-bezier(1, 0, 0, 1);
-    -webkit-transform: translateX(-30px);
-            transform: translateX(-30px);
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
   }
   100% {
-    -webkit-transform: translate(3000px, -1000px);
-            transform: translate(3000px, -1000px);
+    -webkit-transform: translate(1500px, -500px);
+            transform: translate(1500px, -500px);
   }
 }
 
 @keyframes slideRightOut {
   25% {
-    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
-            animation-timing-function: cubic-bezier(1, 0, 0, 1);
-    -webkit-transform: translateX(-30px);
-            transform: translateX(-30px);
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
   }
   100% {
-    -webkit-transform: translate(3000px, -1000px);
-            transform: translate(3000px, -1000px);
+    -webkit-transform: translate(1500px, -500px);
+            transform: translate(1500px, -500px);
   }
 }
 .show[data-effect-in=slideRightIn] .tiltview .bl_bubble {
-  -webkit-animation: slideRightIn 0.8s 0.5s both;
-          animation: slideRightIn 0.8s 0.5s both;
+  -webkit-animation: slideRightIn 0.5s both;
+          animation: slideRightIn 0.5s both;
 }
 
 @-webkit-keyframes slideRightIn {
   0% {
-    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
-            animation-timing-function: cubic-bezier(1, 0, 0, 1);
-    -webkit-transform: translate(-5000px, 2500px);
-            transform: translate(-5000px, 2500px);
-  }
-  75% {
-    -webkit-transform: translateX(30px);
-            transform: translateX(30px);
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-transform: translate(-1250px, 625px);
+            transform: translate(-1250px, 625px);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -821,14 +729,10 @@ meter {
 
 @keyframes slideRightIn {
   0% {
-    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
-            animation-timing-function: cubic-bezier(1, 0, 0, 1);
-    -webkit-transform: translate(-5000px, 2500px);
-            transform: translate(-5000px, 2500px);
-  }
-  75% {
-    -webkit-transform: translateX(30px);
-            transform: translateX(30px);
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-transform: translate(-1250px, 625px);
+            transform: translate(-1250px, 625px);
   }
   100% {
     -webkit-transform: translateX(0);
@@ -836,14 +740,6 @@ meter {
   }
 }
 /* Fallback for no 3D Transforms and no preserve-3d */
-.no-csstransformspreserve3d .show .tiltview .bl_bubble,
-.no-csstransformspreserve3d .hide .tiltview .bl_bubble,
-.no-csstransforms3d .show .tiltview .bl_bubble,
-.no-csstransforms3d .hide .tiltview .bl_bubble {
-  -webkit-animation: none !important;
-          animation: none !important;
-}
-
 .no-csstransforms3d .tiltview.col {
   top: -50%;
 }
@@ -852,6 +748,7 @@ meter {
   top: 20px;
 }
 
+/* 初期状態で非表示にするスタイル */
 .hp_pl5 {
   padding-left: 5%;
 }
@@ -2591,6 +2488,8 @@ a:hover {
   position: absolute;
   top: 11vh;
   left: 54vw;
+  z-index: 1000;
+  visibility: visible;
 }
 @media screen and (max-width: 1024px) and (min-height: 850px) {
   .bl_bubble_box {
@@ -2627,6 +2526,9 @@ a:hover {
   -o-object-fit: cover;
      object-fit: cover;
   margin-top: 45px;
+}
+.bl_bubble_img_2, .bl_bubble_img_3 {
+  margin-top: initial;
 }
 
 .bl_fvShape {

@@ -1759,6 +1759,8 @@
   position: absolute;
   top: 11vh;
   left: 54vw;
+  z-index: 1000;
+  visibility: visible;
 
   @media screen and (max-width: 1024px) and (min-height: 850px) {
     top: 15vh;
@@ -1791,6 +1793,10 @@
   // height: auto;
   object-fit: cover;
   margin-top: 45px;
+
+  &_2, &_3 {
+    margin-top: initial;
+  }
 }
 
 

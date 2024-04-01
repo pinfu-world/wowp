@@ -256,52 +256,49 @@
 const modal = document.querySelector(".bl_videoModal");
 
 if (modal) {
-    // モーダルを開くボタンを取得
-    const btn = document.querySelector(".bl_videoBlock_link");
+  // モーダルを開くボタンを取得
+  const btn = document.querySelector(".bl_videoBlock_link");
 
-    // モーダルを閉じる<span>要素を取得
-    const span = document.querySelector(".bl_videoModal_closeBtn");
+  // モーダルを閉じる<span>要素を取得
+  const span = document.querySelector(".bl_videoModal_closeBtn");
 
-    // ビデオ要素を取得
-    const video = modal.querySelector("video");
+  // ビデオ要素を取得
+  const video = modal.querySelector("video");
 
-    if (btn && span && video) {
-        // ボタンをクリックするとモーダルを表示し、ビデオを再生
-        btn.addEventListener("click", (event) => {
-            event.preventDefault(); // デフォルトの動作（リンクの遷移など）をキャンセル
-            modal.style.display = "block";
-            setTimeout(() => {
-                modal.classList.add("is_show"); // 少し遅らせて.showクラスを追加
-                video.play(); // ビデオを再生
-            }, 10); // DOMが更新されるのを待つために微小な遅延を設ける
-        });
+  if (btn && span && video) {
+    // ボタンをクリックするとモーダルを表示し、ビデオを再生
+    btn.addEventListener("click", (event) => {
+      event.preventDefault(); // デフォルトの動作（リンクの遷移など）をキャンセル
+      modal.style.display = "block";
+      setTimeout(() => {
+        modal.classList.add("is_show"); // 少し遅らせて.showクラスを追加
+        video.play(); // ビデオを再生
+      }, 10); // DOMが更新されるのを待つために微小な遅延を設ける
+    });
 
-        // <span> (x) またはモーダルの外側をクリックするとモーダルを閉じ、ビデオを停止
-        const closeModal = () => {
-            modal.classList.remove('is_show'); // .showクラスを削除してフェードアウト
-            setTimeout(() => {
-                modal.style.display = "none"; // 完全に非表示にする
-                video.pause(); // ビデオの再生を停止
-                video.currentTime = 0; // ビデオを最初から再開するために時間をリセット
-            }, 500); // アニメーションの時間に合わせて遅延を設ける
-        };
+    // <span> (x) またはモーダルの外側をクリックするとモーダルを閉じ、ビデオを停止
+    const closeModal = () => {
+      modal.classList.remove("is_show"); // .showクラスを削除してフェードアウト
+      setTimeout(() => {
+        modal.style.display = "none"; // 完全に非表示にする
+        video.pause(); // ビデオの再生を停止
+        video.currentTime = 0; // ビデオを最初から再開するために時間をリセット
+      }, 500); // アニメーションの時間に合わせて遅延を設ける
+    };
 
-        span.onclick = closeModal;
+    span.onclick = closeModal;
 
-        window.onclick = (event) => {
-            if (event.target == modal) {
-                closeModal();
-            }
-        };
-    } else {
-        console.error("Some elements are missing");
-    }
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        closeModal();
+      }
+    };
+  } else {
+    console.error("Some elements are missing");
+  }
 } else {
-    // console.error("Modal element is missing");
+  // console.error("Modal element is missing");
 }
-
-
-
 
 // グローバルナビ
 document.addEventListener("DOMContentLoaded", function () {
@@ -472,7 +469,7 @@ document.body.addEventListener("mousemove", (e) => {
 
 // anime({
 //   targets: ".bl_bubble img",
-//   easing: "ease-in-out", 
+//   easing: "ease-in-out",
 //   keyframes: [
 //     { translateX: -10, translateY: -10, duration: 2000 },
 //     { translateX: 10, translateY: 10, duration: 2000 },
@@ -505,9 +502,6 @@ anime({
   duration: 16000, // キーフレームの動作を滑らかにするための全体の期間を調整
 });
 
-
-
-
 // app固定用
 function adjustElementPosition() {
   const element = document.querySelector(".your-fixed-element");
@@ -535,6 +529,544 @@ window.addEventListener("resize", adjustElementPosition);
  * Copyright 2014, Codrops
  * http://www.codrops.com
  */
+// (function (window) {
+//   "use strict";
+
+//   // ページにid="fv"が存在するかどうかをチェック
+//   var fvElement = document.getElementById("fv");
+//   if (!fvElement) {
+//     // id="fv"がない場合は、これ以降のコードを実行しない
+//     return;
+//   }
+
+//   Modernizr.addTest("csstransformspreserve3d", function () {
+//     var prop = Modernizr.prefixed("transformStyle");
+//     var val = "preserve-3d";
+//     var computedStyle;
+//     if (!prop) return false;
+
+//     prop = prop
+//       .replace(/([A-Z])/g, function (str, m1) {
+//         return "-" + m1.toLowerCase();
+//       })
+//       .replace(/^ms-/, "-ms-");
+
+//     Modernizr.testStyles(
+//       "#modernizr{" + prop + ":" + val + ";}",
+//       function (el, rule) {
+//         computedStyle = window.getComputedStyle
+//           ? getComputedStyle(el, null).getPropertyValue(prop)
+//           : "";
+//       }
+//     );
+
+//     return computedStyle === val;
+//   });
+
+//   var support = {
+//       animations: Modernizr.cssanimations,
+//       preserve3d: Modernizr.csstransformspreserve3d,
+//       transforms3d: Modernizr.csstransforms3d,
+//     },
+//     isSupported =
+//       support.animations && support.preserve3d && support.transforms3d,
+//     animEndEventNames = {
+//       WebkitAnimation: "webkitAnimationEnd",
+//       OAnimation: "oAnimationEnd",
+//       msAnimation: "MSAnimationEnd",
+//       animation: "animationend",
+//     },
+//     // animation end event name
+//     animEndEventName = animEndEventNames[Modernizr.prefixed("animation")];
+
+//   function extend(a, b) {
+//     for (var key in b) {
+//       if (b.hasOwnProperty(key)) {
+//         a[key] = b[key];
+//       }
+//     }
+//     return a;
+//   }
+
+//   document.addEventListener("DOMContentLoaded", function () {
+//     var el = document.querySelector("#slideshow");
+//     if (el) {
+//       var tiltSlider = new TiltSlider(el); // ここで TiltSlider のインスタンスを作成
+//       tiltSlider._initEvents(); // インスタンスに対して initEvents メソッドを直接呼び出す
+//     } else {
+//     }
+//   });
+
+//   function TiltSlider(el, options) {
+//     this.el = el;
+//     // available effects for the animations (animation class names) - when a item comes in / out
+//     this.animEffectsOut = ["slideRightOut"];
+//     this.animEffectsIn = ["slideRightIn"];
+
+//     // the items olの子のliを取得
+//     this.items = this.el.querySelector("ol.slides").children;
+
+//     // total items
+//     this.itemsCount = this.items.length;
+//     if (!this.itemsCount) return;
+
+//     // index of the current item
+//     this.current = 0;
+//     this.options = extend({}, this.options);
+//     extend(this.options, options);
+//     this._init();
+//   }
+
+//   TiltSlider.prototype.options = {};
+
+//   TiltSlider.prototype._init = function () {
+//     // this._addNavigation();
+//     this._initEvents();
+//     this._initScrollEvents(); // スクロールイベントの初期化
+//     this._initDragEvents(); // ドラッグイベントの初期化
+//   };
+
+//   TiltSlider.prototype._initScrollEvents = function () {
+//     let lastTime = 0;
+
+//     window.addEventListener("wheel", (e) => {
+//       const currentTime = Date.now();
+//       if (currentTime - lastTime < 1200) {
+//         // 短時間の連続スクロールを無視
+//         return;
+//       }
+
+//       this._showItem(this.current + 1); // スクロール方向に関わらず次のスライドへ
+
+//       lastTime = currentTime; // 最後のスクロール時間を更新
+//     });
+//   };
+
+//   TiltSlider.prototype._initDragEvents = function () {
+//     var self = this,
+//       startX;
+
+//     this.el.addEventListener("mousedown", function (e) {
+//       startX = e.pageX;
+//       self.isDragging = true;
+//     });
+
+//     window.addEventListener("mousemove", function (e) {
+//       if (!self.isDragging) return;
+//     });
+
+//     window.addEventListener("mouseup", function (e) {
+//       if (!self.isDragging) return;
+//       self.isDragging = false;
+
+//       if (Math.abs(startX - e.pageX) > 100) {
+//         // ドラッグ距離が100pxを超えた場合
+//         if (self.current === self.itemsCount - 1) {
+//           // 最後のスライドであるかチェック
+//           document.body.classList.add("fade_out"); // フェードアウトアニメーションを<body>に適用
+//           // 'animationend' イベントを<body>に設定
+//           document.body.addEventListener(
+//             "animationend",
+//             function () {
+//               window.location.href = "../top.html"; // アニメーション完了後に遷移
+//             },
+//             { once: true }
+//           );
+//         } else {
+//           var newPos = self.current + 1;
+//           self._showItem(newPos);
+//         }
+//       }
+//     });
+//   };
+
+//   TiltSlider.prototype._initTouchEvents = function () {
+//     let startX = 0; // タッチ開始のX座標
+//     let startY = 0; // タッチ開始のY座標
+//     let moveX = 0; // タッチ移動時のX座標
+//     let moveY = 0; // タッチ移動時のY座標
+
+//     this.el.addEventListener("touchstart", (e) => {
+//       startX = e.touches[0].pageX;
+//       startY = e.touches[0].pageY;
+//     });
+
+//     this.el.addEventListener("touchmove", (e) => {
+//       moveX = e.touches[0].pageX;
+//       moveY = e.touches[0].pageY;
+//     });
+
+//     this.el.addEventListener("touchend", (e) => {
+//       const deltaX = moveX - startX;
+//       const deltaY = moveY - startY;
+
+//       // スワイプの方向を検出（左右のみ）
+//       if (Math.abs(deltaX) > Math.abs(deltaY)) {
+//         // 水平方向の移動がより大きい
+//         if (deltaX > 50) {
+//           // 右にスワイプ
+//           this._showItem(this.current - 1); // 前のアイテムを表示
+//         } else if (deltaX < -50) {
+//           // 左にスワイプ
+//           this._showItem(this.current + 1); // 次のアイテムを表示
+//         }
+//       }
+//     });
+//   };
+
+//   // add the navigation to the DOM　ナビ
+//   TiltSlider.prototype._addNavigation = function () {
+//     // // add nav "dots"
+//     // this.nav = document.createElement("nav");
+//     // var inner = "";
+//     // for (var i = 0; i < this.itemsCount; ++i) {
+//     //   inner += i === 0 ? '<span class="current"></span>' : "<span></span>";
+//     // }
+//     // this.nav.innerHTML = inner;
+//     // this.el.appendChild(this.nav);
+//     // this.navDots = [].slice.call(this.nav.children);
+//   };
+
+//   TiltSlider.prototype._initEvents = function () {};
+
+//   // _showItem メソッドの改修版
+//   // TiltSlider.prototype._showItem = function(pos) {
+//   //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+
+//   //   this.isAnimating = true;
+
+//   //   var currentItem = this.items[this.current];
+//   //   var nextItem = this.items[pos];
+
+//   //   if (!currentItem || !nextItem) {
+//   //     this.isAnimating = false;
+//   //     return;
+//   //   }
+
+//   //   if (pos >= this.itemsCount) {
+//   //     pos = 0;
+//   //     nextItem = this.items[pos];
+//   //   }
+
+//   //   var self = this;
+//   //   currentItem.setAttribute("data-effect-out", "slideRightOut");
+//   //   nextItem.setAttribute("data-effect-in", "slideRightIn");
+
+//   //   var onEndAnimationCurrentItem = function() {
+//   //     currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
+//   //     currentItem.classList.remove("hide");
+//   //     nextItem.classList.add("show");
+//   //   };
+
+//   //   var onEndAnimationNextItem = function() {
+//   //     nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
+//   //     nextItem.classList.remove("show");
+//   //     nextItem.classList.add("current");
+//   //     self.isAnimating = false;
+
+//   //     // 最後のスライドの後にページ遷移する処理
+//   //     if (pos === self.itemsCount - 1) {
+//   //       self._setupTransitionEventsForLastSlide(); // 最後のスライドでのイベントリスナーを設定
+//   //     }
+//   //   };
+
+//   //   // アニメーション終了イベントリスナーを設定
+//   //   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
+//   //   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
+
+//   //   currentItem.classList.add("hide");
+//   //   nextItem.classList.remove("current");
+
+//   //   this.current = pos; // 現在の位置を更新
+//   // };
+
+//   /**
+//    * showitem gsap使用
+//    */
+//   // TiltSlider.prototype._showItem = function (pos) {
+//   //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+
+//   //   this.isAnimating = true;
+//   //   var currentItem = this.items[this.current];
+//   //   var nextItem = this.items[pos];
+
+//   //   if (!currentItem || !nextItem) {
+//   //     this.isAnimating = false;
+//   //     return;
+//   //   }
+
+//   //   if (pos >= this.itemsCount) {
+//   //     pos = 0; // 循環させる場合
+//   //     nextItem = this.items[pos];
+//   //   }
+
+//   //   var self = this;
+//   //   // currentItemのスライドアウトアニメーション
+//   //   gsap.to(currentItem, {
+//   //     duration: 1,
+//   //     ease: "ease-in-out",
+//   //     x: 1500,
+//   //     y: -500,
+//   //     onStart: function() {
+//   //       // アニメーション開始時にクラス名を操作
+//   //       currentItem.classList.add("hide");
+//   //       currentItem.setAttribute("data-effect-out", "slideRightOut");
+//   //     },
+//   //     onComplete: function() {
+//   //       currentItem.classList.remove("current");
+//   //       nextItem.classList.add("show");
+//   //     }
+//   //   });
+
+//   //   // // nextItemのスライドインアニメーション
+//   //   gsap.from(nextItem, {
+//   //     duration: 1,
+//   //     ease: "ease-in-out",
+//   //     x: -1250,
+//   //     y: 625,
+//   //     onStart: function() {
+//   //       // アニメーション開始時にクラス名を操作
+//   //       nextItem.setAttribute("data-effect-in", "slideRightIn");
+//   //     },
+//   //     onComplete: function() {
+//   //       nextItem.classList.remove("hide");
+//   //       nextItem.classList.add("current");
+//   //       self.isAnimating = false;
+
+//   //       // 最後のスライドでの追加処理が必要な場合
+//   //       if (pos === self.itemsCount - 1) {
+//   //         self._setupTransitionEventsForLastSlide();
+//   //       }
+//   //     }
+//   //   });
+
+//   //   // currentItemのスライドアウトアニメーションを修正
+//   //   // gsap.to(currentItem.querySelector(".bl_bubble_box.tiltview"), {
+//   //   //   duration: 1,
+//   //   //   ease: "ease-in-out",
+//   //   //   x: 1500,
+//   //   //   y: -500,
+//   //   //   onStart: function () {
+//   //   //     currentItem.classList.add("hide");
+//   //   //     // その他のアニメーション開始時に必要な操作があればここに追加
+//   //   //   },
+//   //   //   onComplete: function () {
+//   //   //     currentItem.classList.remove("current");
+//   //   //     // アニメーション終了時の操作
+//   //   //   },
+//   //   // });
+
+//   //   // アニメーション対象の要素を正しく選択しているか確認
+//   //   // console.log(nextItem.querySelector(".bl_bubble_box.tiltview"));
+
+//   //   // nextItemのスライドインアニメーション
+//   //   // gsap.fromTo(
+//   //   //   nextItem.querySelector(".bl_bubble_box.tiltview"),
+//   //   //   {
+//   //   //     x: -1250, // X座標の開始値
+//   //   //     y: 625, // Y座標の開始値
+//   //   //   },
+//   //   //   {
+//   //   //     x: 0, // X座標の終了値（元の位置に戻る）
+//   //   //     y: 0, // Y座標の終了値（Y方向の移動はないため、0に戻す）
+//   //   //     duration: 1, // アニメーションの持続時間
+//   //   //     ease: "ease-in-out", // イージング関数
+//   //   //     onComplete: function () {
+//   //   //       nextItem.classList.add("current");
+//   //   //       self.isAnimating = false;
+//   //   //       // 最後のスライドでの追加処理が必要な場合
+//   //   //       console.log("Animation completed");
+//   //   //     },
+//   //   //   }
+//   //   // );
+
+//   //   this.current = pos; // 現在の位置を更新
+//   // };
+
+//   // TiltSlider.prototype._showItem = function (pos) {
+//   //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+
+//   //   this.isAnimating = true;
+//   //   var currentItem = this.items[this.current];
+//   //   var nextItem = this.items[pos];
+
+//   //   if (!currentItem || !nextItem) {
+//   //     this.isAnimating = false;
+//   //     return;
+//   //   }
+
+//   //   if (pos >= this.itemsCount) {
+//   //     pos = 0; // 循環させる場合
+//   //     nextItem = this.items[pos];
+//   //   }
+
+//   //   var self = this;
+//   //   // currentItemのスライドアウトアニメーション
+//   //   // gsap.to(currentItem, {
+//   //   //   duration: 1,
+//   //   //   ease: "ease-in-out",
+//   //   //   x: 1500,
+//   //   //   y: -500,
+//   //   //   onStart: function() {
+//   //   //     // アニメーション開始時にクラス名を操作
+//   //   //     currentItem.classList.add("hide");
+//   //   //     currentItem.setAttribute("data-effect-out", "slideRightOut");
+//   //   //   },
+//   //   //   onComplete: function() {
+//   //   //     currentItem.classList.remove("current");
+//   //   //     nextItem.classList.add("show");
+//   //   //   }
+//   //   // });
+
+//   //   // // nextItemのスライドインアニメーション
+//   //   // gsap.from(nextItem, {
+//   //   //   duration: 1,
+//   //   //   ease: "ease-in-out",
+//   //   //   x: -1250,
+//   //   //   y: 625,
+//   //   //   onStart: function() {
+//   //   //     // アニメーション開始時にクラス名を操作
+//   //   //     nextItem.setAttribute("data-effect-in", "slideRightIn");
+//   //   //   },
+//   //   //   onComplete: function() {
+//   //   //     nextItem.classList.remove("hide");
+//   //   //     nextItem.classList.add("current");
+//   //   //     self.isAnimating = false;
+
+//   //   //     // 最後のスライドでの追加処理が必要な場合
+//   //   //     if (pos === self.itemsCount - 1) {
+//   //   //       self._setupTransitionEventsForLastSlide();
+//   //   //     }
+//   //   //   }
+//   //   // });
+
+//   //   // currentItemのスライドアウトアニメーションを修正
+//   //   gsap.to(currentItem.querySelector(".bl_bubble_box.tiltview"), {
+//   //     duration: 1,
+//   //     ease: "ease-in-out",
+//   //     x: 1500,
+//   //     y: -500,
+//   //     onStart: function () {
+//   //       currentItem.classList.add("hide");
+//   //       // その他のアニメーション開始時に必要な操作があればここに追加
+//   //     },
+//   //     onComplete: function () {
+//   //       currentItem.classList.remove("current");
+//   //       // アニメーション終了時の操作
+//   //     },
+//   //   });
+
+//   //   // アニメーション対象の要素を正しく選択しているか確認
+//   //   console.log(nextItem.querySelector(".bl_bubble_box.tiltview"));
+
+//   //   // nextItemのスライドインアニメーション
+//   //   gsap.fromTo(
+//   //     nextItem.querySelector(".bl_bubble_box.tiltview"),
+//   //     {
+//   //       x: -1250, // X座標の開始値
+//   //       y: 625, // Y座標の開始値
+//   //     },
+//   //     {
+//   //       x: 0, // X座標の終了値（元の位置に戻る）
+//   //       y: 0, // Y座標の終了値（Y方向の移動はないため、0に戻す）
+//   //       duration: 1, // アニメーションの持続時間
+//   //       ease: "ease-in-out", // イージング関数
+//   //       onComplete: function () {
+//   //         nextItem.classList.add("current");
+//   //         self.isAnimating = false;
+//   //         // 最後のスライドでの追加処理が必要な場合
+//   //         console.log("Animation completed");
+//   //       },
+//   //     }
+//   //   );
+
+//   //   this.current = pos; // 現在の位置を更新
+//   // };
+
+//   /**
+//    * 別のアプローチ
+//    */
+//   TiltSlider.prototype._showItem = function(pos) {
+//     if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+  
+//     this.isAnimating = true;
+//     var currentItem = this.items[this.current];
+//     var nextItem = this.items[pos];
+  
+//     if (!currentItem || !nextItem) {
+//       this.isAnimating = false;
+//       return;
+//     }
+  
+//     var self = this;
+//     // スライドアウトアニメーション
+//     gsap.to(currentItem.querySelector(".bl_bubble_box.tiltview"), {
+//       duration: 1,
+//       ease: "ease-in-out",
+//       x: 1500,
+//       y: -500,
+//       onStart: function() {
+//         currentItem.classList.add("hide");
+//       },
+//       onComplete: function() {
+//         currentItem.classList.remove("current", "show");
+//         currentItem.classList.add("hide"); // 非表示に設定
+//       }
+//     });
+  
+//     // スライドインアニメーション
+//     gsap.fromTo(nextItem.querySelector(".bl_bubble_box.tiltview"), {
+//       x: -1250,
+//       y: 625
+//     }, {
+//       x: 0,
+//       y: 0,
+//       duration: 1,
+//       ease: "ease-in-out",
+//       onStart: function() {
+//         nextItem.classList.remove("hide");
+//       },
+//       onComplete: function() {
+//         nextItem.classList.add("current");
+//         nextItem.classList.remove("show", "hide"); // 必要に応じて調整
+//         self.isAnimating = false;
+//       }
+//     });
+  
+//     this.current = pos; // 現在の位置を更新
+//   };
+  
+
+
+
+
+//   TiltSlider.prototype._setupTransitionEventsForLastSlide = function () {
+//     var self = this;
+
+//     // スクロールによるページ遷移のトリガー
+//     var handleScrollToTransition = function (event) {
+//       window.removeEventListener("wheel", handleScrollToTransition); // 一度のスクロールで1回だけ発火
+//       window.location.href = "../top.html"; // ここに遷移先のURLを設定
+//     };
+
+//     // ドラッグ（マウスまたはタッチ操作）によるページ遷移のトリガー
+//     var handleDragEndToTransition = function (event) {
+//       window.removeEventListener("mouseup", handleDragEndToTransition);
+//       window.removeEventListener("touchend", handleDragEndToTransition); // 一度のドラッグで1回だけ発火
+//       window.location.href = "../top.html"; // ここに遷移先のURLを設定
+//     };
+
+//     // イベントリスナーを追加
+//     window.addEventListener("wheel", handleScrollToTransition);
+//     window.addEventListener("mouseup", handleDragEndToTransition);
+//     window.addEventListener("touchend", handleDragEndToTransition);
+//   };
+
+//   // add to global namespace
+//   window.TiltSlider = TiltSlider;
+// })(window);
+
+
 (function (window) {
   "use strict";
 
@@ -605,32 +1137,37 @@ window.addEventListener("resize", adjustElementPosition);
 
   function TiltSlider(el, options) {
     this.el = el;
-    // available effects for the animations (animation class names) - when a item comes in / out
     this.animEffectsOut = ["slideRightOut"];
     this.animEffectsIn = ["slideRightIn"];
-
-    // the items olの子のliを取得
     this.items = this.el.querySelector("ol.slides").children;
-
-    // total items
     this.itemsCount = this.items.length;
-    if (!this.itemsCount) return;
-
-    // index of the current item
     this.current = 0;
     this.options = extend({}, this.options);
     extend(this.options, options);
     this._init();
-  }
+}
 
   TiltSlider.prototype.options = {};
 
-  TiltSlider.prototype._init = function () {
-    // this._addNavigation();
+  TiltSlider.prototype._init = function() {
+    // 既存の初期化処理
     this._initEvents();
-    this._initScrollEvents(); // スクロールイベントの初期化
-    this._initDragEvents(); // ドラッグイベントの初期化
-  };
+    this._initScrollEvents();
+    this._initDragEvents();
+    
+    // 2枚目以降のスライドの初期位置を設定
+    this._setPositionForSlides();
+};
+
+TiltSlider.prototype._setPositionForSlides = function() {
+  for (var i = 1; i < this.items.length; i++) {
+      var bubbleBox = this.items[i].querySelector('.bl_bubble_box.tiltview');
+      console.log(bubbleBox); // 対象の要素が正しく選択されているかログ出力
+      if (bubbleBox) {
+          gsap.set(bubbleBox, {x: -1250, y: 625});
+      }
+  }
+};
 
   TiltSlider.prototype._initScrollEvents = function () {
     let lastTime = 0;
@@ -648,45 +1185,43 @@ window.addEventListener("resize", adjustElementPosition);
     });
   };
 
-  TiltSlider.prototype._initDragEvents = function() {
+  TiltSlider.prototype._initDragEvents = function () {
     var self = this,
-        startX;
+      startX;
 
-    this.el.addEventListener("mousedown", function(e) {
-        startX = e.pageX;
-        self.isDragging = true;
+    this.el.addEventListener("mousedown", function (e) {
+      startX = e.pageX;
+      self.isDragging = true;
     });
 
-    window.addEventListener("mousemove", function(e) {
-        if (!self.isDragging) return;
+    window.addEventListener("mousemove", function (e) {
+      if (!self.isDragging) return;
     });
 
-    window.addEventListener("mouseup", function(e) {
-        if (!self.isDragging) return;
-        self.isDragging = false;
+    window.addEventListener("mouseup", function (e) {
+      if (!self.isDragging) return;
+      self.isDragging = false;
 
-        if (Math.abs(startX - e.pageX) > 100) { // ドラッグ距離が100pxを超えた場合
-            if (self.current === self.itemsCount - 1) { // 最後のスライドであるかチェック
-                document.body.classList.add('fade_out'); // フェードアウトアニメーションを<body>に適用
-                // 'animationend' イベントを<body>に設定
-                document.body.addEventListener('animationend', function() {
-                    window.location.href = '../top.html'; // アニメーション完了後に遷移
-                }, { once: true });
-            } else {
-                var newPos = self.current + 1;
-                self._showItem(newPos);
-            }
+      if (Math.abs(startX - e.pageX) > 100) {
+        // ドラッグ距離が100pxを超えた場合
+        if (self.current === self.itemsCount - 1) {
+          // 最後のスライドであるかチェック
+          document.body.classList.add("fade_out"); // フェードアウトアニメーションを<body>に適用
+          // 'animationend' イベントを<body>に設定
+          document.body.addEventListener(
+            "animationend",
+            function () {
+              window.location.href = "../top.html"; // アニメーション完了後に遷移
+            },
+            { once: true }
+          );
+        } else {
+          var newPos = self.current + 1;
+          self._showItem(newPos);
         }
+      }
     });
-};
-
-
-
-
-
-
-
-
+  };
 
   TiltSlider.prototype._initTouchEvents = function () {
     let startX = 0; // タッチ開始のX座標
@@ -735,85 +1270,340 @@ window.addEventListener("resize", adjustElementPosition);
     // this.navDots = [].slice.call(this.nav.children);
   };
 
-  TiltSlider.prototype._initEvents = function () {
-
-  };
-
-  
+  TiltSlider.prototype._initEvents = function () {};
 
   // _showItem メソッドの改修版
-TiltSlider.prototype._showItem = function(pos) {
-  if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+  // TiltSlider.prototype._showItem = function(pos) {
+  //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
 
-  this.isAnimating = true;
+  //   this.isAnimating = true;
 
-  var currentItem = this.items[this.current];
-  var nextItem = this.items[pos];
+  //   var currentItem = this.items[this.current];
+  //   var nextItem = this.items[pos];
 
-  if (!currentItem || !nextItem) {
-    this.isAnimating = false;
-    return;
-  }
+  //   if (!currentItem || !nextItem) {
+  //     this.isAnimating = false;
+  //     return;
+  //   }
 
-  if (pos >= this.itemsCount) {
-    pos = 0;
-    nextItem = this.items[pos];
-  }
+  //   if (pos >= this.itemsCount) {
+  //     pos = 0;
+  //     nextItem = this.items[pos];
+  //   }
 
-  var self = this;
-  currentItem.setAttribute("data-effect-out", "slideRightOut");
-  nextItem.setAttribute("data-effect-in", "slideRightIn");
+  //   var self = this;
+  //   currentItem.setAttribute("data-effect-out", "slideRightOut");
+  //   nextItem.setAttribute("data-effect-in", "slideRightIn");
 
-  var onEndAnimationCurrentItem = function() {
-    currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
-    currentItem.classList.remove("hide");
-    nextItem.classList.add("show");
-  };
+  //   var onEndAnimationCurrentItem = function() {
+  //     currentItem.removeEventListener(animEndEventName, onEndAnimationCurrentItem);
+  //     currentItem.classList.remove("hide");
+  //     nextItem.classList.add("show");
+  //   };
 
-  var onEndAnimationNextItem = function() {
-    nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
-    nextItem.classList.remove("show");
-    nextItem.classList.add("current");
-    self.isAnimating = false;
+  //   var onEndAnimationNextItem = function() {
+  //     nextItem.removeEventListener(animEndEventName, onEndAnimationNextItem);
+  //     nextItem.classList.remove("show");
+  //     nextItem.classList.add("current");
+  //     self.isAnimating = false;
 
-    // 最後のスライドの後にページ遷移する処理
-    if (pos === self.itemsCount - 1) {
-      self._setupTransitionEventsForLastSlide(); // 最後のスライドでのイベントリスナーを設定
-    }
-  };
+  //     // 最後のスライドの後にページ遷移する処理
+  //     if (pos === self.itemsCount - 1) {
+  //       self._setupTransitionEventsForLastSlide(); // 最後のスライドでのイベントリスナーを設定
+  //     }
+  //   };
 
-  // アニメーション終了イベントリスナーを設定
-  currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
-  nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
+  //   // アニメーション終了イベントリスナーを設定
+  //   currentItem.addEventListener(animEndEventName, onEndAnimationCurrentItem);
+  //   nextItem.addEventListener(animEndEventName, onEndAnimationNextItem);
 
-  currentItem.classList.add("hide");
-  nextItem.classList.remove("current");
+  //   currentItem.classList.add("hide");
+  //   nextItem.classList.remove("current");
 
-  this.current = pos; // 現在の位置を更新
-};
+  //   this.current = pos; // 現在の位置を更新
+  // };
+
+  /**
+   * showitem gsap使用
+   */
+  // TiltSlider.prototype._showItem = function (pos) {
+  //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+
+  //   this.isAnimating = true;
+  //   var currentItem = this.items[this.current];
+  //   var nextItem = this.items[pos];
+
+  //   if (!currentItem || !nextItem) {
+  //     this.isAnimating = false;
+  //     return;
+  //   }
+
+  //   if (pos >= this.itemsCount) {
+  //     pos = 0; // 循環させる場合
+  //     nextItem = this.items[pos];
+  //   }
+
+  //   var self = this;
+  //   // currentItemのスライドアウトアニメーション
+  //   gsap.to(currentItem, {
+  //     duration: 1,
+  //     ease: "ease-in-out",
+  //     x: 1500,
+  //     y: -500,
+  //     onStart: function() {
+  //       // アニメーション開始時にクラス名を操作
+  //       currentItem.classList.add("hide");
+  //       currentItem.setAttribute("data-effect-out", "slideRightOut");
+  //     },
+  //     onComplete: function() {
+  //       currentItem.classList.remove("current");
+  //       nextItem.classList.add("show");
+  //     }
+  //   });
+
+  //   // // nextItemのスライドインアニメーション
+  //   gsap.from(nextItem, {
+  //     duration: 1,
+  //     ease: "ease-in-out",
+  //     x: -1250,
+  //     y: 625,
+  //     onStart: function() {
+  //       // アニメーション開始時にクラス名を操作
+  //       nextItem.setAttribute("data-effect-in", "slideRightIn");
+  //     },
+  //     onComplete: function() {
+  //       nextItem.classList.remove("hide");
+  //       nextItem.classList.add("current");
+  //       self.isAnimating = false;
+
+  //       // 最後のスライドでの追加処理が必要な場合
+  //       if (pos === self.itemsCount - 1) {
+  //         self._setupTransitionEventsForLastSlide();
+  //       }
+  //     }
+  //   });
+
+  //   // currentItemのスライドアウトアニメーションを修正
+  //   // gsap.to(currentItem.querySelector(".bl_bubble_box.tiltview"), {
+  //   //   duration: 1,
+  //   //   ease: "ease-in-out",
+  //   //   x: 1500,
+  //   //   y: -500,
+  //   //   onStart: function () {
+  //   //     currentItem.classList.add("hide");
+  //   //     // その他のアニメーション開始時に必要な操作があればここに追加
+  //   //   },
+  //   //   onComplete: function () {
+  //   //     currentItem.classList.remove("current");
+  //   //     // アニメーション終了時の操作
+  //   //   },
+  //   // });
+
+  //   // アニメーション対象の要素を正しく選択しているか確認
+  //   // console.log(nextItem.querySelector(".bl_bubble_box.tiltview"));
+
+  //   // nextItemのスライドインアニメーション
+  //   // gsap.fromTo(
+  //   //   nextItem.querySelector(".bl_bubble_box.tiltview"),
+  //   //   {
+  //   //     x: -1250, // X座標の開始値
+  //   //     y: 625, // Y座標の開始値
+  //   //   },
+  //   //   {
+  //   //     x: 0, // X座標の終了値（元の位置に戻る）
+  //   //     y: 0, // Y座標の終了値（Y方向の移動はないため、0に戻す）
+  //   //     duration: 1, // アニメーションの持続時間
+  //   //     ease: "ease-in-out", // イージング関数
+  //   //     onComplete: function () {
+  //   //       nextItem.classList.add("current");
+  //   //       self.isAnimating = false;
+  //   //       // 最後のスライドでの追加処理が必要な場合
+  //   //       console.log("Animation completed");
+  //   //     },
+  //   //   }
+  //   // );
+
+  //   this.current = pos; // 現在の位置を更新
+  // };
+
+  // TiltSlider.prototype._showItem = function (pos) {
+  //   if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
+
+  //   this.isAnimating = true;
+  //   var currentItem = this.items[this.current];
+  //   var nextItem = this.items[pos];
+
+  //   if (!currentItem || !nextItem) {
+  //     this.isAnimating = false;
+  //     return;
+  //   }
+
+  //   if (pos >= this.itemsCount) {
+  //     pos = 0; // 循環させる場合
+  //     nextItem = this.items[pos];
+  //   }
+
+  //   var self = this;
+  //   // currentItemのスライドアウトアニメーション
+  //   // gsap.to(currentItem, {
+  //   //   duration: 1,
+  //   //   ease: "ease-in-out",
+  //   //   x: 1500,
+  //   //   y: -500,
+  //   //   onStart: function() {
+  //   //     // アニメーション開始時にクラス名を操作
+  //   //     currentItem.classList.add("hide");
+  //   //     currentItem.setAttribute("data-effect-out", "slideRightOut");
+  //   //   },
+  //   //   onComplete: function() {
+  //   //     currentItem.classList.remove("current");
+  //   //     nextItem.classList.add("show");
+  //   //   }
+  //   // });
+
+  //   // // nextItemのスライドインアニメーション
+  //   // gsap.from(nextItem, {
+  //   //   duration: 1,
+  //   //   ease: "ease-in-out",
+  //   //   x: -1250,
+  //   //   y: 625,
+  //   //   onStart: function() {
+  //   //     // アニメーション開始時にクラス名を操作
+  //   //     nextItem.setAttribute("data-effect-in", "slideRightIn");
+  //   //   },
+  //   //   onComplete: function() {
+  //   //     nextItem.classList.remove("hide");
+  //   //     nextItem.classList.add("current");
+  //   //     self.isAnimating = false;
+
+  //   //     // 最後のスライドでの追加処理が必要な場合
+  //   //     if (pos === self.itemsCount - 1) {
+  //   //       self._setupTransitionEventsForLastSlide();
+  //   //     }
+  //   //   }
+  //   // });
+
+  //   // currentItemのスライドアウトアニメーションを修正
+  //   gsap.to(currentItem.querySelector(".bl_bubble_box.tiltview"), {
+  //     duration: 1,
+  //     ease: "ease-in-out",
+  //     x: 1500,
+  //     y: -500,
+  //     onStart: function () {
+  //       currentItem.classList.add("hide");
+  //       // その他のアニメーション開始時に必要な操作があればここに追加
+  //     },
+  //     onComplete: function () {
+  //       currentItem.classList.remove("current");
+  //       // アニメーション終了時の操作
+  //     },
+  //   });
+
+  //   // アニメーション対象の要素を正しく選択しているか確認
+  //   console.log(nextItem.querySelector(".bl_bubble_box.tiltview"));
+
+  //   // nextItemのスライドインアニメーション
+  //   gsap.fromTo(
+  //     nextItem.querySelector(".bl_bubble_box.tiltview"),
+  //     {
+  //       x: -1250, // X座標の開始値
+  //       y: 625, // Y座標の開始値
+  //     },
+  //     {
+  //       x: 0, // X座標の終了値（元の位置に戻る）
+  //       y: 0, // Y座標の終了値（Y方向の移動はないため、0に戻す）
+  //       duration: 1, // アニメーションの持続時間
+  //       ease: "ease-in-out", // イージング関数
+  //       onComplete: function () {
+  //         nextItem.classList.add("current");
+  //         self.isAnimating = false;
+  //         // 最後のスライドでの追加処理が必要な場合
+  //         console.log("Animation completed");
+  //       },
+  //     }
+  //   );
+
+  //   this.current = pos; // 現在の位置を更新
+  // };
+
+  /**
+   * 別のアプローチ
+   */
+  TiltSlider.prototype._showItem = function(pos) {
+    if (this.isAnimating || pos < 0 || pos >= this.itemsCount) return false;
   
-  // 最後のスライドでのページ遷移をトリガーするためのイベントリスナーを設定する
-TiltSlider.prototype._setupTransitionEventsForLastSlide = function() {
-  var self = this;
-
-  // スクロールによるページ遷移のトリガー
-  var handleScrollToTransition = function(event) {
-    window.removeEventListener('wheel', handleScrollToTransition); // 一度のスクロールで1回だけ発火
-    window.location.href = '../top.html'; // ここに遷移先のURLを設定
+    this.isAnimating = true;
+    var currentItem = this.items[this.current];
+    var nextItem = this.items[pos];
+  
+    if (!currentItem || !nextItem) {
+      this.isAnimating = false;
+      return;
+    }
+  
+    var self = this;
+    // スライドアウトアニメーション
+    gsap.to(currentItem.querySelector(".bl_bubble_box.tiltview"), {
+      duration: 0.5,
+      ease: "ease-in-out",
+      x: 1500,
+      y: -500,
+      onStart: function() {
+        currentItem.classList.add("hide");
+      },
+      onComplete: function() {
+        currentItem.classList.remove("current", "show");
+        currentItem.classList.add("hide"); // 非表示に設定
+      }
+    });
+  
+    // スライドインアニメーション
+    gsap.fromTo(nextItem.querySelector(".bl_bubble_box.tiltview"), {
+      x: -1250,
+      y: 625
+    }, {
+      x: 0,
+      y: 0,
+      duration: 0.5,
+      ease: "ease-in-out",
+      onStart: function() {
+        nextItem.classList.remove("hide");
+      },
+      onComplete: function() {
+        nextItem.classList.add("current");
+        nextItem.classList.remove("show", "hide"); // 必要に応じて調整
+        self.isAnimating = false;
+      }
+    });
+  
+    this.current = pos; // 現在の位置を更新
   };
+  
 
-  // ドラッグ（マウスまたはタッチ操作）によるページ遷移のトリガー
-  var handleDragEndToTransition = function(event) {
-    window.removeEventListener('mouseup', handleDragEndToTransition);
-    window.removeEventListener('touchend', handleDragEndToTransition); // 一度のドラッグで1回だけ発火
-    window.location.href = '../top.html'; // ここに遷移先のURLを設定
+
+
+
+  TiltSlider.prototype._setupTransitionEventsForLastSlide = function () {
+    var self = this;
+
+    // スクロールによるページ遷移のトリガー
+    var handleScrollToTransition = function (event) {
+      window.removeEventListener("wheel", handleScrollToTransition); // 一度のスクロールで1回だけ発火
+      window.location.href = "../top.html"; // ここに遷移先のURLを設定
+    };
+
+    // ドラッグ（マウスまたはタッチ操作）によるページ遷移のトリガー
+    var handleDragEndToTransition = function (event) {
+      window.removeEventListener("mouseup", handleDragEndToTransition);
+      window.removeEventListener("touchend", handleDragEndToTransition); // 一度のドラッグで1回だけ発火
+      window.location.href = "../top.html"; // ここに遷移先のURLを設定
+    };
+
+    // イベントリスナーを追加
+    window.addEventListener("wheel", handleScrollToTransition);
+    window.addEventListener("mouseup", handleDragEndToTransition);
+    window.addEventListener("touchend", handleDragEndToTransition);
   };
-
-  // イベントリスナーを追加
-  window.addEventListener('wheel', handleScrollToTransition);
-  window.addEventListener('mouseup', handleDragEndToTransition);
-  window.addEventListener('touchend', handleDragEndToTransition);
-};
 
   // add to global namespace
   window.TiltSlider = TiltSlider;
@@ -949,12 +1739,41 @@ document.addEventListener("DOMContentLoaded", function () {
 //   animate();
 // });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const dynamicImage = document.querySelector(".bl_bubble");
-  const bubbleImage = dynamicImage.querySelector(".bl_bubble_scale");
-  let time = 0;
+// document.addEventListener("DOMContentLoaded", () => {
+//   const dynamicImage = document.querySelector(".bl_bubble");
+//   const bubbleImage = dynamicImage.querySelector(".bl_bubble_scale");
+//   let time = 0;
 
-  function animate() {
+//   function animate() {
+//       requestAnimationFrame(animate);
+
+//       const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.45 + 0.75;
+//       const topLeft = Math.abs(noise.simplex3(1, time, 0.5)) * 50 + 50;
+//       const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
+//       const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
+//       const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
+//       const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 40 + 10;
+
+//       dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
+//       dynamicImage.style.transform = `scale(${scale})`;
+//       dynamicImage.style.borderWidth = `${borderWidth}px`;
+
+//       const inverseScale = 1 / scale;
+//       bubbleImage.style.transform = `scale(${inverseScale})`;
+
+//       time += 0.002;
+//   }
+
+//   animate();
+// });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const dynamicImages = document.querySelectorAll(".bl_bubble");
+
+  dynamicImages.forEach((dynamicImage) => {
+    let time = 0;
+
+    function animate() {
       requestAnimationFrame(animate);
 
       const scale = Math.abs(noise.simplex3(1, time * 0.5, 1.5)) * 0.45 + 0.75;
@@ -962,17 +1781,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const topRight = Math.abs(noise.simplex3(2, time, 0.5)) * 50 + 50;
       const bottomRight = Math.abs(noise.simplex3(3, time, 0.5)) * 50 + 50;
       const bottomLeft = Math.abs(noise.simplex3(4, time, 0.5)) * 50 + 50;
-      const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 40 + 10; 
+      const borderWidth = Math.abs(noise.simplex3(5, time, 0.5)) * 40 + 10;
 
       dynamicImage.style.borderRadius = `${topLeft}% ${topRight}% ${bottomRight}% ${bottomLeft}%`;
       dynamicImage.style.transform = `scale(${scale})`;
       dynamicImage.style.borderWidth = `${borderWidth}px`;
 
+      const bubbleImage = dynamicImage.querySelector(".bl_bubble_scale");
       const inverseScale = 1 / scale;
-      bubbleImage.style.transform = `scale(${inverseScale})`;
+      if (bubbleImage) {
+        bubbleImage.style.transform = `scale(${inverseScale})`;
+      }
 
       time += 0.002;
-  }
+    }
 
-  animate();
+    animate();
+  });
 });
