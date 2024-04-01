@@ -610,32 +610,6 @@ meter {
 }
 
 /* ナビはいらないか？携帯では必要？ */
-.slideshow > nav {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.slideshow > nav span {
-  display: inline-block;
-  width: 60px;
-  height: 25px;
-  border-top: 10px solid #fff;
-  border-bottom: 10px solid #fff;
-  background-color: #ddd;
-  cursor: pointer;
-  margin: 0 3px;
-  -webkit-transition: background-color 0.2s;
-  transition: background-color 0.2s;
-}
-
-.slideshow > nav span:hover {
-  background-color: #333;
-}
-
-.slideshow > nav span.current {
-  background-color: #aaa;
-}
-
 /* 不透明度の遷移が必要なので、透明度を0にしておく */
 .description {
   width: 50%;
@@ -748,7 +722,28 @@ meter {
   top: 20px;
 }
 
-/* 初期状態で非表示にするスタイル */
+@-webkit-keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.fvFade-out {
+  -webkit-animation: fadeOutAnimation 0.8s forwards;
+          animation: fadeOutAnimation 0.8s forwards;
+}
+
 .hp_pl5 {
   padding-left: 5%;
 }
@@ -858,6 +853,10 @@ meter {
 
 .hp_underline {
   text-decoration: underline;
+}
+
+.p_top {
+  opacity: 0;
 }
 
 .bl_globalNavi {
@@ -1154,8 +1153,13 @@ a:hover {
 
 .bl_app2_wrapper {
   max-width: 1112px;
-  padding: 0 15px;
+  padding: 200px 15px;
   margin: -150px auto;
+}
+@media screen and (max-width: 768px) {
+  .bl_app2_wrapper {
+    padding-top: initial;
+  }
 }
 
 .bl_app_ttl_sp {
@@ -2078,7 +2082,7 @@ a:hover {
   }
 }
 .bl_about .bl_about_wave {
-  margin-top: -11%;
+  margin-top: -5%;
 }
 .bl_about_title {
   margin-bottom: 45px;
@@ -2529,6 +2533,9 @@ a:hover {
 }
 .bl_bubble_img_2, .bl_bubble_img_3 {
   margin-top: initial;
+}
+.bl_bubble_img_3 {
+  margin-left: 30px;
 }
 
 .bl_fvShape {

@@ -392,30 +392,30 @@
 }
 
 /* ナビはいらないか？携帯では必要？ */
-.slideshow > nav {
-  text-align: center;
-  margin-top: 20px;
-}
+// .slideshow > nav {
+//   text-align: center;
+//   margin-top: 20px;
+// }
 
-.slideshow > nav span {
-  display: inline-block;
-  width: 60px;
-  height: 25px;
-  border-top: 10px solid #fff;
-  border-bottom: 10px solid #fff;
-  background-color: #ddd;
-  cursor: pointer;
-  margin: 0 3px;
-  transition: background-color 0.2s;
-}
+// .slideshow > nav span {
+//   display: inline-block;
+//   width: 60px;
+//   height: 25px;
+//   border-top: 10px solid #fff;
+//   border-bottom: 10px solid #fff;
+//   background-color: #ddd;
+//   cursor: pointer;
+//   margin: 0 3px;
+//   transition: background-color 0.2s;
+// }
 
-.slideshow > nav span:hover {
-  background-color: #333;
-}
+// .slideshow > nav span:hover {
+//   background-color: #333;
+// }
 
-.slideshow > nav span.current {
-  background-color: #aaa;
-}
+// .slideshow > nav span.current {
+//   background-color: #aaa;
+// }
 
 /* 不透明度の遷移が必要なので、透明度を0にしておく */
 .description {
@@ -510,12 +510,16 @@
 }
 
 
-/* 初期状態で非表示にするスタイル */
-// .slides .bl_bubble_box.tiltview {
-//   transform: translate(1500px, -500px);
-// }
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
-// /* 表示中のスライド */
-// .current .bl_bubble_box.tiltview {
-//   transform: translate(0, 0);
-// }
+.fvFade-out {
+  animation: fadeOutAnimation 0.8s forwards;
+}
+

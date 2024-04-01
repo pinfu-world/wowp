@@ -133,8 +133,12 @@
 .bl_app2 {
   &_wrapper {
     max-width: 1112px;
-    padding: 0 15px;
+    padding: 200px 15px;
     margin: -150px auto;
+
+    @include mq() {
+      padding-top: initial;
+    }
   }
 }
 
@@ -1379,7 +1383,7 @@
   }
 
   & .bl_about_wave {
-    margin-top: -11%;
+    margin-top: -5%;
   }
 
   &_title {
@@ -1797,8 +1801,11 @@
   &_2, &_3 {
     margin-top: initial;
   }
-}
 
+  &_3 {
+    margin-left: 30px;
+  }
+}
 
 // 修正閉じ
 
